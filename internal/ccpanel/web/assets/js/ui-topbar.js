@@ -753,12 +753,12 @@
     }
   }
 
-  // 品牌行：logo + 名称 + 标语（代理网关识别）
+  // 品牌行：logo + 名称 + 标语（嵌在顶栏左端，与下方侧栏同宽分界对齐）
   function buildBrand() {
 
     const img = document.createElement('img');
 
-    img.className = 'sidebar-brand-icon';
+    img.className = 'topbar-brand-icon';
 
     img.src = '/web/favicon.svg';
 
@@ -766,15 +766,15 @@
 
     img.setAttribute('aria-hidden', 'true');
 
-    return h('a', { class: 'sidebar-brand', href: '/web/index.html' }, [
+    return h('a', { class: 'topbar-brand', href: '/web/index.html' }, [
 
       img,
 
-      h('span', { class: 'sidebar-brand-text' }, [
+      h('span', { class: 'topbar-brand-text' }, [
 
-        h('span', { class: 'sidebar-brand-name' }, 'Devin2API'),
+        h('span', { class: 'topbar-brand-name' }, 'Devin2API'),
 
-        h('span', { class: 'sidebar-brand-tag' }, 'API Gateway')
+        h('span', { class: 'topbar-brand-tag' }, 'API Gateway')
 
       ])
 
@@ -921,7 +921,7 @@
 
 
 
-    return h('aside', { id: 'sidebar', class: 'sidebar' }, [buildBrand(), nav, foot]);
+    return h('aside', { id: 'sidebar', class: 'sidebar' }, [nav, foot]);
 
   }
 
@@ -980,7 +980,7 @@
 
 
 
-    return h('header', { class: 'topbar' }, [menuBtn, title, h('div', { class: 'topbar-spacer' }), pill]);
+    return h('header', { class: 'topbar' }, [menuBtn, buildBrand(), title, h('div', { class: 'topbar-spacer' }), pill]);
 
   }
 

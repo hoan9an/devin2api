@@ -582,7 +582,9 @@ html.boot-pending body > * {
 
 .sidebar {
   position: fixed;
-  top: 0;
+  /* 品牌已移到通栏顶栏内，侧栏从页头顶齐改为从顶栏下缘起 ——
+     两框不再共享水平接缝，天然消掉边框对不齐的观感问题 */
+  top: var(--topbar-height);
   left: 0;
   bottom: 0;
   width: var(--sidebar-width);
@@ -592,48 +594,6 @@ html.boot-pending body > * {
   border-right: 1px solid var(--surface-border);
   z-index: calc(var(--z-dropdown) + 1);
   transition: transform var(--duration-normal) var(--timing-function);
-}
-
-.sidebar-brand {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  /* 品牌块与右侧顶栏同高：两者的下边框落在同一水平线，形成整齐的 T 形分界 */
-  min-height: var(--topbar-height);
-  padding: 10px var(--space-4);
-  text-decoration: none;
-  border-bottom: 1px solid var(--surface-border);
-  flex: 0 0 auto;
-}
-
-.sidebar-brand-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  box-shadow: 0 0 0 1px var(--surface-border), 0 4px 14px color-mix(in srgb, var(--primary-500) 25%, transparent);
-  flex: 0 0 auto;
-}
-
-.sidebar-brand-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.sidebar-brand-name {
-  font-size: var(--text-base);
-  font-weight: var(--font-bold);
-  color: var(--neutral-900);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-
-.sidebar-brand-tag {
-  font-size: var(--text-2xs);
-  font-weight: var(--font-medium);
-  color: var(--primary-600);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .sidebar-nav {
@@ -779,18 +739,67 @@ html.boot-pending body > * {
 .topbar {
   position: fixed;
   top: 0;
-  left: var(--content-offset);
+  left: 0;
   right: 0;
   height: var(--topbar-height);
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: var(--space-3);
-  padding: 0 var(--space-5);
+  /* 通栏顶栏：压住左上的侧栏边缘，一条 border 画穿整个页头 */
+  padding: 0 var(--space-5) 0 0;
   background: color-mix(in srgb, var(--sidebar-bg) 82%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--surface-border);
-  z-index: var(--z-dropdown);
+  z-index: calc(var(--z-dropdown) + 2);
+}
+
+/* 品牌块占顶栏左端、与下方侧栏同宽：右缘边框与侧栏 border-right 合成
+   一条竖线，品牌文字起点与侧栏导航项同缩进（space-3 + space-3） */
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: 0 0 auto;
+  width: calc(var(--sidebar-width) - 1px);
+  padding: 0 var(--space-4) 0 calc(var(--space-3) + var(--space-3));
+  text-decoration: none;
+  border-right: 1px solid var(--surface-border);
+}
+
+.topbar-brand-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  box-shadow: 0 0 0 1px var(--surface-border), 0 4px 14px color-mix(in srgb, var(--primary-500) 25%, transparent);
+  flex: 0 0 auto;
+}
+
+.topbar-brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.topbar-brand-name {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--neutral-900);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.topbar-brand-tag {
+  font-size: var(--text-2xs);
+  font-weight: var(--font-medium);
+  color: var(--primary-600);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.topbar-title {
+  display: flex;
+  align-items: center;
 }
 
 .topbar-menu-btn {
@@ -1444,8 +1453,13 @@ body.sidebar-open .sidebar-backdrop {
     visibility: visible;
   }
 .topbar {
-    left: 0;
     padding: 0 var(--space-3);
+    align-items: center;
+  }
+.topbar-brand {
+    width: auto;
+    border-right: none;
+    padding: 0;
   }
 .topbar-menu-btn {
     display: inline-flex;
