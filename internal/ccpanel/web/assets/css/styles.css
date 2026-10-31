@@ -754,14 +754,14 @@ html.boot-pending body > * {
   z-index: calc(var(--z-dropdown) + 2);
 }
 
-/* 品牌块占顶栏左端、与下方侧栏同宽：右缘边框与侧栏 border-right 合成
-   一条竖线，品牌文字起点与侧栏导航项同缩进（space-3 + space-3） */
+/* 品牌块占顶栏左端、与下方侧栏同宽：两边都是 border-box，border 占在盒内，
+   同宽才能让品牌右缘与侧栏 border-right 落进同一列像素、竖线贯通不拐弯 */
 .topbar-brand {
   display: flex;
   align-items: center;
   gap: var(--space-3);
   flex: 0 0 auto;
-  width: calc(var(--sidebar-width) - 1px);
+  width: var(--sidebar-width);
   padding: 0 var(--space-4) 0 calc(var(--space-3) + var(--space-3));
   text-decoration: none;
   border-right: 1px solid var(--surface-border);
