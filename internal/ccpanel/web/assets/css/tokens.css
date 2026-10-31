@@ -543,18 +543,14 @@ html[data-resolved-theme="dark"] {
 .token-cost .cost-stack {
   align-items: flex-end;
   text-align: right;
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 .tokens-table .metric-value {
   margin-bottom: 0;
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   line-height: 1.2;
   white-space: nowrap;
-}
-.tokens-col-stream .metric-value,
-.tokens-col-non-stream .metric-value {
-  font-size: var(--text-lg);
 }
 .token-usage-metrics {
   display: grid;

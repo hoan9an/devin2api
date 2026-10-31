@@ -149,7 +149,7 @@ a.model-tag.model-link:hover {
 }
 
 .stats-table .stats-col-total-label {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--primary-700);
 }
 

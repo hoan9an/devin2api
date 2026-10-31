@@ -524,7 +524,8 @@ html {
 
 body {
   font-family: var(--font-family-sans);
-  font-size: var(--text-base);
+  /* 14px 基准：旧 16px 使正文大于 h3/h4、并挤压了表头层级 */
+  font-size: var(--text-sm);
   line-height: var(--leading-normal);
   color: var(--body-fg);
   background: var(--page-bg);
@@ -539,6 +540,7 @@ input,
 select,
 textarea {
   font-family: inherit;
+  font-size: inherit;
 }
 
 /* 选择文本颜色 */
@@ -1439,7 +1441,7 @@ html.boot-pending body > * {
   border: 2px solid var(--neutral-200);
   border-radius: var(--radius-lg);
   font-family: inherit;
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--neutral-900);
   background: var(--field-bg);
   transition: all var(--duration-fast) var(--timing-function);
@@ -1767,7 +1769,7 @@ body.sidebar-open .sidebar-backdrop {
 }
 
 .modal-title {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 600;
   color: var(--neutral-800);
 }
@@ -2762,7 +2764,8 @@ body.web-role-api-token #btn_export_json {
 }
 
 .page-title {
-  font-size: var(--text-lg);
+  /* 层级：page-title > modal-title > section-title > 正文 14 */
+  font-size: var(--text-xl);
   color: var(--neutral-900);
   font-weight: var(--font-bold);
 }
@@ -2780,7 +2783,7 @@ body.web-role-api-token #btn_export_json {
 }
 
 .section-title {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   color: var(--neutral-800);
   font-weight: var(--font-semibold);
 }
