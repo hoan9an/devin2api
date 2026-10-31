@@ -877,14 +877,16 @@ html.boot-pending body > * {
   flex: 1 1 auto;
 }
 
-/* in-flight 请求数胶囊：网关“正在跑”的实时信号 */
+/* in-flight 请求数徽标：方形小 chip，dot 不带光环——胶囊时代读感像一颗大绿点 */
 
 .topbar-active-pill {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
+  /* topbar 用 stretch 布局，不声明 align-self 徽标会被拉满整行高 */
+  align-self: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: var(--radius-base);
   border: 1px solid color-mix(in srgb, var(--primary-500) 40%, transparent);
   background: color-mix(in srgb, var(--primary-500) 12%, transparent);
   color: var(--primary-600);
@@ -899,11 +901,10 @@ html.boot-pending body > * {
 }
 
 .topbar-active-dot {
-  width: 7px;
-  height: 7px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--primary-500);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-500) 25%, transparent);
   animation: pulse-soft 1.6s ease-in-out infinite;
 }
 

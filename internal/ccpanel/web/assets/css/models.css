@@ -116,7 +116,8 @@
 }
 
 .models-price-note {
-  padding: 0 var(--space-4) var(--space-3);
+  /* reset 清掉 p 的默认外边距后曾只剩 padding 左右——上沿贴住卡片/表格边框 */
+  padding: var(--space-3) var(--space-4) var(--space-3);
   font-size: var(--text-xs);
 }
 

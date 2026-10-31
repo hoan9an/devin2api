@@ -187,22 +187,25 @@ html[data-resolved-theme="dark"] {
   padding: 12px 10px;
   font-size: var(--text-13);
   color: var(--neutral-700);
+  /* fixed 布局下 nowrap 会让长表头压到相邻列（vi 的“Tỷ lệ thành công”蹭 RPM） */
+  white-space: normal;
+  line-height: 1.35;
 }
 .tokens-table td {
   padding: 12px 10px;
   vertical-align: middle;
 }
 .tokens-colgroup-token {
-  width: 24%;
+  width: 21%;
 }
 .tokens-colgroup-calls {
   width: 6%;
 }
 .tokens-colgroup-success-rate {
-  width: 5%;
+  width: 8%;
 }
 .tokens-colgroup-rpm {
-  width: 8%;
+  width: 9%;
 }
 .tokens-colgroup-token-usage {
   width: 12%;
@@ -220,7 +223,7 @@ html[data-resolved-theme="dark"] {
   width: 7%;
 }
 .tokens-colgroup-last-used {
-  width: 8%;
+  width: 7%;
 }
 .tokens-colgroup-actions {
   width: 9%;
