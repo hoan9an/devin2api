@@ -264,11 +264,15 @@ html[data-resolved-theme="dark"] {
 .token-custom-expiry {
   display: none;
 }
+/* $ 前缀与输入钉进同一 grid 单元（都占 1/1）：relative 让它绘制在输入之上
+   （DOM 顺序在输入之前），hint 换行顶高整行时 $ 仍居中于输入格，
+   而不是按整行 50% 落到输入下边框上 */
 .token-cost-prefix {
-  position: absolute;
+  position: relative;
+  grid-area: 1 / 1;
+  justify-self: start;
+  align-self: center;
   left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   color: var(--neutral-500);
   font-weight: 600;
   line-height: 1;
@@ -284,6 +288,9 @@ html[data-resolved-theme="dark"] {
   gap: 5px;
   min-width: 0;
   width: 100%;
+  /* 叠 .form-row-inline__content 时继承到它的 align-items:center——列方向下
+     变成水平居中，曾把单行的"Used"读数挤到容器中间；子项一律横向拉满 */
+  align-items: stretch;
 }
 .form-row-inline:has(> .token-limit-control) {
   align-items: flex-start;
@@ -306,6 +313,8 @@ html[data-resolved-theme="dark"] {
   flex: 1 1 auto;
   min-width: 0;
   width: 100%;
+  /* 与 .token-cost-prefix 同占首行单元，两者在该格内叠放（前缀 relative 置顶） */
+  grid-area: 1 / 1;
 }
 .token-limit-meta {
   display: flex;
@@ -699,15 +708,14 @@ html[data-resolved-theme="dark"] {
 .token-edit-sidebar .token-limit-hint--inline {
   white-space: normal;
 }
-/* $ 前缀贴住输入左缘（输入占首行整行后仍垂直居中于它） */
-.token-edit-sidebar .token-limit-input-line .token-cost-prefix {
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
+/* Request class 行的 select 与长 hint 同排 nowrap 时会被挤成一条缝，
+   纵排放行：select 满宽、说明另起一行 */
+.token-edit-field--class .form-row-inline__content {
+  flex-direction: column;
+  align-items: stretch;
 }
-/* "已用"读数提示行：贴左跟 hint 行对齐，不再被挤到右缘悬空 */
-.token-edit-sidebar .token-limit-meta {
-  justify-content: flex-start;
+.token-edit-field--class .token-field-hint {
+  margin-top: 0;
 }
 .token-edit-field .form-row-inline__content,
 .token-edit-field .field-grow {
