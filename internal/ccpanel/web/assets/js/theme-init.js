@@ -84,11 +84,11 @@
   document.documentElement.dataset.theme = theme;
   document.documentElement.dataset.resolvedTheme = resolvedTheme;
   document.documentElement.style.colorScheme = resolvedTheme;
-  document.documentElement.style.backgroundColor = resolvedTheme === 'dark' ? '#1c1915' : '#faf8f4';
-  document.documentElement.style.color = resolvedTheme === 'dark' ? '#e8e3da' : '#1f1d19';
+  document.documentElement.style.backgroundColor = resolvedTheme === 'dark' ? '#181818' : '#fbfbfb';
+  document.documentElement.style.color = resolvedTheme === 'dark' ? '#e4e4e4' : '#111827';
 
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#1c1915' : '#d97757');
+  if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#181818' : '#d97757');
 
   function clearInitialPaintStyle() {
     document.documentElement.style.removeProperty('background-color');

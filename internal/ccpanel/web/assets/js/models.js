@@ -387,7 +387,7 @@
       out += badge('PROMO' + (c.promo.label ? ' · ' + c.promo.label : ''), '#ec4899');
     }
     if (c.is_beta) out += badge('BETA', '#a855f7');
-    if (c.is_new) out += badge('NEW', '#d97757');
+    if (c.is_new) out += badge('NEW', '#06b6d4');
     if (c.fast && c.fast.active) out += badge('FAST', '#f97316', c.fast.tooltip || '');
     if (c.supports_images) out += badge('img', '#84cc16');
     if (c.is_premium) out += badge('Premium', '#eab308');

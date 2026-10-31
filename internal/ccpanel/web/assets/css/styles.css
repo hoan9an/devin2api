@@ -1,4 +1,4 @@
-/* Devin2API — proxy gateway 主题（暖色 Claude 系背景，orange accent） */
+/* Devin2API — proxy gateway 主题（orange accent + 冷中性底，顶部暖光晕） */
 
 /* Inter 可变字重本地化（woff2 见 assets/fonts/）：不再依赖 Google Fonts
    外网请求——字体拿不到时整页静默退回系统字体，正是各页字形不一致的来源 */
@@ -46,17 +46,17 @@
   /* 主色按钮等实心底上的前景（橙陶底需深字才对比达标） */
   --primary-contrast: #1f1410;
 
-  /* 中性色彩（暖灰，配合米色底不泛蓝） */
-  --neutral-50: #faf8f4;
-  --neutral-100: #f3f0ea;
-  --neutral-200: #e6e0d5;
-  --neutral-300: #cfc7b8;
-  --neutral-400: #a39d90;
-  --neutral-500: #736d61;
-  --neutral-600: #57534a;
-  --neutral-700: #423e36;
-  --neutral-800: #2e2b26;
-  --neutral-900: #1f1d19;
+  /* 中性色彩 */
+  --neutral-50: #f9fafb;
+  --neutral-100: #f3f4f6;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
 
   /* 下拉控件（自定义）配色：随系统浅/深色主题 */
   --filter-dropdown-bg: #ffffff;
@@ -67,21 +67,21 @@
   --filter-dropdown-item-highlight-bg: var(--primary-500);
   --filter-dropdown-item-highlight-fg: #fff;
 
-  /* 主题语义色：亮色为基准，暗色只覆盖这一层（米色暖底，Claude 风） */
+  /* 主题语义色：亮色为基准，暗色只覆盖这一层；暖色只留主色与顶部光晕 */
   --page-bg:
-    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(217, 119, 87, 0.12), transparent 60%),
-    linear-gradient(180deg, #faf8f4 0%, #f2ede5 100%);
-  --surface-bg: rgba(255, 254, 252, 0.96);
-  --surface-bg-strong: rgba(255, 254, 252, 0.98);
-  --surface-bg-muted: rgba(242, 236, 227, 0.9);
-  --surface-border: rgba(42, 37, 31, 0.11);
-  --surface-border-strong: rgba(42, 37, 31, 0.17);
-  --surface-hover: rgba(42, 37, 31, 0.06);
-  --surface-active: rgba(42, 37, 31, 0.10);
-  --field-bg: rgba(255, 254, 252, 0.92);
-  --field-bg-focus: #fffefc;
-  --table-bg: rgba(255, 254, 252, 0.92);
-  --table-row-hover: rgba(42, 37, 31, 0.03);
+    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(217, 119, 87, 0.10), transparent 60%),
+    linear-gradient(180deg, #fdfdfc 0%, #f4f4f3 100%);
+  --surface-bg: rgba(255, 255, 255, 0.96);
+  --surface-bg-strong: rgba(255, 255, 255, 0.98);
+  --surface-bg-muted: rgba(243, 244, 246, 0.9);
+  --surface-border: rgba(17, 24, 39, 0.10);
+  --surface-border-strong: rgba(17, 24, 39, 0.16);
+  --surface-hover: rgba(17, 24, 39, 0.06);
+  --surface-active: rgba(17, 24, 39, 0.10);
+  --field-bg: rgba(255, 255, 255, 0.92);
+  --field-bg-focus: #ffffff;
+  --table-bg: rgba(255, 255, 255, 0.92);
+  --table-row-hover: rgba(17, 24, 39, 0.03);
   --body-fg: var(--neutral-800);
   --muted-fg: var(--neutral-600);
   --color-text: var(--neutral-900);
@@ -117,10 +117,10 @@
   --error-700: #b91c1c;
   --error-800: #991b1b;
   --info-50: #f0f9ff;
-  --info-200: #bae6fd;
-  --info-500: #0ea5e9;
-  --info-600: #0284c7;
-  --info-700: #0369a1;
+  --info-200: #a5f3fc;
+  --info-500: #06b6d4;
+  --info-600: #0891b2;
+  --info-700: #0e7490;
 
   /* 通知使用语义色，避免暗色主题反转中性色后出现浅底浅字 */
   --notification-success-bg: #ecfdf5;
@@ -133,8 +133,8 @@
   --notification-warning-fg: #92400e;
   --notification-warning-border: #f59e0b;
   --notification-info-bg: #f0f9ff;
-  --notification-info-fg: #075985;
-  --notification-info-border: #0ea5e9;
+  --notification-info-fg: #155e75;
+  --notification-info-border: #06b6d4;
 
   /* 字体系统 */
   --font-family-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -250,7 +250,7 @@
   --sidebar-width: 236px;
   /* --content-offset: 主内容离视口左边距，桌面 = 侧栏宽，移动端侧栏出画布归零 */
   --content-offset: var(--sidebar-width);
-  --sidebar-bg: #f3eee7;
+  --sidebar-bg: #f6f6f5;
   --topbar-height: 56px;
   --topbar-offset: var(--topbar-height);
   --container-max-width: 1680px;
@@ -269,41 +269,41 @@ html[data-resolved-theme="light"] {
 
 html[data-resolved-theme="dark"] {
   color-scheme: dark;
-  --neutral-50: #191612;
-  --neutral-100: #221f1a;
-  --neutral-200: #322d26;
-  --neutral-300: #443e34;
-  --neutral-400: #6b645a;
-  --neutral-500: #968f84;
-  --neutral-600: #b8b2a8;
-  --neutral-700: #d6d0c6;
-  --neutral-800: #e8e3da;
-  --neutral-900: #f4f0e9;
+  --neutral-50: #111827;
+  --neutral-100: #1f2937;
+  --neutral-200: #374151;
+  --neutral-300: #4b5563;
+  --neutral-400: #6b7280;
+  --neutral-500: #9ca3af;
+  --neutral-600: #d1d5db;
+  --neutral-700: #e5e7eb;
+  --neutral-800: #f3f4f6;
+  --neutral-900: #f9fafb;
   --page-bg:
     radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(217, 119, 87, 0.16), transparent 60%),
-    linear-gradient(180deg, #1c1915 0%, #171410 100%);
-  --sidebar-bg: #161310;
-  --surface-bg: rgba(40, 36, 30, 0.86);
-  --surface-bg-strong: rgba(40, 36, 30, 0.96);
-  --surface-bg-muted: rgba(48, 43, 36, 0.85);
-  --surface-border: #36302a;
-  --surface-border-strong: #463f36;
-  --surface-hover: rgba(244, 240, 233, 0.06);
-  --surface-active: rgba(244, 240, 233, 0.10);
-  --field-bg: rgba(26, 23, 19, 0.9);
-  --field-bg-focus: rgba(23, 20, 17, 0.96);
-  --table-bg: rgba(40, 36, 30, 0.9);
-  --table-row-hover: rgba(244, 240, 233, 0.04);
+    linear-gradient(180deg, #181818 0%, #151515 100%);
+  --sidebar-bg: #141414;
+  --surface-bg: rgba(30, 30, 30, 0.86);
+  --surface-bg-strong: rgba(30, 30, 30, 0.96);
+  --surface-bg-muted: rgba(36, 36, 36, 0.85);
+  --surface-border: #2b2b2b;
+  --surface-border-strong: #3a3a3a;
+  --surface-hover: rgba(255, 255, 255, 0.06);
+  --surface-active: rgba(255, 255, 255, 0.10);
+  --field-bg: rgba(18, 18, 18, 0.9);
+  --field-bg-focus: rgba(16, 16, 16, 0.96);
+  --table-bg: rgba(30, 30, 30, 0.9);
+  --table-row-hover: rgba(255, 255, 255, 0.04);
   --body-fg: var(--neutral-800);
   --muted-fg: var(--neutral-600);
-  --filter-dropdown-bg: rgb(40, 36, 30);
-  --filter-dropdown-border: #36302a;
+  --filter-dropdown-bg: rgb(30, 30, 30);
+  --filter-dropdown-border: #2b2b2b;
   --filter-dropdown-item-fg: var(--neutral-900);
-  --filter-dropdown-item-hover-bg: rgba(244, 240, 233, 0.08);
-  --filter-dropdown-item-active-bg: rgba(244, 240, 233, 0.12);
+  --filter-dropdown-item-hover-bg: rgba(255, 255, 255, 0.08);
+  --filter-dropdown-item-active-bg: rgba(255, 255, 255, 0.12);
   --topbar-fg: var(--neutral-900);
   --topbar-fg-muted: var(--neutral-600);
-  --card-bg: rgba(40, 36, 30, 0.72);
+  --card-bg: rgba(30, 30, 30, 0.72);
   /* 橙陶在深底上的可读档：-400 承担描边/聚焦环/强调文本，
      -500/-600 维持按钮实底（配深色字），文本类用途不额外提亮 */
   --primary-400: #e18b62;
@@ -328,9 +328,9 @@ html[data-resolved-theme="dark"] {
   --error-300: rgba(248, 113, 113, 0.48);
   --error-700: #fca5a5;
   --error-800: #fecaca;
-  --info-50: rgba(14, 165, 233, 0.14);
-  --info-200: rgba(56, 189, 248, 0.35);
-  --info-700: #38bdf8;
+  --info-50: rgba(6, 182, 212, 0.14);
+  --info-200: rgba(103, 232, 249, 0.35);
+  --info-700: #67e8f9;
   --notification-success-bg: #052e24;
   --notification-success-fg: #d1fae5;
   --notification-success-border: #10b981;
@@ -340,9 +340,9 @@ html[data-resolved-theme="dark"] {
   --notification-warning-bg: #451a03;
   --notification-warning-fg: #fef3c7;
   --notification-warning-border: #f59e0b;
-  --notification-info-bg: #082f44;
-  --notification-info-fg: #e0f2fe;
-  --notification-info-border: #0ea5e9;
+  --notification-info-bg: #083344;
+  --notification-info-fg: #cffafe;
+  --notification-info-border: #06b6d4;
 
   /* 暗色阴影更深，卡片保持扁平不糊边 */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -1066,6 +1066,18 @@ html.boot-pending body > * {
 
 .card:hover {
   border-color: var(--surface-border-strong);
+}
+
+/* 卡片内的次级区块保持齐平：嵌在 .card 里的表格壳/KPI 块不再各自带底与影，
+   避免「卡片叠卡片」的多层浮起；表格外壳样式仅保留给顶层独立表格（tokens 等） */
+.card .table-container {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.card .kpi-card {
+  background: var(--surface-bg-muted);
 }
 
 .metric-value {
@@ -2875,6 +2887,11 @@ body.web-role-api-token #btn_export_json {
     background: var(--surface-bg-strong);
     box-shadow: var(--shadow-card);
     position: relative;
+  }
+/* 行卡片被外层 .card 包住时去掉自己的底与影，避免浮起叠层（同桌面端 .card .table-container 规则） */
+.card .mobile-card-table tbody .mobile-card-row {
+    background: transparent;
+    box-shadow: none;
   }
 .mobile-card-table tbody tr:not(.mobile-card-row) {
     display: block;
