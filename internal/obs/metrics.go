@@ -52,15 +52,16 @@ type RejectLabel struct {
 	Label  string `json:"label"`
 }
 
-// rejectLabels 是拒绝分类的面板显示名：词汇与标签同文件定义，新增分类
-// 漏补标签立刻可见；JS 侧不再维护镜像表，未知 reason 回退显示原值。
+// rejectLabels 是拒绝分类的英文基准显示名：词汇与标签同文件定义，新增分类
+// 必须同时登记。面板前端按 reason 走 i18n（common.rejectReason.*），这里的
+// 英文值是未翻 reason 与非面板消费方的兜底，漏补标签立刻可见。
 var rejectLabels = []RejectLabel{
-	{string(RejectDraining), "排空"},
-	{string(RejectConcurrencyLimit), "并发上限"},
-	{string(RejectWSConnectionLimit), "WS连接上限"},
-	{string(RejectMissingAPIKey), "缺API Key"},
-	{string(RejectInvalidAPIKey), "错API Key"},
-	{string(RejectHTTPRead), "读体失败"},
+	{string(RejectDraining), "Draining"},
+	{string(RejectConcurrencyLimit), "Concurrency limit"},
+	{string(RejectWSConnectionLimit), "WS connection limit"},
+	{string(RejectMissingAPIKey), "Missing API key"},
+	{string(RejectInvalidAPIKey), "Invalid API key"},
+	{string(RejectHTTPRead), "Body read failed"},
 }
 
 // RejectEvent 是一次管线前拒绝的采样：请求未读体即被拒，没有调试目录；

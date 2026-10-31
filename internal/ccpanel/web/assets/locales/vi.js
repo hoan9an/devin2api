@@ -123,6 +123,13 @@ window.I18N_LOCALES['vi'] = {
   'index.channelEmpty': 'Không có request',
   'common.selectAll': 'Chọn tất cả/Bỏ chọn tất cả',
   'common.clear': 'Xóa',
+  // Lý do từ chối trước pipeline (enum RejectReason trong internal/obs)
+  'common.rejectReason.draining': 'Đang rút',
+  'common.rejectReason.concurrencyLimit': 'Quá giới hạn đồng thời',
+  'common.rejectReason.wsConnectionLimit': 'Quá giới hạn kết nối WS',
+  'common.rejectReason.missingApiKey': 'Thiếu API key',
+  'common.rejectReason.invalidApiKey': 'API key không hợp lệ',
+  'common.rejectReason.httpRead': 'Đọc body thất bại',
 
   // ============================================================
   // API Tokens

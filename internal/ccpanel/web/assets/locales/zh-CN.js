@@ -123,6 +123,13 @@ window.I18N_LOCALES['zh-CN'] = {
   'index.channelEmpty': '暂无请求',
   'common.selectAll': '全选/取消全选',
   'common.clear': '清空',
+  // 管线前拒绝原因（internal/obs RejectReason 枚举）
+  'common.rejectReason.draining': '排空',
+  'common.rejectReason.concurrencyLimit': '并发上限',
+  'common.rejectReason.wsConnectionLimit': 'WS连接上限',
+  'common.rejectReason.missingApiKey': '缺API Key',
+  'common.rejectReason.invalidApiKey': '错API Key',
+  'common.rejectReason.httpRead': '读体失败',
 
   // ============================================================
   // API令牌

@@ -123,6 +123,13 @@ window.I18N_LOCALES['en'] = {
   'index.channelEmpty': 'No requests',
   'common.selectAll': 'Select all/Deselect all',
   'common.clear': 'Clear',
+  // Pre-pipeline reject reasons (internal/obs RejectReason enum)
+  'common.rejectReason.draining': 'Draining',
+  'common.rejectReason.concurrencyLimit': 'Concurrency limit',
+  'common.rejectReason.wsConnectionLimit': 'WS connection limit',
+  'common.rejectReason.missingApiKey': 'Missing API key',
+  'common.rejectReason.invalidApiKey': 'Invalid API key',
+  'common.rejectReason.httpRead': 'Body read failed',
 
   // ============================================================
   // API Tokens

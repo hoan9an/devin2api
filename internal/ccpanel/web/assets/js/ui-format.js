@@ -212,6 +212,27 @@
     return rpm.toFixed(2);
   }
 
+  // ── 管线前拒绝 reason → 人性化标签 ─────────────────────────
+  // wire 值是 internal/obs/metrics.go 的 RejectReason 枚举；服务端
+  // rejects.labels 下发英文基准名，这里按 locale 键优先本地化。
+  const REJECT_REASON_LABELS = {
+    draining:             ['common.rejectReason.draining', 'Draining'],
+    concurrency_limit:    ['common.rejectReason.concurrencyLimit', 'Concurrency limit'],
+    ws_connection_limit:  ['common.rejectReason.wsConnectionLimit', 'WS connection limit'],
+    missing_api_key:      ['common.rejectReason.missingApiKey', 'Missing API key'],
+    invalid_api_key:      ['common.rejectReason.invalidApiKey', 'Invalid API key'],
+    http_read:            ['common.rejectReason.httpRead', 'Body read failed']
+  };
+
+  // 兜底链：locale 键 → 服务端 labels 表 → 原值。未知 reason 保持原样
+  // 以便排障核对（词汇新增时 wire 值永远可见）。
+  function rejectReasonLabel(reason, serverLabel) {
+    const key = String(reason || '');
+    const item = REJECT_REASON_LABELS[key];
+    if (item) return window.i18nText(item[0], item[1]);
+    return serverLabel || key;
+  }
+
   /**
    * HTML转义（防XSS）
    * @param {string} str - 需要转义的字符串
@@ -242,6 +263,7 @@
   window.toneClass = toneClass;
   window.formatNumber = formatNumber;
   window.formatRpmValue = formatRpmValue;
+  window.rejectReasonLabel = rejectReasonLabel;
   window.escapeHtml = escapeHtml;
   window.esc = escapeHtml;
 

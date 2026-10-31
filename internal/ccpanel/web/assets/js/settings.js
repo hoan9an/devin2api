@@ -730,7 +730,7 @@ function renderRejectsExtra(stats) {
     .filter((reason) => (normalizeRuntimeMetric(byReason[reason]) || 0) > 0)
     .map((reason) => `
       <div class="kpi-card">
-        <span class="kpi-label">${escapeHtml(labels[reason] || reason)}</span>
+        <span class="kpi-label">${escapeHtml(window.rejectReasonLabel(reason, labels[reason]))}</span>
         <strong class="kpi-value">${escapeHtml(formatRuntimeInteger(byReason[reason]))}</strong>
         <code class="kpi-key">${escapeHtml(reason)}</code>
       </div>`);
@@ -749,7 +749,7 @@ function renderRejectsExtra(stats) {
         + (ua ? `<div title="${escapeHtml(ua)}">${escapeHtml(ua.length > 48 ? ua.slice(0, 48) + '…' : ua)}</div>` : '');
       return `<tr>
         <td>${escapeHtml(at !== null ? new Date(at * 1000).toLocaleString(runtimeMetricsLocale()) : '—')}</td>
-        <td><span class="runtime-transcript-status runtime-transcript-status--warning" title="${escapeHtml(event.reason || '')}">${escapeHtml(labels[event.reason] || event.reason || '—')}</span></td>
+        <td><span class="runtime-transcript-status runtime-transcript-status--warning" title="${escapeHtml(event.reason || '')}">${escapeHtml(event.reason ? window.rejectReasonLabel(event.reason, labels[event.reason]) : '—')}</span></td>
         <td>${escapeHtml(String(event.status ?? '—'))}</td>
         <td>${escapeHtml(event.path || '—')}</td>
         <td>${who}</td>

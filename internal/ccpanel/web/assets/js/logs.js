@@ -798,7 +798,7 @@ function summarizeLogsRejects(rejects, windowMs) {
     const reason = String(event?.reason || '');
     byReason[reason] = (byReason[reason] || 0) + 1;
   });
-  const parts = Object.keys(byReason).map((key) => `${labels[key] || key} ${byReason[key]}`);
+  const parts = Object.keys(byReason).map((key) => `${window.rejectReasonLabel(key, labels[key])} ${byReason[key]}`);
   return { n, parts };
 }
 

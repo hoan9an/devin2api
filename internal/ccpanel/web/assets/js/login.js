@@ -130,8 +130,14 @@
 
     // 页面加载完成后的初始化
     document.addEventListener('DOMContentLoaded', function() {
-      if (window.i18n) window.i18n.translatePage();
-      setLoginMode('admin');
+      // locale 包是异步注入 script 加载的（i18n.init）；translatePage 自带
+      // pendingPacks 重放，但 setLoginMode 里的 window.t() 直读——必须等
+      // i18n.ready 再调，否则首次渲染写回的是原 key 本身并刷 Missing key。
+      const boot = window.i18n && window.i18n.ready ? window.i18n.ready : Promise.resolve();
+      boot.then(() => {
+        if (window.i18n) window.i18n.translatePage();
+        setLoginMode('admin');
+      });
       // 聚焦到密码输入框
       setTimeout(() => {
         passwordInput.focus();
