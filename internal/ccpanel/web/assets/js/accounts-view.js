@@ -528,7 +528,7 @@
         splitLine: { lineStyle: { color: theme.splitLine } }
       },
       series: [
-        mk(t('accounts.curveDaily'), '#7f56f1', (p) => p.daily_remaining),
+        mk(t('accounts.curveDaily'), '#06b6d4', (p) => p.daily_remaining),
         mk(t('accounts.curveWeekly'), '#10b981', (p) => p.weekly_remaining)
       ]
     };

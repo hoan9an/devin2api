@@ -106,14 +106,14 @@ function validateSettingInput(setting, value) {
     try {
       parsed = JSON.parse(trimmed);
     } catch (_) {
-      return i18nText('settings.validation.invalidJSON', '必须是合法 JSON');
+      return i18nText('settings.validation.invalidJSON', 'Enter valid JSON.');
     }
     const shape = jsonSettingShapes.get(setting.key);
     if (shape === 'object' && (!parsed || typeof parsed !== 'object' || Array.isArray(parsed))) {
-      return i18nText('settings.validation.invalidJSONObject', '必须是 JSON 对象，如 {"客户端模型名":"上游UID"}');
+      return i18nText('settings.validation.invalidJSONObject', 'Must be a JSON object.');
     }
     if (shape === 'array' && !Array.isArray(parsed)) {
-      return i18nText('settings.validation.invalidJSONArray', '必须是 JSON 数组，如 ["工具名"]');
+      return i18nText('settings.validation.invalidJSONArray', 'Must be a JSON array.');
     }
     return '';
   }
@@ -1493,7 +1493,7 @@ async function reloadEffectiveConfig() {
     // 热字段（debug.enabled 等）可能刚变，连带刷新配置视图。
     await loadEffectiveConfig();
   } catch (err) {
-    console.error('配置重载异常:', err);
+    console.error('Config reload error:', err);
     showError(t('settings.effectiveConfig.reloadFailed') + ': ' + err.message);
   } finally {
     if (btn) {
@@ -1511,13 +1511,13 @@ function getSettingGroupInfo(key) {
 
     // devin_* 匹配讲究先后：max_rpm 属闸门、client_* 属身份，须先排掉，
     // 余下的 devin_* 才归上游端点组。
-    { id: 'gate', nameKey: 'settings.group.gate', order: 22, fb: '速率闸门', match: () => k === 'devin_max_rpm' || k.startsWith('gate_') },
-    { id: 'warm', nameKey: 'settings.group.warm', order: 23, fb: '前缀保温', match: () => k.startsWith('warm_prefix_') },
+    { id: 'gate', nameKey: 'settings.group.gate', order: 22, fb: 'Rate Gate', match: () => k === 'devin_max_rpm' || k.startsWith('gate_') },
+    { id: 'warm', nameKey: 'settings.group.warm', order: 23, fb: 'Prefix Warming', match: () => k.startsWith('warm_prefix_') },
     // 号池调度与流超时须在 upstream 之前：四个键都以 devin_ 开头，
     // 不先排掉会被并进上游端点组。
-    { id: 'pool', nameKey: 'settings.group.pool', order: 24, fb: '号池调度', match: () => k.startsWith('devin_session_') || k.startsWith('devin_quota_') || k.includes('no_progress_timeout') },
-    { id: 'identity', nameKey: 'settings.group.identity', order: 15, fb: '客户端身份', match: () => k.startsWith('devin_client_') },
-    { id: 'upstream', nameKey: 'settings.group.upstream', order: 10, fb: '上游端点', match: () => k.startsWith('devin_') },
+    { id: 'pool', nameKey: 'settings.group.pool', order: 24, fb: 'Pool Scheduling & Stream Timeouts', match: () => k.startsWith('devin_session_') || k.startsWith('devin_quota_') || k.includes('no_progress_timeout') },
+    { id: 'identity', nameKey: 'settings.group.identity', order: 15, fb: 'Client Identity', match: () => k.startsWith('devin_client_') },
+    { id: 'upstream', nameKey: 'settings.group.upstream', order: 10, fb: 'Upstream Endpoint', match: () => k.startsWith('devin_') },
 
     { id: 'websocket', nameKey: 'settings.group.websocket', order: 25, match: () => k.startsWith('responses_ws_') },
     { id: 'stream-timeout', nameKey: 'settings.group.streamTimeout', order: 20, match: () => k === 'stream_timeout' || k.endsWith('_first_byte_timeout') },
@@ -1530,7 +1530,7 @@ function getSettingGroupInfo(key) {
   for (const d of defs) {
     if (d.match()) return { ...d, name: i18nText(d.nameKey, d.fb || d.nameKey) };
   }
-  return { id: 'advanced', nameKey: 'settings.group.advanced', name: i18nText('settings.group.advanced', '高级'), order: 70 };
+  return { id: 'advanced', nameKey: 'settings.group.advanced', name: i18nText('settings.group.advanced', 'Advanced'), order: 70 };
 }
 
 function getSettingOrder(key) {
@@ -1904,7 +1904,7 @@ async function saveAllSettings() {
 
     showSuccess(result?.message || t('settings.msg.savedCount', { count: Object.keys(updates).length }));
   } catch (err) {
-    console.error('保存异常:', err);
+    console.error('Save error:', err);
     showError(t('settings.msg.saveFailed') + ': ' + err.message);
   }
 }

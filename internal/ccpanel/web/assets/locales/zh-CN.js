@@ -1321,5 +1321,18 @@ window.I18N_LOCALES['zh-CN'] = {
   'tokens.createSectionModels': '模型与启用',
 
   // logs
-  'logs.debugMergeFailed': '合并响应失败'
+  'logs.debugMergeFailed': '合并响应失败',
+  // ============================================================
+  // Sidebar layout (redesign)
+  // ============================================================
+  'nav.group.observe': '监控',
+  'nav.group.manage': '管理',
+  'topbar.toggleMenu': '切换导航菜单',
+  'settings.desc.gate_bg_max_hold_seconds': 'bg 类请求闸内排队预算秒数（devin.gate_bg_max_hold_seconds，fg 走 gate_max_hold_seconds）；<=0 默认 120',
+  'settings.desc.gate_bg_reserve_margin': 'bg 准入预留公式的固定安全边际条数（devin.gate_bg_reserve_margin）；<=0 默认 4',
+  'settings.desc.gate_cooldown_seconds': '解闩后配额爬坡时长秒数（devin.gate_cooldown_seconds）：闩解除后窗口有效配额从地板比例线性爬回满值；<=0 默认 180',
+  'settings.desc.gate_cooldown_floor_ratio': '爬坡起点配额比例（devin.gate_cooldown_floor_ratio，取值 (0,1]）：解闩后首个窗口只放 floor×max_rpm；越界默认 0.2',
+  'settings.desc.gate_fragile_seconds': '脆弱期时长秒数（devin.gate_fragile_seconds）：限流判决或解闩后窗内放行按经过时间线性释放（fg/bg 同束），压住开窗齐射；<=0 默认 600',
+  'settings.desc.debug_log_errors_only': '只保留失败请求的调试记录(干净完成的请求完结即删payload,logs摘要行仍保留)',
+  'settings.desc.log_row_retention_days': 'logs 表摘要行保留天数(独立于调试记录保留,<=0不清理)',
 };

@@ -12,19 +12,28 @@
 
     { key: 'index', labelKey: 'nav.overview', href: '/web/index.html', icon: iconHome },
 
-    { key: 'tokens', labelKey: 'nav.tokens', href: '/web/tokens.html', icon: iconKey },
+    { key: 'logs', labelKey: 'nav.logs', href: '/web/logs.html', icon: iconAlert, group: 'observe' },
 
-    { key: 'models', labelKey: 'nav.models', href: '/web/models.html', icon: iconLayers },
+    { key: 'stats', labelKey: 'nav.stats', href: '/web/stats.html', icon: iconBars, group: 'observe' },
 
-    { key: 'stats', labelKey: 'nav.stats', href: '/web/stats.html', icon: iconBars },
+    { key: 'trend', labelKey: 'nav.trend', href: '/web/trend.html', icon: iconTrend, group: 'observe' },
 
-    { key: 'trend', labelKey: 'nav.trend', href: '/web/trend.html', icon: iconTrend },
+    { key: 'tokens', labelKey: 'nav.tokens', href: '/web/tokens.html', icon: iconKey, group: 'manage' },
 
-    { key: 'accounts', labelKey: 'nav.accounts', href: '/web/accounts.html', icon: iconUsers },
+    { key: 'models', labelKey: 'nav.models', href: '/web/models.html', icon: iconLayers, group: 'manage' },
 
-    { key: 'logs', labelKey: 'nav.logs', href: '/web/logs.html', icon: iconAlert },
+    { key: 'accounts', labelKey: 'nav.accounts', href: '/web/accounts.html', icon: iconUsers, group: 'manage' },
 
-    { key: 'settings', labelKey: 'nav.settings', href: '/web/settings.html', icon: iconSettings },
+    { key: 'settings', labelKey: 'nav.settings', href: '/web/settings.html', icon: iconSettings, group: 'manage' },
+
+  ];
+
+  // 分组标题（i18n key）——按代理网关语义分：监控 / 管理
+  const NAV_GROUPS = [
+
+    { key: 'observe', labelKey: 'nav.group.observe' },
+
+    { key: 'manage', labelKey: 'nav.group.manage' },
 
   ];
 
@@ -176,11 +185,11 @@
 
       const mode = typeof saved === 'string' ? saved.split(':', 1)[0] : null;
 
-      return THEME_MODES.includes(mode) ? mode : 'system';
+      return THEME_MODES.includes(mode) ? mode : 'dark';
 
     } catch (_) {
 
-      return 'system';
+      return 'dark';
 
     }
 
@@ -202,7 +211,7 @@
 
     const meta = document.querySelector('meta[name="theme-color"]');
 
-    if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#0f172a' : '#6341f2');
+    if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#181818' : '#06b6d4');
 
   }
 
@@ -619,7 +628,7 @@
       const translated = t('nav.activeRequestsTitle', { count: label });
       if (translated && translated !== 'nav.activeRequestsTitle') return translated;
     }
-    return `请求中[${label}]-`;
+    return `Active[${label}]-`;
   }
 
   function stopTitleFlash() {
@@ -631,12 +640,39 @@
     if (titleBase) document.title = titleBase;
   }
 
+  function syncTopbarActivePill(count) {
+
+    const pill = document.getElementById('topbar-active-pill');
+
+    if (!pill) return;
+
+    const shown = Number(count) > 0;
+
+    pill.hidden = !shown;
+
+    if (shown) {
+
+      const countEl = document.getElementById('topbar-active-count');
+
+      if (countEl) countEl.textContent = count > 99 ? '99+' : String(count);
+
+      pill.setAttribute('title', t('nav.activeRequestsTitle', { count }));
+
+      pill.setAttribute('aria-label', t('nav.activeRequestsTitle', { count }));
+
+    }
+
+  }
+
+
+
   function updateActiveIndicator(count, titleEnabled) {
     if (titleFlashTimer === null) {
       titleBase = document.title || titleBase || '';
     }
     activeCount = count;
     titleFlashEnabled = titleEnabled === true;
+    syncTopbarActivePill(count);
 
     // favicon 角标仅在数量变化时重绘，省 toDataURL 开销
     if (count !== lastBadgeCount) {
@@ -717,31 +753,91 @@
     }
   }
 
-  function buildTopbar(active) {
+  // 品牌行：logo + 名称 + 标语（代理网关识别）
+  function buildBrand() {
 
-    const bar = h('header', { class: 'topbar' });
+    const img = document.createElement('img');
+
+    img.className = 'sidebar-brand-icon';
+
+    img.src = '/web/favicon.svg';
+
+    img.alt = '';
+
+    img.setAttribute('aria-hidden', 'true');
+
+    return h('a', { class: 'sidebar-brand', href: '/web/index.html' }, [
+
+      img,
+
+      h('span', { class: 'sidebar-brand-text' }, [
+
+        h('span', { class: 'sidebar-brand-name' }, 'Devin2API'),
+
+        h('span', { class: 'sidebar-brand-tag' }, 'API Gateway')
+
+      ])
+
+    ]);
+
+  }
 
 
+
+  // 左侧导航栏（proxy gateway 标准布局）
+  function buildSidebar(active) {
 
     const role = window.getWebRole();
 
     const visibleNavKeys = new Set(window.WebAuth.filterNavigation(NAVS.map((item) => item.key), role));
 
-    const nav = h('nav', { class: 'topnav' }, [
+    const loggedIn = isLoggedIn();
 
-      ...NAVS.filter((item) => visibleNavKeys.has(item.key)).map(n => h('a', {
 
-        class: `topnav-link ${n.key === active ? 'active' : ''}`,
 
-        href: n.href,
+    const linkFor = (n) => h('a', {
 
-        'data-nav-key': n.key
+      class: `sidebar-link ${n.key === active ? 'active' : ''}`,
 
-      }, [n.icon(), h('span', { 'data-i18n': n.labelKey }, t(n.labelKey))]))
+      href: n.href,
+
+      'data-nav-key': n.key
+
+    }, [n.icon(), h('span', { 'data-i18n': n.labelKey }, t(n.labelKey))]);
+
+
+
+    const sections = NAV_GROUPS.map(g => {
+
+      const items = NAVS.filter(n => n.group === g.key && visibleNavKeys.has(n.key));
+
+      if (!items.length) return null;
+
+      return h('div', { class: 'sidebar-group' }, [
+
+        h('div', { class: 'sidebar-group-label', 'data-i18n': g.labelKey }, t(g.labelKey)),
+
+        ...items.map(linkFor)
+
+      ]);
+
+    }).filter(Boolean);
+
+
+
+    // 未分组项（index 放在最顶部，不挂组标）
+
+    const headLinks = NAVS.filter(n => !n.group && visibleNavKeys.has(n.key)).map(linkFor);
+
+
+
+    const nav = h('nav', { class: 'sidebar-nav', 'aria-label': 'Main navigation' }, [
+
+      ...headLinks,
+
+      ...sections
 
     ]);
-
-    const loggedIn = isLoggedIn();
 
 
 
@@ -787,12 +883,6 @@
 
 
 
-    // 版本+GitHub组合成一个视觉组
-
-    const versionGroup = h('div', { class: 'version-group' }, [versionBadge, githubLink]);
-
-
-
     // 语言切换器
 
     const langSwitcher = window.i18n ? window.i18n.createLanguageSwitcher() : null;
@@ -801,31 +891,96 @@
 
 
 
-    const right = h('div', { class: 'topbar-right' }, [
+    const controls = h('div', { class: 'sidebar-controls' }, [themeSwitcher, langSwitcher].filter(Boolean));
 
-      versionGroup,
 
-      themeSwitcher,
 
-      langSwitcher,
+    const authBtn = h('button', {
 
-      h('button', {
+      id: 'auth-btn',
 
-        id: 'auth-btn',
+      class: 'btn btn-secondary btn-sm sidebar-auth',
 
-        class: 'btn btn-secondary btn-sm',
+      'data-i18n': loggedIn ? 'common.logout' : 'common.login',
 
-        'data-i18n': loggedIn ? 'common.logout' : 'common.login',
+      onclick: loggedIn ? onLogout : () => location.href = window.getLoginUrl()
 
-        onclick: loggedIn ? onLogout : () => location.href = window.getLoginUrl()
+    }, t(loggedIn ? 'common.logout' : 'common.login'));
 
-      }, t(loggedIn ? 'common.logout' : 'common.login'))
 
-    ].filter(Boolean));
 
-    bar.appendChild(nav); bar.appendChild(right);
+    const foot = h('div', { class: 'sidebar-foot' }, [
 
-    return bar;
+      h('div', { class: 'sidebar-meta' }, [versionBadge, githubLink]),
+
+      controls,
+
+      authBtn
+
+    ]);
+
+
+
+    return h('aside', { id: 'sidebar', class: 'sidebar' }, [buildBrand(), nav, foot]);
+
+  }
+
+
+
+  // 顶部细条：移动端汉堡 + 当前页名；桌面端只显示页名
+  function buildTopbar(active) {
+
+    const activeNav = NAVS.find(n => n.key === active);
+
+    const menuBtn = h('button', {
+
+      type: 'button',
+
+      class: 'topbar-menu-btn',
+
+      'aria-label': t('topbar.toggleMenu'),
+
+      onclick: () => document.body.classList.toggle('sidebar-open')
+
+    }, [svg('<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>')]);
+
+
+
+    const title = h('div', { class: 'topbar-title' }, [
+
+      h('span', {
+
+        class: 'topbar-title-text',
+
+        ...(activeNav ? { 'data-i18n': activeNav.labelKey } : {})
+
+      }, activeNav ? t(activeNav.labelKey) : 'Devin2API')
+
+    ]);
+
+
+
+    // 网关状态胶囊：展示 in-flight 请求数（隐藏于无请求/未登录时）
+
+    const pill = h('div', {
+
+      id: 'topbar-active-pill',
+
+      class: 'topbar-active-pill',
+
+      hidden: ''
+
+    }, [
+
+      h('span', { class: 'topbar-active-dot' }),
+
+      h('span', { class: 'topbar-active-count', id: 'topbar-active-count' }, '0')
+
+    ]);
+
+
+
+    return h('header', { class: 'topbar' }, [menuBtn, title, h('div', { class: 'topbar-spacer' }), pill]);
 
   }
 
@@ -1061,23 +1216,45 @@
 
     const app = document.querySelector('.app-container') || document.body;
 
-    // 隐藏侧边栏与移动按钮
+    // 侧边导航 + 移动端遮罩 + 顶部细条
 
-    const sidebar = document.getElementById('sidebar');
+    const sidebar = buildSidebar(activeKey);
 
-    if (sidebar) sidebar.style.display = 'none';
+    const backdrop = h('div', {
 
-    const mobileBtn = document.getElementById('mobile-menu-btn');
+      class: 'sidebar-backdrop',
 
-    if (mobileBtn) mobileBtn.style.display = 'none';
+      onclick: () => document.body.classList.remove('sidebar-open')
 
-
-
-    // 插入顶部条
+    });
 
     const topbar = buildTopbar(activeKey);
 
+    document.body.appendChild(sidebar);
+
+    document.body.appendChild(backdrop);
+
     document.body.appendChild(topbar);
+
+
+
+    // 移动端：Esc 或点链接后收起侧栏
+
+    document.addEventListener('keydown', (e) => {
+
+      if (e.key === 'Escape') document.body.classList.remove('sidebar-open');
+
+    });
+
+    sidebar.addEventListener('click', (e) => {
+
+      if (e.target.closest && e.target.closest('a.sidebar-link')) {
+
+        document.body.classList.remove('sidebar-open');
+
+      }
+
+    });
 
     const skipLink = document.createElement('a');
     skipLink.className = 'skip-link';

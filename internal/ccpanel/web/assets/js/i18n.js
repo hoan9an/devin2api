@@ -11,12 +11,13 @@
   let currentLocale = 'zh-CN';
 
   // 支持的语言列表
-  const SUPPORTED_LOCALES = ['zh-CN', 'en'];
+  const SUPPORTED_LOCALES = ['zh-CN', 'en', 'vi'];
 
   // 语言显示名称
   const LOCALE_NAMES = {
     'zh-CN': '中文',
-    'en': 'English'
+    'en': 'English',
+    'vi': 'Tiếng Việt'
   };
 
   // 已注册的刷新回调
@@ -49,9 +50,10 @@
    * @returns {string} 语言代码
    */
   function detectBrowserLocale() {
-    const nav = navigator.language || navigator.userLanguage || 'zh-CN';
-    if (nav.startsWith('en')) return 'en';
-    return 'zh-CN';
+    const nav = navigator.language || navigator.userLanguage || 'en';
+    if (nav.startsWith('vi')) return 'vi';
+    if (nav.startsWith('zh')) return 'zh-CN';
+    return 'en';
   }
 
   /**
@@ -67,7 +69,7 @@
     }
     document.documentElement.lang = currentLocale;
 
-    return Promise.all([...new Set([currentLocale, 'zh-CN'])].map(ensureLocalePack));
+    return Promise.all([...new Set([currentLocale, 'en', 'zh-CN'])].map(ensureLocalePack));
   }
 
   /**
@@ -151,8 +153,11 @@
     let text = localeData[key];
 
     if (text === undefined) {
-      // 回退到中文
-      text = (window.I18N_LOCALES['zh-CN'] || {})[key];
+      // 回退顺序：英文 -> 中文（英文是源语言，回退语义最准）
+      text = (window.I18N_LOCALES['en'] || {})[key];
+      if (text === undefined) {
+        text = (window.I18N_LOCALES['zh-CN'] || {})[key];
+      }
       if (text === undefined) {
         // 生产环境不打印警告，避免日志污染；仅本机开发时提示缺键
         const isDevHost = typeof location !== 'undefined' &&
@@ -180,6 +185,7 @@
 
     const localeData = window.I18N_LOCALES[currentLocale] || {};
     let text = localeData[key];
+    if (text === undefined) text = (window.I18N_LOCALES['en'] || {})[key];
     if (text === undefined) text = (window.I18N_LOCALES['zh-CN'] || {})[key];
     if (text === undefined) text = fallback;
 

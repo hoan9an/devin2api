@@ -24,7 +24,8 @@
 }
 
 .logs-filter-controls .filter-combobox-wrapper {
-  min-width: 120px;
+  min-width: 0;
+  max-width: none;
 }
 
 .logs-filter-summary-row {
@@ -858,49 +859,51 @@ html[data-resolved-theme="dark"] .chat-message {
 /* 顶部工具栏：标签置顶、控件等高，单条 flex 流一行排布；
    组宽按内容定死（不拉伸填空），行操作靠右收尾 */
 .logs-filter-controls {
-  gap: var(--space-2) 10px;
+  gap: var(--space-2) 12px;
   align-items: flex-end;
 }
 
+/* 组宽跟内容走（label nowrap + 控件 min-width），不再写死像素——
+   越南语/中文 label 长短差异大，固定宽度必有一门被裁。 */
 .logs-filter-group {
   flex: 0 0 auto;
-  width: 112px;
-  min-width: 0;
+  min-width: 148px;
   flex-direction: column;
   align-items: stretch;
   gap: 3px;
 }
 
 .logs-filter-group--range {
-  width: 88px;
+  min-width: 128px;
 }
 
 .logs-filter-group--token {
-  width: 108px;
+  min-width: 148px;
 }
 
 .logs-filter-group.filter-group--api {
-  width: 124px;
+  min-width: 160px;
 }
 
 .logs-filter-group.filter-group--log-source {
-  width: 124px;
+  min-width: 148px;
 }
 
 .logs-filter-group.filter-group--model {
-  width: 156px;
+  min-width: 190px;
 }
 
 .logs-filter-group.filter-group--status {
-  width: 92px;
+  min-width: 120px;
 }
 
 .logs-filter-group.filter-group--error-stage {
-  width: 108px;
+  min-width: 148px;
 }
 
 .logs-filter-group .filter-label {
   margin-right: 0;
+  white-space: nowrap;
 }
 
 .logs-filter-group .filter-input,

@@ -1322,5 +1322,18 @@ window.I18N_LOCALES['en'] = {
   'tokens.createSectionModels': 'Models & Activation',
 
   // logs
-  'logs.debugMergeFailed': 'Merge response failed'
+  'logs.debugMergeFailed': 'Merge response failed',
+  // ============================================================
+  // Sidebar layout (redesign)
+  // ============================================================
+  'nav.group.observe': 'Monitor',
+  'nav.group.manage': 'Manage',
+  'topbar.toggleMenu': 'Toggle navigation menu',
+  'settings.desc.gate_bg_max_hold_seconds': 'Queue budget in seconds for bg-class requests inside the gate (devin.gate_bg_max_hold_seconds; fg uses gate_max_hold_seconds); <=0 default 120',
+  'settings.desc.gate_bg_reserve_margin': 'Fixed safety-margin slots in the bg admission reserve formula (devin.gate_bg_reserve_margin); <=0 default 4',
+  'settings.desc.gate_cooldown_seconds': 'Quota ramp-up duration in seconds after the latch opens (devin.gate_cooldown_seconds): the window’s effective quota climbs linearly from the floor ratio to full; <=0 default 180',
+  'settings.desc.gate_cooldown_floor_ratio': 'Quota ratio at the start of the ramp (devin.gate_cooldown_floor_ratio, value (0,1]): the first window after the latch opens only admits floor×max_rpm; out-of-range defaults to 0.2',
+  'settings.desc.gate_fragile_seconds': 'Duration of the fragile period in seconds (devin.gate_fragile_seconds): after a throttle verdict or latch release, window admissions release linearly over elapsed time (fg/bg share the pool), suppressing window-opening bursts; <=0 default 600',
+  'settings.desc.debug_log_errors_only': 'Keep debug records only for failed requests (cleanly completed requests delete payloads on finish; log summary rows are still kept)',
+  'settings.desc.log_row_retention_days': 'Days to keep summary rows in the logs table (independent of debug record retention; <=0 never cleans)',
 };

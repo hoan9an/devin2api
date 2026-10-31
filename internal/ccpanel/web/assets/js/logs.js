@@ -33,45 +33,45 @@ const LOGS_STATUS_PRESETS = ['2xx', '4xx', '5xx', '499', '!2xx', '>=400'];
 // result 对应 debuglog Completion.Result。未知值兜底显示原值，原值始终
 // 进 title 或标签括号供排障核对。
 const LOGS_ERROR_STAGE_LABELS = {
-  http_read:           ['logs.stage.httpRead',           '读取请求失败'],
-  http_decode:         ['logs.stage.httpDecode',         '请求解码失败'],
-  request_build:       ['logs.stage.requestBuild',       '请求构建失败'],
-  provider_stream:     ['logs.stage.providerStream',     '上游流中断'],
-  http_stream:         ['logs.stage.httpStream',         '响应下发失败'],
-  response_event:      ['logs.stage.responseEvent',      '响应事件失败'],
-  http_encode:         ['logs.stage.httpEncode',         '响应编码失败'],
-  client_disconnected: ['logs.stage.clientDisconnected', '客户端断连'],
-  devin_connect:       ['logs.stage.devinConnect',       '上游拒绝'],
-  devin_transport:     ['logs.stage.devinTransport',     '上游传输中断'],
-  rate_gate:           ['logs.stage.rateGate',           '速率闸门拦截'],
-  token_limit:         ['logs.stage.tokenLimit',         '令牌准入拒绝'],
-  model_disabled:      ['logs.stage.modelDisabled',      '模型已停用']
+  http_read:           ['logs.stage.httpRead', 'Request read failed'],
+  http_decode:         ['logs.stage.httpDecode', 'Request decode failed'],
+  request_build:       ['logs.stage.requestBuild', 'Request build failed'],
+  provider_stream:     ['logs.stage.providerStream', 'Upstream stream interrupted'],
+  http_stream:         ['logs.stage.httpStream', 'Response stream failed'],
+  response_event:      ['logs.stage.responseEvent', 'Response event failed'],
+  http_encode:         ['logs.stage.httpEncode', 'Response encode failed'],
+  client_disconnected: ['logs.stage.clientDisconnected', 'Client disconnected'],
+  devin_connect:       ['logs.stage.devinConnect', 'Upstream rejected'],
+  devin_transport:     ['logs.stage.devinTransport', 'Upstream transport interrupted'],
+  rate_gate:           ['logs.stage.rateGate', 'Rate gate rejected'],
+  token_limit:         ['logs.stage.tokenLimit', 'Token limit rejected'],
+  model_disabled:      ['logs.stage.modelDisabled', 'Model disabled']
 };
 
 const LOGS_RESULT_LABELS = {
-  completed:    ['logs.resultCompleted',    '完成'],
-  failed:       ['logs.resultFailed',       '失败'],
-  disconnected: ['logs.resultDisconnected', '断连'],
-  aborted:      ['logs.resultAborted',      '中断']
+  completed:    ['logs.resultCompleted', 'Completed'],
+  failed:       ['logs.resultFailed', 'Failed'],
+  disconnected: ['logs.resultDisconnected', 'Disconnected'],
+  aborted:      ['logs.resultAborted', 'Aborted']
 };
 
 // 常见状态码的一行含义提示（title 悬浮，不替代数字本体）。
 const LOGS_STATUS_HINTS = {
-  200: ['logs.statusHint.200', '成功'],
-  400: ['logs.statusHint.400', '请求无效'],
-  401: ['logs.statusHint.401', '鉴权失败'],
-  403: ['logs.statusHint.403', '无权访问'],
-  404: ['logs.statusHint.404', '接口不存在'],
-  408: ['logs.statusHint.408', '请求超时'],
-  409: ['logs.statusHint.409', '请求冲突'],
-  413: ['logs.statusHint.413', '请求体超限'],
-  422: ['logs.statusHint.422', '参数校验失败'],
-  429: ['logs.statusHint.429', '限流拒绝'],
-  499: ['logs.statusHint.499', '客户端断连'],
-  500: ['logs.statusHint.500', '内部错误'],
-  502: ['logs.statusHint.502', '上游网关错误'],
-  503: ['logs.statusHint.503', '服务不可用'],
-  504: ['logs.statusHint.504', '网关超时']
+  200: ['logs.statusHint.200', 'Success'],
+  400: ['logs.statusHint.400', 'Bad request'],
+  401: ['logs.statusHint.401', 'Unauthorized'],
+  403: ['logs.statusHint.403', 'Forbidden'],
+  404: ['logs.statusHint.404', 'Not found'],
+  408: ['logs.statusHint.408', 'Request timeout'],
+  409: ['logs.statusHint.409', 'Conflict'],
+  413: ['logs.statusHint.413', 'Payload too large'],
+  422: ['logs.statusHint.422', 'Unprocessable entity'],
+  429: ['logs.statusHint.429', 'Rate limited'],
+  499: ['logs.statusHint.499', 'Client closed connection'],
+  500: ['logs.statusHint.500', 'Internal error'],
+  502: ['logs.statusHint.502', 'Bad gateway'],
+  503: ['logs.statusHint.503', 'Service unavailable'],
+  504: ['logs.statusHint.504', 'Gateway timeout']
 };
 
 function logsErrorStageLabel(stage) {
@@ -543,7 +543,7 @@ function buildLogModelDisplay(model, actualModel, reasoningTokens, upstreamWebso
     ? `<span class="model-redirect-arrow" aria-hidden="true">↪</span><span class="model-text model-text--actual">${escapeHtml(actualModel)}</span>`
     : '';
   const wsBadge = upstreamWebsocket === true
-    ? `<sup class="log-channel-badge log-channel-websocket-badge" title="${escapeHtml(i18nText('logs.tip.upstreamWebsocket', '上游走 WebSocket 通道'))}">ws</sup>`
+    ? `<sup class="log-channel-badge log-channel-websocket-badge" title="${escapeHtml(i18nText('logs.tip.upstreamWebsocket', 'Upstream over WebSocket'))}">ws</sup>`
     : '';
   const badgeHtml = wsBadge || tokens > 0
     ? `<span class="model-badges">${wsBadge}${buildReasoningTokensBadge(tokens)}</span>`
@@ -724,7 +724,7 @@ async function load(skipLoading = false) {
 
     const params = buildLogsRequestParams();
     const response = await fetchAPIWithAuth(LOGS_LIST_URL + '?' + params.toString());
-    if (!response.success) throw new Error(response.error || i18nText('logs.loadFailed', '无法加载请求日志'));
+    if (!response.success) throw new Error(response.error || i18nText('logs.loadFailed', 'Load Failed'));
 
     const data = response.data || [];
     logsHasMore = response.has_more === true;
@@ -761,8 +761,8 @@ async function load(skipLoading = false) {
     }
 
   } catch (error) {
-    console.error('加载日志失败:', error);
-    try { if (window.showError) window.showError(i18nText('logs.loadFailed', '无法加载请求日志')); } catch (_) { }
+    console.error('Failed to load logs:', error);
+    try { if (window.showError) window.showError(i18nText('logs.loadFailed', 'Load Failed')); } catch (_) { }
     renderLogsError();
     updateLogsListHint(null);
   } finally {
@@ -816,10 +816,10 @@ function updateLogsListHint(response) {
   }
   const text = i18nText(
     'logs.rejectsHint',
-    '近 15 分钟本地拒绝 {count} 条（{detail}）——管线前拒绝不进索引',
+    '{count} local rejects in the last 15 min ({detail}) — pre-pipeline rejects do not reach the index',
     { count: rej.n, detail: rej.parts.join(' · ') }
   );
-  const link = i18nText('logs.rejectsGotoStats', '前往统计页');
+  const link = i18nText('logs.rejectsGotoStats', 'Go to stats page');
   el.innerHTML = `<div class="logs-list-hint-item">${escapeHtml(text)} <a class="logs-hint-link" href="/web/stats.html">${escapeHtml(link)}</a></div>`;
   el.hidden = false;
 }
@@ -896,36 +896,36 @@ function renderLogsMetrics(data) {
 
   const avgRpm = Number(rpm.avg_rpm) || 0;
   const rpmTitle = titleExtra(
-    i18nText('logs.metricRpmTitle', '窗口内平均每分钟请求数（不含 499 断连）'),
+    i18nText('logs.metricRpmTitle', 'Average requests per minute in the window (excludes 499 disconnects)'),
     Number(rpm.peak_rpm) > 0
-      ? i18nText('logs.metricPeakSub', '峰值 {value}', { value: formatLogsMetricRate(rpm.peak_rpm) })
+      ? i18nText('logs.metricPeakSub', 'Peak {value}', { value: formatLogsMetricRate(rpm.peak_rpm) })
       : ''
   );
 
   const tps = genMS > 0 ? outTok * 1000 / genMS : 0;
   const outRate = durationSec > 0 ? outTok / durationSec : 0;
   const tpsTitle = titleExtra(
-    i18nText('logs.metricTpsTitle', 'Σ输出 token ÷ Σ生成时长（流式扣首字）——同表格 Tok/s 列口径'),
+    i18nText('logs.metricTpsTitle', 'Σ output tokens ÷ Σ generation time (streaming minus first-byte) — same basis as the table Tok/s column'),
     outRate > 0
-      ? i18nText('logs.metricOutputSub', '输出 {value}/s', { value: formatLogsMetricRate(outRate) })
+      ? i18nText('logs.metricOutputSub', 'Output {value}/s', { value: formatLogsMetricRate(outRate) })
       : ''
   );
 
   const ttfb = ttfbN > 0 ? ttfbSum / ttfbN : 0;
   const avgDur = durN > 0 ? durSum / durN : 0;
   const ttfbTitle = titleExtra(
-    i18nText('logs.metricTtfbTitle', '流式 2xx 请求平均首字时间（按成功数加权）'),
+    i18nText('logs.metricTtfbTitle', 'Average first-byte time of streaming 2xx requests (weighted by success count)'),
     avgDur > 0
-      ? i18nText('logs.metricAvgDurationSub', '均耗时 {value}s', { value: avgDur.toFixed(1) })
+      ? i18nText('logs.metricAvgDurationSub', 'Avg duration {value}s', { value: avgDur.toFixed(1) })
       : ''
   );
 
   const cacheDenom = inTok + crTok + cwTok;
   const cachePct = cacheDenom > 0 && crTok > 0 ? (crTok / cacheDenom) * 100 : 0;
   const cacheTitle = titleExtra(
-    i18nText('logs.metricCacheTitle', '缓存读 ÷（输入+缓存读+缓存建），同表格缓存命中列口径'),
+    i18nText('logs.metricCacheTitle', 'Cache read ÷ (input + cache read + cache write); same basis as the table cache-hit column'),
     (crTok > 0 || cwTok > 0)
-      ? i18nText('logs.metricCacheSub', '读 {read} · 建 {write}', {
+      ? i18nText('logs.metricCacheSub', 'Read {read} · Write {write}', {
           read: formatNumber(crTok),
           write: formatNumber(cwTok)
         })
@@ -948,14 +948,14 @@ function renderLogsMetrics(data) {
       ''
     ) +
     logsMetricCard(
-      i18nText('probe.firstByte', '首字'),
+      i18nText('probe.firstByte', 'First byte'),
       ttfb > 0 ? ttfb.toFixed(2) + 's'  : '—',
       winSub('ttfb_s', fmtSec),
       ttfbTitle,
       ttfb > 0 ? window.getFirstByteTimingTone(ttfb) : ''
     ) +
     logsMetricCard(
-      i18nText('trend.cacheHitRate', '缓存命中率'),
+      i18nText('trend.cacheHitRate', 'Cache Hit Rate'),
       cachePct > 0 ? cachePct.toFixed(1) + '%'  : '—',
       winSub('cache_pct', fmtPct),
       cacheTitle,
@@ -964,7 +964,7 @@ function renderLogsMetrics(data) {
     `</div>`;
   el.title = i18nText(
     'logs.metricsScopeTitle',
-    '窗口聚合：时间范围与入口/模型/令牌筛选生效；搜索、状态码、结果、失败阶段、日志来源不参与统计'
+    'Window aggregate: time range plus API/model/token filters apply; search, status, result, error stage, and log source do not'
   );
   el.hidden = false;
 }
@@ -975,7 +975,7 @@ async function loadLogsMetrics() {
     const data = await fetchDataWithAuth(LOGS_STATS_URL + '?' + buildLogsMetricsParams().toString());
     renderLogsMetrics(data || {});
   } catch (error) {
-    console.error('加载指标条失败:', error);
+    console.error('Failed to load metrics:', error);
     // 保留上一帧数据，下个节拍自动重试
   }
 }
@@ -1011,12 +1011,12 @@ async function exportLogs(format) {
     if (truncated && window.showWarning) {
       window.showWarning(i18nText(
         'logs.exportTruncated',
-        '导出结果已截断：命中超过扫描上限，请缩小时间窗或筛选条件'
+        'Export truncated: hits exceeded the scan cap; narrow the time window or filters'
       ));
     }
   } catch (error) {
     if (window.showError) {
-      window.showError(i18nText('logs.exportFailed', '导出失败：{message}', { message: error.message || error }));
+      window.showError(i18nText('logs.exportFailed', 'Export failed: {message}', { message: error.message || error }));
     }
   }
 }
@@ -1259,11 +1259,11 @@ async function abortActiveRequest(button) {
 
   try {
     const { payload } = await fetchAPIWithAuthRaw(activeAbortUrl(id), { method: 'POST' });
-    if (!payload.success) throw new Error(payload.error || i18nText('logs.abortFailed', '中断失败'));
+    if (!payload.success) throw new Error(payload.error || i18nText('logs.abortFailed', 'Abort failed'));
   } catch (e) {
     // 中断没打出去就恢复按钮，否则这一行会永远卡在「中断中」
     abortingActiveRequests.delete(id);
-    if (window.showError) window.showError(e.message || i18nText('logs.abortFailed', '中断失败'));
+    if (window.showError) window.showError(e.message || i18nText('logs.abortFailed', 'Abort failed'));
   }
 }
 
@@ -1668,7 +1668,7 @@ function applyLogsFilterValues(filters) {
     // 已选阶段显示人性化标签（原值在括号里），非枚举的自定义输入原样显示。
     logsErrorStageCombobox.setValue(
       stage,
-      stage ? logsErrorStageOptionLabel(stage) : i18nText('logs.allErrorStages', '全部阶段')
+      stage ? logsErrorStageOptionLabel(stage) : i18nText('logs.allErrorStages', 'All stages')
     );
   }
 
@@ -1726,7 +1726,7 @@ async function loadLogsFilterOptions(range) {
     if (logsModelCombobox) logsModelCombobox.refresh();
     if (logsStatusCombobox) logsStatusCombobox.refresh();
   } catch (error) {
-    console.error('加载日志筛选选项失败:', error);
+    console.error('Failed to load log filter options:', error);
   }
 }
 
@@ -1809,11 +1809,11 @@ function initLogsStatusCombobox(initialValue) {
 function initLogsErrorStageCombobox(initialValue) {
   logsErrorStageCombobox = window.initFilterCombobox({
     inputId: 'f_error_stage',
-    allLabel: i18nText('logs.allErrorStages', '全部阶段'),
+    allLabel: i18nText('logs.allErrorStages', 'All stages'),
     initialValue,
     initialLabel: initialValue
       ? logsErrorStageOptionLabel(initialValue)
-      : i18nText('logs.allErrorStages', '全部阶段'),
+      : i18nText('logs.allErrorStages', 'All stages'),
     getOptions: () => LOGS_ERROR_STAGES.map(stage => ({ value: stage, label: logsErrorStageOptionLabel(stage) })),
     onSelect: applyFilter
   });

@@ -21,10 +21,10 @@
 }
 
 .form-row-inline__label {
-  flex: 0 0 60px;
+  flex: 0 0 auto;
   min-width: 60px;
+  max-width: 160px;
   margin: 0;
-  white-space: nowrap;
 }
 
 .form-row-inline__content {
@@ -671,9 +671,43 @@ html[data-resolved-theme="dark"] {
 }
 .token-edit-field .form-label {
   margin-bottom: 0;
-  flex: 0 0 60px;
+  flex: 0 0 auto;
   min-width: 60px;
-  white-space: nowrap;
+  max-width: 160px;
+}
+/* 侧栏窄，label 排到字段上方，输入吃满整行 */
+.token-edit-sidebar .token-edit-field {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+.token-edit-sidebar .token-edit-field .form-label {
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: none;
+}
+/* 行内 label 的 36px 对齐高在纵向布局下变成大空档，纵排归零 */
+.token-edit-sidebar .form-row-inline:has(> .token-limit-control) > .form-row-inline__label,
+.token-edit-sidebar .token-edit-field .form-row-inline__label {
+  min-height: 0;
+  display: block;
+}
+/* 侧栏内限值行：输入 + "0 = 无上限"提示可换行，不再把输入挤死 */
+.token-edit-sidebar .token-limit-input-line {
+  grid-template-columns: minmax(0, 1fr);
+}
+.token-edit-sidebar .token-limit-hint--inline {
+  white-space: normal;
+}
+/* $ 前缀贴住输入左缘（输入占首行整行后仍垂直居中于它） */
+.token-edit-sidebar .token-limit-input-line .token-cost-prefix {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+/* "已用"读数提示行：贴左跟 hint 行对齐，不再被挤到右缘悬空 */
+.token-edit-sidebar .token-limit-meta {
+  justify-content: flex-start;
 }
 .token-edit-field .form-row-inline__content,
 .token-edit-field .field-grow {

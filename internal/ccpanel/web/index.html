@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,8 +7,8 @@
   <link rel="icon" type="image/x-icon" href="/web/favicon.ico">
   <link rel="apple-touch-icon" href="/web/apple-touch-icon.png">
   <link rel="manifest" href="/web/manifest.json">
-  <meta name="theme-color" content="#5438e1">
-  <title data-i18n="index.title">概览 - Devin2API</title>
+  <meta name="theme-color" content="#181818">
+  <title data-i18n="index.title">Overview - Devin2API</title>
   <script src="/web/assets/js/theme-init.js?v=__VERSION__"></script>
   <link rel="stylesheet" href="/web/assets/css/styles.css?v=__VERSION__">
   <link rel="stylesheet" href="/web/assets/css/index.css?v=__VERSION__">
@@ -33,7 +33,7 @@
     <!-- 主内容区域 -->
     <main id="main" class="main-content index-main-content">
       <div class="content-area">
-        <h1 class="visually-hidden" data-i18n="nav.overview">概览</h1>
+        <h1 class="visually-hidden" data-i18n="nav.overview">Overview</h1>
         <!-- 时间范围选择器 -->
         <section class="mb-4">
           <div class="time-range-container">
@@ -45,9 +45,9 @@
         <section class="mb-6">
           <div class="card service-health-card animate-slide-up animate-delay-1" aria-labelledby="service-health-title">
             <div class="service-health-header">
-              <h2 id="service-health-title" class="service-health-title" data-i18n="index.health.title">服务健康监测</h2>
+              <h2 id="service-health-title" class="service-health-title" data-i18n="index.health.title">Service health</h2>
               <div class="service-health-summary">
-                <span id="service-health-period" class="service-health-period" data-i18n="index.timeRange.today">本日</span>
+                <span id="service-health-period" class="service-health-period" data-i18n="index.timeRange.today">Today</span>
                 <span id="service-health-rate" class="service-health-rate" data-state="unknown" aria-live="polite">--</span>
               </div>
             </div>
@@ -58,7 +58,7 @@
                 role="img"
                 aria-busy="true"
                 data-i18n-aria-label="index.health.loading"
-                aria-label="正在加载服务健康数据"
+                aria-label="Loading service health data"
               ></div>
               <div id="service-health-tooltip" class="service-health-tooltip" role="tooltip" hidden>
                 <div id="service-health-tooltip-time" class="service-health-tooltip-time"></div>
@@ -70,11 +70,11 @@
               </div>
               <div class="service-health-footer">
                 <span id="service-health-earlier" class="service-health-edge">--</span>
-                <div class="service-health-legend" data-i18n-aria-label="index.health.legendLabel" aria-label="健康状态图例">
-                  <span class="service-health-legend-item"><i class="service-health-swatch unknown" aria-hidden="true"></i><span data-i18n="index.health.noRequests">无请求</span></span>
-                  <span class="service-health-legend-item"><i class="service-health-swatch critical" aria-hidden="true"></i><span data-i18n="index.health.critical">异常</span></span>
-                  <span class="service-health-legend-item"><i class="service-health-swatch warning" aria-hidden="true"></i><span data-i18n="index.health.warning">波动</span></span>
-                  <span class="service-health-legend-item"><i class="service-health-swatch healthy" aria-hidden="true"></i><span data-i18n="index.health.healthy">健康</span></span>
+                <div class="service-health-legend" data-i18n-aria-label="index.health.legendLabel" aria-label="Health status legend">
+                  <span class="service-health-legend-item"><i class="service-health-swatch unknown" aria-hidden="true"></i><span data-i18n="index.health.noRequests">No requests</span></span>
+                  <span class="service-health-legend-item"><i class="service-health-swatch critical" aria-hidden="true"></i><span data-i18n="index.health.critical">Critical</span></span>
+                  <span class="service-health-legend-item"><i class="service-health-swatch warning" aria-hidden="true"></i><span data-i18n="index.health.warning">Degraded</span></span>
+                  <span class="service-health-legend-item"><i class="service-health-swatch healthy" aria-hidden="true"></i><span data-i18n="index.health.healthy">Healthy</span></span>
                 </div>
                 <span id="service-health-latest" class="service-health-edge">--</span>
               </div>
@@ -94,7 +94,7 @@
         <section class="mb-6" id="usage-section" hidden>
           <div class="usage-grid animate-slide-up animate-delay-3" id="usage-grid"></div>
           <div class="usage-quota-group" id="usage-quota-group" hidden>
-            <h3 class="usage-quota-group-title" data-i18n="index.usage.laneQuotas">号池配额</h3>
+            <h3 class="usage-quota-group-title" data-i18n="index.usage.laneQuotas">Lane quotas</h3>
             <div class="usage-grid" id="usage-quota-grid"></div>
           </div>
         </section>
@@ -113,44 +113,44 @@
           <span>{{label}}</span>
         </div>
         <div class="channel-cost">
-          <span class="cost-label" data-i18n="common.cost">成本</span>
+          <span class="cost-label" data-i18n="common.cost">Cost</span>
           <span class="cost-value" id="type-{{type}}-cost">$0.00</span>
         </div>
-        <span class="channel-empty-hint" data-i18n="index.channelEmpty">暂无请求</span>
+        <span class="channel-empty-hint" data-i18n="index.channelEmpty">No requests</span>
       </div>
       <div class="channel-metrics">
         <div class="metric-item">
           <div class="metric-value tone-primary" id="type-{{type}}-requests">0</div>
-          <div class="metric-label" data-i18n="index.metrics.totalRequests">总请求</div>
+          <div class="metric-label" data-i18n="index.metrics.totalRequests">Total Requests</div>
         </div>
         <div class="metric-item">
           <div class="metric-value tone-healthy" id="type-{{type}}-success">0</div>
-          <div class="metric-label" data-i18n="index.metrics.success">成功</div>
+          <div class="metric-label" data-i18n="index.metrics.success">Success</div>
         </div>
         <div class="metric-item">
           <div class="metric-value tone-critical" id="type-{{type}}-error">0</div>
-          <div class="metric-label" data-i18n="index.metrics.failed">失败</div>
+          <div class="metric-label" data-i18n="index.metrics.failed">Failed</div>
         </div>
         <div class="metric-item">
           <div class="metric-value" id="type-{{type}}-rate">0.0%</div>
-          <div class="metric-label" data-i18n="index.metrics.successRate">成功率</div>
+          <div class="metric-label" data-i18n="index.metrics.successRate">Success Rate</div>
         </div>
       </div>
       <div class="token-stats">
         <div class="token-item">
-          <span class="token-label" data-i18n="common.input">输入</span>
+          <span class="token-label" data-i18n="common.input">Input</span>
           <span class="token-value" id="type-{{type}}-input">0</span>
         </div>
         <div class="token-item">
-          <span class="token-label" data-i18n="common.output">输出</span>
+          <span class="token-label" data-i18n="common.output">Output</span>
           <span class="token-value" id="type-{{type}}-output">0</span>
         </div>
         <div class="token-item">
-          <span class="token-label" data-i18n="common.cacheRead">缓存读</span>
+          <span class="token-label" data-i18n="common.cacheRead">Cache Read</span>
           <span class="token-value" id="type-{{type}}-cache-read">0</span>
         </div>
         <div class="token-item">
-          <span class="token-label" data-i18n="common.cacheCreate">缓存创</span>
+          <span class="token-label" data-i18n="common.cacheCreate">Cache Create</span>
           <span class="token-value" id="type-{{type}}-cache-create">0</span>
         </div>
       </div>

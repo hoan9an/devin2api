@@ -163,7 +163,7 @@
       grid.setAttribute('aria-label', hasData
         ? i18nText(
           'index.health.summary',
-          `${period}服务成功率 ${rate}，成功 ${model.success} 次，失败 ${model.error} 次`,
+          'Service success rate for {period}: {rate}; {success} succeeded and {error} failed',
           {
             period,
             rate,
@@ -171,7 +171,7 @@
             error: formatNumber(model.error)
           }
         )
-        : i18nText('index.health.noData', `${period}暂无请求数据`, { period }));
+        : i18nText('index.health.noData', 'No request data for {period}', { period }));
       message.hidden = true;
       message.textContent = '';
     }
@@ -187,7 +187,7 @@
         message.hidden = false;
         message.textContent = i18nText(
           'index.health.unavailable',
-          '健康数据暂时无法加载，将在下次刷新时重试。'
+          'Health data is temporarily unavailable. The next refresh will retry.'
         );
       }
     }
@@ -334,11 +334,11 @@
     function quotaBurnLine(f) {
       if (!f || f.burn_per_hour == null) return '';
       const rate = Number(f.burn_per_hour);
-      if (!(rate > 0)) return i18nText('accounts.burn.refilled', '窗口内有回充或重置，暂不外推');
-      const burn = i18nText('accounts.burn.rate', '燃烧 {rate}%/h', { rate: rate.toFixed(2) });
-      if (f.survives_until_reset) return i18nText('accounts.burn.survives', '按当前速率可撑到重置') + ' · ' + burn;
+      if (!(rate > 0)) return i18nText('accounts.burn.refilled', 'Refilled or reset within window; no forecast');
+      const burn = i18nText('accounts.burn.rate', 'burning {rate}%/h', { rate: rate.toFixed(2) });
+      if (f.survives_until_reset) return i18nText('accounts.burn.survives', 'Survives until reset at current rate') + ' · ' + burn;
       if (f.exhausted_at) {
-        return i18nText('accounts.burn.exhaust', '约 {h}h 后耗尽', { h: Number(f.hours_left || 0).toFixed(1) }) + ' · ' + burn;
+        return i18nText('accounts.burn.exhaust', 'Exhausts in ~{h}h', { h: Number(f.hours_left || 0).toFixed(1) }) + ' · ' + burn;
       }
       return burn;
     }
@@ -365,13 +365,13 @@
         <div class="channel-card-header">
           <div class="channel-card-title">${escapeHtml(name)}</div>
           <div class="channel-cost">
-            <span class="cost-label">${escapeHtml(i18nText('accounts.f.daily', '日配额'))}</span>
+            <span class="cost-label">${escapeHtml(i18nText('accounts.f.daily', 'Daily remaining'))}</span>
             <span class="cost-value tone-${tone}">${rem === null ? '—' : `${rem.toFixed(0)}%`}</span>
           </div>
         </div>
         <div class="usage-quota-rows">
-          ${quotaRowHtml(i18nText('accounts.f.daily', '日配额'), daily)}
-          ${quotaRowHtml(i18nText('accounts.f.weekly', '周配额'), weekly)}
+          ${quotaRowHtml(i18nText('accounts.f.daily', 'Daily remaining'), daily)}
+          ${quotaRowHtml(i18nText('accounts.f.weekly', 'Weekly remaining'), weekly)}
         </div>
         ${sub ? `<div class="usage-quota-sub">${escapeHtml(sub)}</div>` : ''}
       </div>`;
@@ -399,45 +399,45 @@
       const credits = t0.credit_cost || 0;
       return `<div class="card channel-card">
         <div class="channel-card-header">
-          <div class="channel-card-title">${escapeHtml(i18nText('index.usage.today', '今日用量'))}</div>
+          <div class="channel-card-title">${escapeHtml(i18nText('index.usage.today', 'Today'))}</div>
           <div class="channel-cost">
-            <span class="cost-label">${escapeHtml(i18nText('index.usage.credits', '计费点数'))}</span>
+            <span class="cost-label">${escapeHtml(i18nText('index.usage.credits', 'Credits'))}</span>
             <span class="cost-value">${credits > 0 ? formatNumber(credits) : '—'}</span>
           </div>
         </div>
         <div class="channel-metrics">
           <div class="metric-item">
             <div class="metric-value tone-primary">${formatNumber(req)}</div>
-            <div class="metric-label">${escapeHtml(i18nText('index.metrics.totalRequests', '总请求'))}</div>
+            <div class="metric-label">${escapeHtml(i18nText('index.metrics.totalRequests', 'Total Requests'))}</div>
           </div>
           <div class="metric-item">
             <div class="metric-value tone-healthy">${formatNumber(req - err)}</div>
-            <div class="metric-label">${escapeHtml(i18nText('index.metrics.success', '成功'))}</div>
+            <div class="metric-label">${escapeHtml(i18nText('index.metrics.success', 'Success'))}</div>
           </div>
           <div class="metric-item">
             <div class="metric-value tone-critical">${formatNumber(err)}</div>
-            <div class="metric-label">${escapeHtml(i18nText('index.metrics.failed', '失败'))}</div>
+            <div class="metric-label">${escapeHtml(i18nText('index.metrics.failed', 'Failed'))}</div>
           </div>
           <div class="metric-item">
             <div class="metric-value"${rateTone}>${rate}</div>
-            <div class="metric-label">${escapeHtml(i18nText('index.metrics.successRate', '成功率'))}</div>
+            <div class="metric-label">${escapeHtml(i18nText('index.metrics.successRate', 'Success Rate'))}</div>
           </div>
         </div>
         <div class="token-stats">
           <div class="token-item">
-            <span class="token-label">${escapeHtml(i18nText('common.input', '输入'))}</span>
+            <span class="token-label">${escapeHtml(i18nText('common.input', 'Input'))}</span>
             <span class="token-value">${formatNumber(t0.input_tokens || 0)}</span>
           </div>
           <div class="token-item">
-            <span class="token-label">${escapeHtml(i18nText('common.output', '输出'))}</span>
+            <span class="token-label">${escapeHtml(i18nText('common.output', 'Output'))}</span>
             <span class="token-value">${formatNumber(t0.output_tokens || 0)}</span>
           </div>
           <div class="token-item">
-            <span class="token-label">${escapeHtml(i18nText('common.cacheRead', '缓存读'))}</span>
+            <span class="token-label">${escapeHtml(i18nText('common.cacheRead', 'Cache Read'))}</span>
             <span class="token-value">${formatNumber(t0.cache_read_tokens || 0)}</span>
           </div>
-          <div class="token-item" title="${escapeHtml(i18nText('index.usage.sendsPerRowHint', '闸门放行数 ÷ 日志行：内层重试探针'))}">
-            <span class="token-label">${escapeHtml(i18nText('index.usage.sendsPerRow', '发送/请求'))}</span>
+          <div class="token-item" title="${escapeHtml(i18nText('index.usage.sendsPerRowHint', 'Gate admissions ÷ log rows: inner-retry probe'))}">
+            <span class="token-label">${escapeHtml(i18nText('index.usage.sendsPerRow', 'Sends/req'))}</span>
             <span class="token-value">${todaySendsRatio(snap)}</span>
           </div>
         </div>
@@ -458,9 +458,9 @@
       }).join('');
       return `<div class="card channel-card">
         <div class="channel-card-header">
-          <div class="channel-card-title">${escapeHtml(i18nText('index.usage.topKeys', '高频令牌'))}</div>
+          <div class="channel-card-title">${escapeHtml(i18nText('index.usage.topKeys', 'Top tokens'))}</div>
           <div class="channel-cost">
-            <span class="cost-label">${escapeHtml(i18nText('index.usage.window', '窗口'))}</span>
+            <span class="cost-label">${escapeHtml(i18nText('index.usage.window', 'Window'))}</span>
             <span class="cost-value">${formatNumber((snap.days || []).length)}d</span>
           </div>
         </div>

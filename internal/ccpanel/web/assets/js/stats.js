@@ -667,7 +667,7 @@
           }
         }
       } catch (error) {
-        console.error('[Stats] 加载筛选选项失败:', error);
+        console.error('[Stats] Failed to load filter options:', error);
       }
     }
 
@@ -1167,12 +1167,12 @@ ${t('stats.tooltipCost')}: $${point.cost.toFixed(4)}`;
         usageData = normalizeUsage(data);
       } catch (error) {
         // 保留上一份快照：自动刷新时单次失败不清空已渲染内容
-        console.error('[Stats] 加载服务观测失败:', error);
+        console.error('[Stats] Failed to load service overview:', error);
       }
       try {
         renderUsageObserv();
       } catch (error) {
-        console.error('[Stats] 渲染服务观测失败:', error);
+        console.error('[Stats] Failed to render service overview:', error);
       }
     }
 
@@ -1191,7 +1191,7 @@ ${t('stats.tooltipCost')}: $${point.cost.toFixed(4)}`;
       }
       section.hidden = false;
       if (note) {
-        note.textContent = usageT('stats.usageScopeNote', '归因卡跟随时间范围 · 分位/阶段/填充为窗口累计');
+        note.textContent = usageT('stats.usageScopeNote', 'Attribution follows the time range · percentiles/stages/fill are window totals');
       }
 
       if (usageDisabled || !usageData) {
@@ -1199,7 +1199,7 @@ ${t('stats.tooltipCost')}: $${point.cost.toFixed(4)}`;
         if (footnote) footnote.textContent = '';
         if (empty) {
           empty.hidden = false;
-          empty.textContent = usageT('stats.usageDisabled', '调试日志未启用，无用量统计。');
+          empty.textContent = usageT('stats.usageDisabled', 'Debug logging is disabled; no usage stats.');
         }
         return;
       }
@@ -1210,7 +1210,7 @@ ${t('stats.tooltipCost')}: $${point.cost.toFixed(4)}`;
       renderUsageStages(usageData);
       renderUsageCtxFill(usageData);
       if (footnote) {
-        footnote.textContent = usageT('stats.usageFootnote', '窗口起点 {start} · 聚合 {entries} 条请求', {
+        footnote.textContent = usageT('stats.usageFootnote', 'Window start {start} · {entries} requests aggregated', {
           start: usageData.windowStart || '-',
           entries: formatNumber(usageData.entries)
         });
@@ -1225,22 +1225,22 @@ ${t('stats.tooltipCost')}: $${point.cost.toFixed(4)}`;
       const slaTone = sla === null ? '' :
         sla >= 99 ? 'healthy' : sla >= 95 ? 'warning' : 'critical';
       grid.innerHTML = [
-        usageKpiCard('stats.usageSla', 'SLA 成功率',
+        usageKpiCard('stats.usageSla', 'SLA Success Rate',
           sla === null ? '—' : sla.toFixed(1) + '%',
-          escapeHtml(usageT('stats.usageSlaSub', '剔除客户端责任与 429')),
+          escapeHtml(usageT('stats.usageSlaSub', 'Excludes client faults and 429s')),
           slaTone),
-        usageKpiCard('stats.usageRequests', '请求数',
+        usageKpiCard('stats.usageRequests', 'Requests',
           formatNumber(totals.requests),
-          escapeHtml(usageT('stats.usageRequestsSub', '失败 {errors} · 断连 {disconnected}', {
+          escapeHtml(usageT('stats.usageRequestsSub', '{errors} failed · {disconnected} disconnected', {
             errors: formatNumber(totals.errors),
             disconnected: formatNumber(totals.disconnected)
           }))),
-        usageKpiCard('stats.usageUpstreamFaults', '服务端失分',
+        usageKpiCard('stats.usageUpstreamFaults', 'Upstream Faults',
           formatNumber(totals.upstream_faults), '',
           totals.upstream_faults > 0 ? 'critical' : ''),
-        usageKpiCard('stats.usageClientFaults', '客户端责任',
+        usageKpiCard('stats.usageClientFaults', 'Client Faults',
           formatNumber(totals.client_faults), ''),
-        usageKpiCard('stats.usageRateLimited', '限流 429',
+        usageKpiCard('stats.usageRateLimited', 'Rate Limited (429)',
           formatNumber(totals.rate_limited), '')
       ].join('');
       block.hidden = false;
@@ -1260,8 +1260,8 @@ ${t('stats.tooltipCost')}: $${point.cost.toFixed(4)}`;
         }).join('');
         return `<tr><td>${escapeHtml(usageT(labelKey, fallback))}</td><td>${formatNumber(st.samples)}</td>${cells}</tr>`;
       };
-      const html = row('stats.usageLatencyTtfb', '上游首字', u.ttfb, getFirstByteTimingTone) +
-        row('stats.usageLatencyDuration', '总耗时', u.duration, getDurationTimingTone);
+      const html = row('stats.usageLatencyTtfb', 'Upstream TTFB', u.ttfb, getFirstByteTimingTone) +
+        row('stats.usageLatencyDuration', 'Total Duration', u.duration, getDurationTimingTone);
       tbody.innerHTML = html;
       block.hidden = !html;
     }
@@ -1316,7 +1316,7 @@ ${t('stats.tooltipCost')}: $${point.cost.toFixed(4)}`;
         const pct = Number(m.context_fill_pct) || 0;
         const tone = pct < 50 ? 'normal' : pct < 80 ? 'warning' : 'exceeded';
         return `<tr>
-          <td>${escapeHtml(m.name || usageT('stats.unknownModel', '未知模型'))}</td>
+          <td>${escapeHtml(m.name || usageT('stats.unknownModel', 'Unknown Model'))}</td>
           <td><div class="stats-progress-cell">
             <div class="runtime-transcript-progress">
               <span class="runtime-transcript-progress-bar runtime-transcript-progress-bar--${tone}" style="width:${Math.min(100, pct).toFixed(1)}%"></span>

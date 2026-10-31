@@ -40,7 +40,7 @@
   function getStoredTheme() {
     const localTheme = getLocalTheme();
     const cookieTheme = getCookieTheme();
-    if (!localTheme) return cookieTheme ? cookieTheme.mode : 'system';
+    if (!localTheme) return cookieTheme ? cookieTheme.mode : 'dark';
     if (!cookieTheme) return localTheme.mode;
     return cookieTheme.updatedAt > localTheme.updatedAt ? cookieTheme.mode : localTheme.mode;
   }
@@ -84,11 +84,11 @@
   document.documentElement.dataset.theme = theme;
   document.documentElement.dataset.resolvedTheme = resolvedTheme;
   document.documentElement.style.colorScheme = resolvedTheme;
-  document.documentElement.style.backgroundColor = resolvedTheme === 'dark' ? '#0f172a' : '#fcfbf9';
-  document.documentElement.style.color = resolvedTheme === 'dark' ? '#e5e7eb' : '#111827';
+  document.documentElement.style.backgroundColor = resolvedTheme === 'dark' ? '#181818' : '#fbfbfb';
+  document.documentElement.style.color = resolvedTheme === 'dark' ? '#e4e4e4' : '#111827';
 
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#0f172a' : '#6341f2');
+  if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#181818' : '#06b6d4');
 
   function clearInitialPaintStyle() {
     document.documentElement.style.removeProperty('background-color');

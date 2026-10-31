@@ -251,7 +251,7 @@
           error.style.display = '';
           return;
         }
-        throw new Error(payload.error || i18nText('logs.debugLoadFailed', '加载失败'));
+        throw new Error(payload.error || i18nText('logs.debugLoadFailed', 'Load failed'));
       }
 
       const data = payload.data || {};
@@ -274,7 +274,7 @@
       }
     } catch (e) {
       loading.style.display = 'none';
-      error.textContent = e.message || i18nText('logs.debugLoadFailed', '加载失败');
+      error.textContent = e.message || i18nText('logs.debugLoadFailed', 'Load failed');
       error.style.display = '';
     }
   }
@@ -532,7 +532,7 @@
     if (truncated) {
       note.textContent = i18nText(
         'logs.mergedTruncated',
-        '响应流超过读取上限，仅合并了前段帧——后半可能缺失'
+        'Response stream exceeded the read limit; only leading frames merged — the tail may be missing'
       );
       note.hidden = false;
     } else {
@@ -677,13 +677,13 @@
     if (pre) pre.hidden = false;
     if (nameEl) nameEl.textContent = name;
     updateDebugFileRawButtons(false);
-    window.setHighlightedCodeContent('debugFileRaw', i18nText('common.loading', '加载中...'), 'text');
+    window.setHighlightedCodeContent('debugFileRaw', i18nText('common.loading', 'Loading...'), 'text');
 
     const fileId = debugFileContext?.fileId;
     if (!fileId) {
       window.setHighlightedCodeContent(
         'debugFileRaw',
-        i18nText('logs.debugFileNoDir', '无法定位调试记录（请求可能刚结束或已清理）'),
+        i18nText('logs.debugFileNoDir', 'Cannot locate the debug record (request may have just finished or been cleaned up)'),
         'text'
       );
       return;
@@ -708,12 +708,12 @@
         text = formatLogsJsonlLines(text);
       }
       if (data?.truncated) {
-        text += `\n\n${i18nText('logs.fileTruncated', '… 已截断（文件超过读取上限，仅显示前段）')}`;
+        text += `\n\n${i18nText('logs.fileTruncated', '… truncated (file exceeds the read limit; only the leading part shown)')}`;
       }
       window.setHighlightedCodeContent('debugFileRaw', text, mode);
     } catch (e) {
       if (debugFileContext?.openName !== name) return;
-      window.setHighlightedCodeContent('debugFileRaw', e?.message || i18nText('logs.fileReadFailed', '读取失败'), 'text');
+      window.setHighlightedCodeContent('debugFileRaw', e?.message || i18nText('logs.fileReadFailed', 'Read failed'), 'text');
     }
   }
 
@@ -731,7 +731,7 @@
     updateDebugFileRawButtons(true);
     binaryEl.innerHTML = `<div class="debug-file-binary-info">${escapeHtml(i18nText(
       'logs.debugFileBinary',
-      '二进制文件（{size}）——用「打开原始内容」查看',
+      'Binary file ({size}) — use "Open raw" to view',
       { size: formatBytes(Number(data?.size) || 0) }
     ))}</div>`;
     binaryEl.hidden = false;
@@ -780,7 +780,7 @@
         setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
       }
     } catch (e) {
-      if (window.showError) window.showError(e?.message || i18nText('logs.fileReadFailed', '读取失败'));
+      if (window.showError) window.showError(e?.message || i18nText('logs.fileReadFailed', 'Read failed'));
     }
   }
 
@@ -796,7 +796,7 @@
       window.open(url, '_blank', 'noopener');
       setTimeout(() => URL.revokeObjectURL(url), 60000);
     } catch (e) {
-      if (window.showError) window.showError(e?.message || i18nText('logs.fileReadFailed', '读取失败'));
+      if (window.showError) window.showError(e?.message || i18nText('logs.fileReadFailed', 'Read failed'));
     }
   }
 

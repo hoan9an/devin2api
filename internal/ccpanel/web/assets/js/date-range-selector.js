@@ -197,20 +197,27 @@
   function formatMonthTitle(date) {
     const locale = window.i18n && typeof window.i18n.getLocale === 'function'
       ? window.i18n.getLocale()
-      : 'zh-CN';
+      : 'en';
     if (locale === 'en') {
       return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
     }
-    return `${date.getFullYear()}年 ${date.getMonth() + 1}月`;
+    if (locale === 'vi') {
+      return `Tháng ${date.getMonth() + 1}, ${date.getFullYear()}`;
+    }
+    if (locale === 'zh-CN') {
+      return `${date.getFullYear()}年 ${date.getMonth() + 1}月`;
+    }
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
   }
 
   function getWeekdayLabels() {
     const locale = window.i18n && typeof window.i18n.getLocale === 'function'
       ? window.i18n.getLocale()
-      : 'zh-CN';
-    return locale === 'en'
-      ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      : ['一', '二', '三', '四', '五', '六', '日'];
+      : 'en';
+    if (locale === 'en') return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    if (locale === 'vi') return ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+    if (locale === 'zh-CN') return ['一', '二', '三', '四', '五', '六', '日'];
+    return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   }
 
   function getInitialCustomRange(existingRange) {

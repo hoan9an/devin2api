@@ -36,40 +36,40 @@
     <div class="modal-content test-modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="${IDS.title}"></h2>
-        <button type="button" class="close-btn" data-cm-action="close" data-i18n-aria-label="common.close" aria-label="关闭">&times;</button>
+        <button type="button" class="close-btn" data-cm-action="close" data-i18n-aria-label="common.close" aria-label="Close">&times;</button>
       </div>
 
       <div class="modal-body">
         <div class="chat-controls">
           <div id="${IDS.tokenGroup}" class="chat-grow-full" hidden>
             <input type="password" id="${IDS.token}" class="form-input" autocomplete="off"
-              data-i18n-placeholder="chat.tokenPlaceholder" placeholder="粘贴令牌明文（sk-...）">
+              data-i18n-placeholder="chat.tokenPlaceholder" placeholder="Paste token plaintext (sk-...)">
           </div>
           <div id="${IDS.modelGroup}" class="chat-grow" hidden>
             <input type="text" id="${IDS.model}" class="form-input" list="${IDS.modelList}" spellcheck="false"
-              data-i18n-placeholder="chat.modelPlaceholder" placeholder="输入或选择模型名">
+              data-i18n-placeholder="chat.modelPlaceholder" placeholder="Type or pick a model">
             <datalist id="${IDS.modelList}"></datalist>
           </div>
-          <select id="${IDS.protocol}" class="form-input" data-i18n-aria-label="probe.protocol" aria-label="客户端协议">
+          <select id="${IDS.protocol}" class="form-input" data-i18n-aria-label="probe.protocol" aria-label="Entry protocol">
             <option value="anthropic">Anthropic (/v1/messages)</option>
             <option value="openai">OpenAI (/v1/chat/completions)</option>
             <option value="codex">Codex (/v1/responses)</option>
           </select>
         </div>
-        <p id="${IDS.tokenHint}" class="chat-hint" hidden data-i18n="chat.tokenHint">明文仅在创建时可见，请重新粘贴</p>
+        <p id="${IDS.tokenHint}" class="chat-hint" hidden data-i18n="chat.tokenHint">Token plaintext is only shown at creation — paste it again</p>
 
         <div id="${IDS.messages}" class="chat-messages"></div>
 
         <div class="chat-composer">
           <textarea id="${IDS.input}" class="form-input" rows="2"
-            data-i18n-placeholder="chat.inputPlaceholder" placeholder="输入消息，Enter 发送，Shift+Enter 换行"></textarea>
-          <button type="button" id="${IDS.sendBtn}" class="btn btn-primary" data-cm-action="send" data-i18n="chat.send">发送</button>
+            data-i18n-placeholder="chat.inputPlaceholder" placeholder="Type a message — Enter to send, Shift+Enter for newline"></textarea>
+          <button type="button" id="${IDS.sendBtn}" class="btn btn-primary" data-cm-action="send" data-i18n="chat.send">Send</button>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-cm-action="clear" data-i18n="chat.clear">清空会话</button>
-        <button type="button" class="btn btn-secondary" data-cm-action="close" data-i18n="common.close">关闭</button>
+        <button type="button" class="btn btn-secondary" data-cm-action="clear" data-i18n="chat.clear">Clear</button>
+        <button type="button" class="btn btn-secondary" data-cm-action="close" data-i18n="common.close">Close</button>
       </div>
     </div>
   </div>`;

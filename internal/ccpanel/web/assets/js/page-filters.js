@@ -38,37 +38,37 @@
     const hideZeroSuccess = `<div class="${joinClasses('filter-group', 'filter-group--checkbox', checkboxGroupClass)}">
               <label class="filter-checkbox-label">
                 <input type="checkbox" id="f_hide_zero_success" checked>
-                <span data-i18n="stats.hideZeroSuccess">隐藏0成功</span>
+                <span data-i18n="stats.hideZeroSuccess">Hide 0 Success</span>
               </label>
             </div>`;
-    const filterButtonControl = '<button id="btn_filter" type="button" class="btn btn-primary filter-btn" data-i18n="common.filter">筛选</button>';
-    const clearButtonControl = '<button id="btn_clear_filters" type="button" class="btn btn-secondary filter-btn" data-i18n="common.clear">清空</button>';
+    const filterButtonControl = '<button id="btn_filter" type="button" class="btn btn-primary filter-btn" data-i18n="common.filter">Filter</button>';
+    const clearButtonControl = '<button id="btn_clear_filters" type="button" class="btn btn-secondary filter-btn" data-i18n="common.clear">Clear</button>';
     const filterButton = `<div class="${joinClasses('filter-actions', 'filter-actions--page', config.actionsClass)}">
               ${clearButtonControl}
               ${filterButtonControl}
             </div>`;
     return {
       timeRange: buildFilterGroup(
-        `${buildFilterLabel('f_hours', 'stats.timeRange', '时间范围')}
+        `${buildFilterLabel('f_hours', 'stats.timeRange', 'Time Range')}
         <div id="f_hours_custom_range_host" class="filter-custom-range-host">
           ${buildSelect('f_hours', '\n                <!-- 动态生成选项 by date-range-selector.js -->\n              ', timeRangeControlClass)}
         </div>`,
         timeRangeGroupClass
       ),
       modelText: buildFilterGroup(
-        `${buildFilterLabel('f_model', 'common.model', '模型')}
-        ${buildInput('text', 'f_model', 'stats.containsTextPlaceholder', '包含文本...')}`,
+        `${buildFilterLabel('f_model', 'common.model', 'Model')}
+        ${buildInput('text', 'f_model', 'stats.containsTextPlaceholder', 'Contains text...')}`,
         groupClass
       ),
       modelSelect: buildFilterGroup(
-        `${buildFilterLabel('f_model', 'common.model', '模型')}
-        ${buildSelect('f_model', '\n                <option value="" data-i18n="trend.allModels">全部模型</option>\n                <!-- 动态加载模型列表 -->\n              ', 'filter-control--wide')}`,
+        `${buildFilterLabel('f_model', 'common.model', 'Model')}
+        ${buildSelect('f_model', '\n                <option value="" data-i18n="trend.allModels">All Models</option>\n                <!-- 动态加载模型列表 -->\n              ', 'filter-control--wide')}`,
         groupClass
       ),
       api: buildFilterGroup(
-        `${buildFilterLabel('f_api', 'stats.api', '入口')}
+        `${buildFilterLabel('f_api', 'stats.api', 'Endpoint')}
         ${buildSelect('f_api', `
-                <option value="" data-i18n="stats.allApis">全部入口</option>
+                <option value="" data-i18n="stats.allApis">All Endpoints</option>
                 <option value="anthropic">/v1/messages</option>
                 <option value="openai-chat">/v1/chat/completions</option>
                 <option value="openai-responses">/v1/responses</option>
@@ -77,47 +77,47 @@
         joinClasses(groupClass, 'filter-group--api')
       ),
       modelCombobox: buildFilterGroup(
-        `${buildFilterLabel('f_model', 'common.model', '模型')}
+        `${buildFilterLabel('f_model', 'common.model', 'Model')}
         ${buildCombobox('f_model', 'filter-control--wide filter-control--model')}`,
         joinClasses(groupClass, 'filter-group--model')
       ),
       authToken: buildFilterGroup(
-        `${buildFilterLabel('f_auth_token', 'stats.token', '令牌')}
-        ${buildSelect('f_auth_token', '\n                <option value="" data-i18n="stats.allTokens">全部令牌</option>\n                <!-- 动态加载令牌列表 -->\n              ', authTokenControlClass)}`,
+        `${buildFilterLabel('f_auth_token', 'stats.token', 'Token')}
+        ${buildSelect('f_auth_token', '\n                <option value="" data-i18n="stats.allTokens">All Tokens</option>\n                <!-- 动态加载令牌列表 -->\n              ', authTokenControlClass)}`,
         authTokenGroupClass
       ),
       status: buildFilterGroup(
-        `${buildFilterLabel('f_status', 'logs.statusCode', '状态码')}
+        `${buildFilterLabel('f_status', 'logs.statusCode', 'Status')}
         ${buildCombobox('f_status', 'filter-control--narrow filter-control--status')}`,
         joinClasses(groupClass, 'filter-group--status')
       ),
       result: buildFilterGroup(
-        `${buildFilterLabel('f_result', 'logs.result', '结果')}
+        `${buildFilterLabel('f_result', 'logs.result', 'Result')}
         ${buildSelect('f_result', `
-                <option value="" data-i18n="logs.allResults">全部结果</option>
-                <option value="completed" data-i18n="logs.resultCompleted">完成</option>
-                <option value="failed" data-i18n="logs.resultFailed">失败</option>
-                <option value="disconnected" data-i18n="logs.resultDisconnected">断连</option>
-                <option value="aborted" data-i18n="logs.resultAborted">中断</option>
+                <option value="" data-i18n="logs.allResults">All results</option>
+                <option value="completed" data-i18n="logs.resultCompleted">Completed</option>
+                <option value="failed" data-i18n="logs.resultFailed">Failed</option>
+                <option value="disconnected" data-i18n="logs.resultDisconnected">Disconnected</option>
+                <option value="aborted" data-i18n="logs.resultAborted">Aborted</option>
               `, 'filter-control--compact')}`,
         groupClass
       ),
       errorStage: buildFilterGroup(
-        `${buildFilterLabel('f_error_stage', 'logs.errorStage', '失败阶段')}
+        `${buildFilterLabel('f_error_stage', 'logs.errorStage', 'Error stage')}
         ${buildCombobox('f_error_stage', 'filter-control--compact filter-control--error-stage')}`,
         joinClasses(groupClass, 'filter-group--error-stage')
       ),
       logSource: buildFilterGroup(
-        `${buildFilterLabel('f_log_source', 'logs.logSource', '日志来源')}
+        `${buildFilterLabel('f_log_source', 'logs.logSource', 'Source')}
         ${buildSelect('f_log_source', `
-                <option value="proxy" data-i18n="logs.sourceProxy">请求日志</option>
-                <option value="manual_test" data-i18n="logs.sourceManualTest">手动测试</option>
-                <option value="all" data-i18n="logs.sourceAll">全部日志</option>
+                <option value="proxy" data-i18n="logs.sourceProxy">Request Logs</option>
+                <option value="manual_test" data-i18n="logs.sourceManualTest">Manual test</option>
+                <option value="all" data-i18n="logs.sourceAll">All Logs</option>
               `, 'filter-control--compact')}`,
         joinClasses(groupClass, 'filter-group--log-source')
       ),
       account: buildFilterGroup(
-        `${buildFilterLabel('f_account', 'logs.colAccount', '账号')}
+        `${buildFilterLabel('f_account', 'logs.colAccount', 'Account')}
         ${buildCombobox('f_account', 'filter-control--compact filter-control--account')}`,
         joinClasses(groupClass, 'filter-group--account')
       ),
@@ -186,7 +186,7 @@
     const secondaryHtml = pick(config.secondary);
     const disclosureHtml = secondaryHtml
       ? `<button type="button" class="filter-more-toggle" data-filter-more-toggle aria-expanded="false">
-            <span data-i18n="common.moreFilters">更多筛选</span>
+            <span data-i18n="common.moreFilters">More filters</span>
             <svg class="filter-more-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="filter-secondary" data-filter-secondary>

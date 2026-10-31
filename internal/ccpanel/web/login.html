@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,8 +7,8 @@
   <link rel="icon" type="image/x-icon" href="/web/favicon.ico">
   <link rel="apple-touch-icon" href="/web/apple-touch-icon.png">
   <link rel="manifest" href="/web/manifest.json">
-  <meta name="theme-color" content="#5438e1">
-  <title data-i18n="login.title">登录 - Devin2API</title>
+  <meta name="theme-color" content="#181818">
+  <title data-i18n="login.title">Login - Devin2API</title>
   <script src="/web/assets/js/theme-init.js?v=__VERSION__"></script>
   <link rel="stylesheet" href="/web/assets/css/styles.css?v=__VERSION__">
   <link rel="stylesheet" href="/web/assets/css/login.css?v=__VERSION__">
@@ -31,18 +31,18 @@
             <use href="/web/brand-wordmark.svg#brand-wordmark" width="176" height="36"></use>
           </svg>
         </div>
-        <p class="brand-subtitle" data-i18n="login.brandSubtitle">智能API代理管理系统</p>
+        <p class="brand-subtitle" data-i18n="login.brandSubtitle">Devin Upstream API Gateway</p>
       </div>
 
       <!-- 登录表单 -->
       <div class="login-form-container">
         <div class="login-header">
-          <h1 id="login-title" data-i18n="login.adminLogin">管理员登录</h1>
-          <p id="login-hint" data-i18n="login.passwordHint">请输入您的管理密码以访问系统</p>
+          <h1 id="login-title" data-i18n="login.adminLogin">Admin Login</h1>
+          <p id="login-hint" data-i18n="login.passwordHint">Enter your admin password to access the system</p>
         </div>
 
-        <div class="login-mode-tabs" role="tablist" data-i18n-aria-label="login.modeTabsLabel" aria-label="登录方式">
-          <button type="button" class="login-mode-tab active" data-login-mode="admin" role="tab" aria-selected="true" data-i18n="login.adminTab">管理员密码</button>
+        <div class="login-mode-tabs" role="tablist" data-i18n-aria-label="login.modeTabsLabel" aria-label="Login method">
+          <button type="button" class="login-mode-tab active" data-login-mode="admin" role="tab" aria-selected="true" data-i18n="login.adminTab">Admin Password</button>
           <button type="button" class="login-mode-tab" data-login-mode="api_token" role="tab" aria-selected="false" data-i18n="login.apiTokenTab">API Token</button>
         </div>
 
@@ -59,10 +59,10 @@
               <svg class="label-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
               </svg>
-              <span data-i18n="login.passwordLabel">管理密码</span>
+              <span data-i18n="login.passwordLabel">Admin Password</span>
             </label>
             <div class="input-container">
-              <input type="password" id="password" name="password" class="form-input" required autofocus data-i18n-placeholder="login.passwordPlaceholder" placeholder="请输入管理密码" />
+              <input type="password" id="password" name="password" class="form-input" required autofocus data-i18n-placeholder="login.passwordPlaceholder" placeholder="Enter admin password" />
               <div class="input-decoration"></div>
             </div>
           </div>
@@ -75,7 +75,7 @@
               <span data-i18n="login.apiTokenLabel">API Token</span>
             </label>
             <div class="input-container">
-              <input type="password" id="api-token" name="api-token" class="form-input" autocomplete="off" data-i18n-placeholder="login.apiTokenPlaceholder" placeholder="请输入 API Token" />
+              <input type="password" id="api-token" name="api-token" class="form-input" autocomplete="off" data-i18n-placeholder="login.apiTokenPlaceholder" placeholder="Enter API Token" />
               <div class="input-decoration"></div>
             </div>
           </div>
@@ -85,7 +85,7 @@
               <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
               </svg>
-              <span class="button-text" data-i18n="login.loginButton">登录系统</span>
+              <span class="button-text" data-i18n="login.loginButton">Login</span>
             </span>
             <div class="button-loader">
               <div class="spinner"></div>
@@ -99,8 +99,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
           </svg>
           <div class="notice-text">
-            <div class="notice-title" data-i18n="login.securityTitle">安全保护</div>
-            <div class="notice-desc" data-i18n="login.securityDesc">您的登录会话将在24小时后自动过期</div>
+            <div class="notice-title" data-i18n="login.securityTitle">Security Protection</div>
+            <div class="notice-desc" data-i18n="login.securityDesc">Your session will expire after 24 hours</div>
           </div>
         </div>
       </div>

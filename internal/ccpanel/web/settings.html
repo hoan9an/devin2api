@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,8 +7,8 @@
   <link rel="icon" type="image/x-icon" href="/web/favicon.ico">
   <link rel="apple-touch-icon" href="/web/apple-touch-icon.png">
   <link rel="manifest" href="/web/manifest.json">
-  <meta name="theme-color" content="#5438e1">
-  <title data-i18n="settings.title">系统设置 - Devin2API</title>
+  <meta name="theme-color" content="#181818">
+  <title data-i18n="settings.title">System Settings - Devin2API</title>
   <script src="/web/assets/js/theme-init.js?v=__VERSION__"></script>
   <link rel="stylesheet" href="/web/assets/css/styles.css?v=__VERSION__">
   <link rel="stylesheet" href="/web/assets/css/settings.css?v=__VERSION__">
@@ -33,54 +33,50 @@
   <div class="app-container">
     <main id="main" class="main-content">
       <div class="content-area">
-        <h1 class="visually-hidden" data-i18n="nav.settings">设置</h1>
+        <h1 class="visually-hidden" data-i18n="nav.settings">Settings</h1>
 
         <!-- 版本更新：面板内零停机自更新（下载校验 release → 编排进程 REUSEPORT 交接重启） -->
         <section class="card mb-6" id="update-card">
           <div class="settings-card-header">
-            <h3 class="section-title" data-i18n="settings.update.title">版本更新</h3>
+            <h3 class="section-title" data-i18n="settings.update.title">Version &amp; Update</h3>
             <span id="update-phase-badge" class="runtime-transcript-status" hidden></span>
           </div>
-          <p class="runtime-metrics-section-description" data-i18n="settings.update.description">
-            下载并校验 GitHub release 后，由独立编排进程做原子换名并经 REUSEPORT 零停机重启托管实例；进度跨重启持久，更新中可安全关闭页面。
-          </p>
+          <p class="runtime-metrics-section-description" data-i18n="settings.update.description">Downloads and verifies a GitHub release, then a transient orchestrator swaps the binary atomically and restarts the managed instance over REUSEPORT with zero downtime. Progress survives restarts; it is safe to close this page mid-update.</p>
           <div id="update-error" class="custom-rules-error" role="alert" hidden></div>
           <div class="quota-kv-grid">
             <div class="quota-kv">
-              <span class="quota-kv-k" data-i18n="settings.update.current">当前版本</span>
+              <span class="quota-kv-k" data-i18n="settings.update.current">Current version</span>
               <span class="quota-kv-v" id="update-current">—</span>
             </div>
             <div class="quota-kv">
-              <span class="quota-kv-k" data-i18n="settings.update.latest">最新版本</span>
+              <span class="quota-kv-k" data-i18n="settings.update.latest">Latest version</span>
               <span class="quota-kv-v" id="update-latest">—</span>
             </div>
             <div class="quota-kv" id="update-progress-cell" hidden>
-              <span class="quota-kv-k" data-i18n="settings.update.progress">更新进度</span>
+              <span class="quota-kv-k" data-i18n="settings.update.progress">Update progress</span>
               <span class="quota-kv-v" id="update-progress">—</span>
             </div>
           </div>
           <div class="settings-save-actions">
-            <button id="update-check-btn" type="button" class="btn btn-secondary" data-i18n="settings.update.check">检查更新</button>
-            <button id="update-rollback-btn" type="button" class="btn btn-secondary" data-i18n="settings.update.rollback" hidden>回滚到上一版本</button>
-            <button id="update-start-btn" type="button" class="btn btn-primary" data-i18n="settings.update.start">立即更新</button>
+            <button id="update-check-btn" type="button" class="btn btn-secondary" data-i18n="settings.update.check">Check for updates</button>
+            <button id="update-rollback-btn" type="button" class="btn btn-secondary" data-i18n="settings.update.rollback" hidden>Roll back to previous version</button>
+            <button id="update-start-btn" type="button" class="btn btn-primary" data-i18n="settings.update.start">Update now</button>
           </div>
         </section>
 
         <!-- 面板密码：dashboard.password 的 DB 覆盖层 -->
         <section class="card mb-6" id="password-card">
           <div class="settings-card-header">
-            <h3 class="section-title" data-i18n="settings.password.title">面板密码</h3>
+            <h3 class="section-title" data-i18n="settings.password.title">Panel Password</h3>
             <span id="password-source-badge" class="runtime-transcript-status"></span>
           </div>
-          <p class="runtime-metrics-section-description" data-i18n="settings.password.description">
-            设置后以 DB 覆盖压过 config.yaml 生效，文件值留作应急找回；清除覆盖即回落文件值。
-          </p>
+          <p class="runtime-metrics-section-description" data-i18n="settings.password.description">Once set, a database override supersedes the config.yaml dashboard.password; the file value stays as emergency fallback. Clearing the override reverts to the file value.</p>
           <div id="password-error" class="custom-rules-error" role="alert" hidden></div>
           <div class="settings-save-actions">
             <input type="password" id="password-input" class="form-input settings-password-input" autocomplete="new-password"
-              data-i18n-placeholder="settings.password.placeholder" placeholder="新密码">
-            <button id="password-save-btn" type="button" class="btn btn-primary" data-i18n="settings.password.save">设置密码</button>
-            <button id="password-clear-btn" type="button" class="btn btn-secondary" data-i18n="settings.password.clear" hidden>清除覆盖</button>
+              data-i18n-placeholder="settings.password.placeholder" placeholder="New password">
+            <button id="password-save-btn" type="button" class="btn btn-primary" data-i18n="settings.password.save">Set Password</button>
+            <button id="password-clear-btn" type="button" class="btn btn-secondary" data-i18n="settings.password.clear" hidden>Clear Override</button>
           </div>
         </section>
 
@@ -94,14 +90,10 @@
 
         <section class="card mb-6 settings-panel-card">
           <div class="settings-card-header">
-            <h3 class="section-title" data-i18n="settings.table.title">面板设置</h3>
+            <h3 class="section-title" data-i18n="settings.table.title">Panel Settings</h3>
             <div class="settings-obs-actions">
-              <button id="runtime-metrics-btn" type="button" class="btn btn-secondary settings-runtime-metrics-btn" data-i18n="settings.runtimeMetrics.button">
-                运行状态
-              </button>
-              <button id="process-log-btn" type="button" class="btn btn-secondary" data-i18n="settings.processLog.button">
-                进程日志
-              </button>
+              <button id="runtime-metrics-btn" type="button" class="btn btn-secondary settings-runtime-metrics-btn" data-i18n="settings.runtimeMetrics.button">View Runtime Status</button>
+              <button id="process-log-btn" type="button" class="btn btn-secondary" data-i18n="settings.processLog.button">Process Log</button>
             </div>
           </div>
           <div class="table-container settings-table-container mobile-card-table-container">
@@ -117,27 +109,25 @@
             </table>
           </div>
           <div class="settings-save-actions settings-save-bar">
-            <button id="save-all-btn" class="btn btn-primary settings-save-btn" data-i18n="settings.saveAll">
-              保存所有更改
-            </button>
+            <button id="save-all-btn" class="btn btn-primary settings-save-btn" data-i18n="settings.saveAll">Save All Changes</button>
           </div>
         </section>
 
         <!-- 生效配置：最后一次成功加载的 config.yaml 脱敏视图 -->
         <section class="card mb-6" id="effective-config-card">
           <div class="effective-config-header">
-            <h3 class="section-title" data-i18n="settings.effectiveConfig.title">生效配置</h3>
-            <span id="effective-config-stale" class="runtime-transcript-status runtime-transcript-status--warning" data-i18n="settings.effectiveConfig.stale" hidden>已过期</span>
+            <h3 class="section-title" data-i18n="settings.effectiveConfig.title">Effective Config</h3>
+            <span id="effective-config-stale" class="runtime-transcript-status runtime-transcript-status--warning" data-i18n="settings.effectiveConfig.stale" hidden>Stale</span>
           </div>
-          <p class="runtime-metrics-section-description" data-i18n="settings.effectiveConfig.description">最后一次成功加载的 config.yaml 脱敏视图；凭据以 sha256 前缀代替明文。文件被改过时点「重新加载」热应用。</p>
+          <p class="runtime-metrics-section-description" data-i18n="settings.effectiveConfig.description">Masked view of the last successfully loaded config.yaml; credentials appear as sha256 prefixes. Click Reload to hot-apply after the file changes on disk.</p>
           <div id="effective-config-banner" class="custom-rules-error" role="alert" hidden></div>
           <div id="effective-config-degraded" class="custom-rules-error" role="alert" hidden></div>
           <div id="effective-config-meta" class="quota-kv-grid"></div>
           <div id="effective-config-provenance" class="effective-config-provenance"></div>
           <pre id="effective-config-json" class="upstream-pre effective-config-json"></pre>
           <div class="settings-save-actions">
-            <button id="effective-config-refresh-btn" type="button" class="btn btn-secondary" data-i18n="settings.effectiveConfig.refresh">刷新视图</button>
-            <button id="effective-config-reload-btn" type="button" class="btn btn-primary" data-i18n="settings.effectiveConfig.reload">重新加载配置</button>
+            <button id="effective-config-refresh-btn" type="button" class="btn btn-secondary" data-i18n="settings.effectiveConfig.refresh">Refresh view</button>
+            <button id="effective-config-reload-btn" type="button" class="btn btn-primary" data-i18n="settings.effectiveConfig.reload">Reload config</button>
           </div>
         </section>
       </div>
@@ -149,20 +139,20 @@
     <div class="modal-content runtime-metrics-modal">
       <div class="modal-header runtime-metrics-modal-header">
         <div>
-          <h2 id="runtimeMetricsTitle" class="modal-title" data-i18n="settings.runtimeMetrics.title">运行状态</h2>
-          <p class="modal-description" data-i18n="settings.runtimeMetrics.description">当前 Devin2API 进程与各运行子系统的资源占用和状态</p>
+          <h2 id="runtimeMetricsTitle" class="modal-title" data-i18n="settings.runtimeMetrics.title">Process Runtime Status</h2>
+          <p class="modal-description" data-i18n="settings.runtimeMetrics.description">Resource usage and status for the current Devin2API process and its runtime subsystems</p>
         </div>
-        <button type="button" class="close-btn" data-action="close-runtime-metrics" data-i18n-aria-label="common.close" aria-label="关闭">&times;</button>
+        <button type="button" class="close-btn" data-action="close-runtime-metrics" data-i18n-aria-label="common.close" aria-label="Close">&times;</button>
       </div>
 
-      <p class="runtime-metrics-section-description" data-i18n="accounts.firstLaneNote">「速率闸门」与「前缀保温」展示首个账号的快照；逐号详情见「上游账号」页</p>
+      <p class="runtime-metrics-section-description" data-i18n="accounts.firstLaneNote">Rate gate and Prefix Warming show the first account lane; per-account detail is on the Accounts page</p>
       <div id="runtime-metrics-content" class="runtime-metrics-content" aria-live="polite"></div>
 
       <div class="runtime-metrics-modal-footer">
         <span id="runtime-metrics-updated-at" class="runtime-metrics-updated-at"></span>
         <div class="runtime-metrics-footer-actions">
-          <button id="refresh-runtime-metrics-btn" type="button" class="btn btn-secondary" data-i18n="settings.runtimeMetrics.refresh">刷新</button>
-          <button type="button" class="btn btn-primary" data-action="close-runtime-metrics" data-i18n="common.close">关闭</button>
+          <button id="refresh-runtime-metrics-btn" type="button" class="btn btn-secondary" data-i18n="settings.runtimeMetrics.refresh">Refresh</button>
+          <button type="button" class="btn btn-primary" data-action="close-runtime-metrics" data-i18n="common.close">Close</button>
         </div>
       </div>
     </div>
@@ -173,19 +163,19 @@
     <div class="modal-content runtime-metrics-modal">
       <div class="modal-header runtime-metrics-modal-header">
         <div>
-          <h2 id="processLogTitle" class="modal-title" data-i18n="settings.processLog.title">进程日志</h2>
-          <p class="modal-description" data-i18n="settings.processLog.description">进程 stderr（slog 行）尾部；跟随开启时每 5 秒增量拉取，清空只清当前视图不影响文件。</p>
+          <h2 id="processLogTitle" class="modal-title" data-i18n="settings.processLog.title">Process Log</h2>
+          <p class="modal-description" data-i18n="settings.processLog.description">Process stderr (slog lines) tail. While follow is on it polls incrementally every 5s; clearing resets this view only, not the file.</p>
         </div>
-        <button type="button" class="close-btn" data-action="close-process-log" data-i18n-aria-label="common.close" aria-label="关闭">&times;</button>
+        <button type="button" class="close-btn" data-action="close-process-log" data-i18n-aria-label="common.close" aria-label="Close">&times;</button>
       </div>
 
       <div class="process-log-toolbar">
-        <label class="process-log-follow" data-i18n-title="settings.processLog.debugToggleHint" title="debug_log_enabled 设置键">
+        <label class="process-log-follow" data-i18n-title="settings.processLog.debugToggleHint" title="Toggles the debug_log_enabled setting key">
           <input type="checkbox" id="process-log-debug-toggle">
-          <span data-i18n="settings.processLog.debugToggle">请求日志</span>
+          <span data-i18n="settings.processLog.debugToggle">Request logging</span>
         </label>
-        <select id="process-log-level" class="form-input process-log-level" data-i18n-aria-label="settings.processLog.level" aria-label="级别">
-          <option value="" data-i18n="settings.processLog.levelAll">全部级别</option>
+        <select id="process-log-level" class="form-input process-log-level" data-i18n-aria-label="settings.processLog.level" aria-label="Level">
+          <option value="" data-i18n="settings.processLog.levelAll">All levels</option>
           <option value="DEBUG">DEBUG</option>
           <option value="INFO">INFO</option>
           <option value="WARN">WARN</option>
@@ -193,12 +183,12 @@
         </select>
         <label class="process-log-follow">
           <input type="checkbox" id="process-log-follow" checked>
-          <span data-i18n="settings.processLog.follow">自动滚动</span>
+          <span data-i18n="settings.processLog.follow">Auto-scroll</span>
         </label>
         <div class="process-log-toolbar-actions">
-          <button id="process-log-pause-btn" type="button" class="btn btn-secondary" data-i18n="settings.processLog.pause">暂停</button>
-          <button id="process-log-refresh-btn" type="button" class="btn btn-secondary" data-i18n="settings.runtimeMetrics.refresh">刷新</button>
-          <button id="process-log-clear-btn" type="button" class="btn btn-secondary" data-i18n="settings.processLog.clearView">清空视图</button>
+          <button id="process-log-pause-btn" type="button" class="btn btn-secondary" data-i18n="settings.processLog.pause">Pause</button>
+          <button id="process-log-refresh-btn" type="button" class="btn btn-secondary" data-i18n="settings.runtimeMetrics.refresh">Refresh</button>
+          <button id="process-log-clear-btn" type="button" class="btn btn-secondary" data-i18n="settings.processLog.clearView">Clear view</button>
         </div>
       </div>
 
@@ -209,7 +199,7 @@
       <div class="runtime-metrics-modal-footer">
         <span id="process-log-updated-at" class="runtime-metrics-updated-at"></span>
         <div class="runtime-metrics-footer-actions">
-          <button type="button" class="btn btn-primary" data-action="close-process-log" data-i18n="common.close">关闭</button>
+          <button type="button" class="btn btn-primary" data-action="close-process-log" data-i18n="common.close">Close</button>
         </div>
       </div>
     </div>
@@ -221,7 +211,7 @@
       <td class="setting-col-description" data-mobile-label="{{mobileLabelDescription}}">{{description}}</td>
       <td class="setting-col-value" data-mobile-label="{{mobileLabelValue}}">{{{inputHtml}}}</td>
       <td class="setting-col-actions" data-mobile-label="{{mobileLabelActions}}">
-        <button type="button" class="btn-icon setting-reset-btn" data-action="reset-setting" data-key="{{key}}" data-i18n-title="settings.resetToDefault" data-i18n-aria-label="settings.resetToDefault" title="重置为默认值" aria-label="恢复默认值" {{{resetDisabledAttributes}}}>
+        <button type="button" class="btn-icon setting-reset-btn" data-action="reset-setting" data-key="{{key}}" data-i18n-title="settings.resetToDefault" data-i18n-aria-label="settings.resetToDefault" title="Reset to default" aria-label="Reset to default" {{{resetDisabledAttributes}}}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
             <path d="M3 3v5h5"/>

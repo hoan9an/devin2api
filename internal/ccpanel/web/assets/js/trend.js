@@ -178,7 +178,7 @@
           }
         }
       } catch (error) {
-        console.error('加载模型列表失败:', error);
+        console.error('Failed to load model list:', error);
       }
     }
 
@@ -270,7 +270,7 @@
         }
 
       } catch (error) {
-        console.error('加载趋势数据失败:', error);
+        console.error('Failed to load trend data:', error);
         try { if (window.showError) window.showError(t('trend.loadDataFailed')); } catch(_){}
         // 已有数据时保留旧图，只提示错误；首载失败才切错误视图
         if (!window.trendData || !window.trendData.length) renderTrendError();
@@ -377,7 +377,7 @@
       },
       tokens: {
         totals: [
-          { nameKey: 'trend.inputTokens', color: '#7f56f1', value: (p) => p.input_tokens || 0 },
+          { nameKey: 'trend.inputTokens', color: '#06b6d4', value: (p) => p.input_tokens || 0 },
           { nameKey: 'trend.outputTokens', color: '#10b981', value: (p) => p.output_tokens || 0 },
           { nameKey: 'trend.cacheRead', color: '#f97316', value: (p) => p.cache_read_tokens || 0 },
           { nameKey: 'trend.cacheCreate', color: '#a855f7', value: (p) => p.cache_creation_tokens || 0 }
@@ -392,7 +392,7 @@
       },
       rpm: {
         totals: [
-          { name: 'RPM', color: '#7f56f1', area: 0.16, value: (p, bs) => {
+          { name: 'RPM', color: '#06b6d4', area: 0.16, value: (p, bs) => {
             const total = (p.success || 0) + (p.error || 0);
             return total > 0 ? total * 60 / bs : 0;
           } }
@@ -404,7 +404,7 @@
       },
       tps: {
         totals: [
-          { nameKey: 'trend.inputTokens', color: '#7f56f1', value: (p, bs) => (Number(p.input_tokens) || 0) / bs },
+          { nameKey: 'trend.inputTokens', color: '#06b6d4', value: (p, bs) => (Number(p.input_tokens) || 0) / bs },
           { nameKey: 'trend.outputTokens', color: '#10b981', value: (p, bs) => (Number(p.output_tokens) || 0) / bs },
           { nameKey: 'trend.cacheRead', color: '#f97316', value: (p, bs) => (Number(p.cache_read_tokens) || 0) / bs },
           { nameKey: 'trend.cacheCreate', color: '#a855f7', value: (p, bs) => (Number(p.cache_creation_tokens) || 0) / bs }
@@ -792,10 +792,10 @@
             ...zoomSpan,
             borderColor: chartTheme.axisLine,
             backgroundColor: chartTheme.surfaceMuted,
-            fillerColor: 'rgba(124, 87, 240, 0.16)',
+            fillerColor: 'rgba(6, 182, 212, 0.16)',
             handleStyle: {
-              color: '#7f56f1',
-              borderColor: '#7f56f1'
+              color: '#06b6d4',
+              borderColor: '#06b6d4'
             },
             textStyle: {
               color: chartTheme.mutedText,

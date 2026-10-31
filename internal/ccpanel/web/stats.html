@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,8 +7,8 @@
   <link rel="icon" type="image/x-icon" href="/web/favicon.ico">
   <link rel="apple-touch-icon" href="/web/apple-touch-icon.png">
   <link rel="manifest" href="/web/manifest.json">
-  <meta name="theme-color" content="#5438e1">
-  <title data-i18n="stats.title">调用统计 - Devin2API</title>
+  <meta name="theme-color" content="#181818">
+  <title data-i18n="stats.title">Statistics - Devin2API</title>
   <script src="/web/assets/js/theme-init.js?v=__VERSION__"></script>
   <link rel="stylesheet" href="/web/assets/css/styles.css?v=__VERSION__">
   <link rel="stylesheet" href="/web/assets/css/stats.css?v=__VERSION__">
@@ -35,7 +35,7 @@
     <!-- 主内容区域 -->
     <main id="main" class="main-content">
       <div class="content-area">
-        <h1 class="visually-hidden" data-i18n="nav.stats">调用统计</h1>
+        <h1 class="visually-hidden" data-i18n="nav.stats">Statistics</h1>
         <div data-page-filters="stats"></div>
 
         <!-- 统计详情表格 -->
@@ -46,25 +46,23 @@
                 <svg class="inline-block w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
-                <span data-i18n="stats.detailTitle">详细统计数据</span>
-                <small class="stats-detail-sort-hint" data-i18n="stats.sortByName">
-                  按模型名称排序
-                </small>
+                <span data-i18n="stats.detailTitle">Detailed Statistics</span>
+                <small class="stats-detail-sort-hint" data-i18n="stats.sortByName">Sorted by model name</small>
               </span>
               <!-- 表格/图表切换按钮 -->
-              <div class="seg" id="view-toggle-group" role="group" data-i18n-aria-label="stats.viewToggle" aria-label="视图">
+              <div class="seg" id="view-toggle-group" role="group" data-i18n-aria-label="stats.viewToggle" aria-label="View">
                 <button type="button" class="seg-btn active" data-view="table" aria-pressed="true">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                   </svg>
-                  <span data-i18n="stats.viewTable">表格</span>
+                  <span data-i18n="stats.viewTable">Table</span>
                 </button>
                 <button type="button" class="seg-btn" data-view="chart" aria-pressed="false">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
                   </svg>
-                  <span data-i18n="stats.viewChart">图表</span>
+                  <span data-i18n="stats.viewChart">Chart</span>
                 </button>
               </div>
             </h3>
@@ -76,50 +74,50 @@
                 <thead>
                   <tr>
                     <th scope="col" class="sortable stats-col-model" tabindex="0" data-column="model">
-                      <span data-i18n="common.model">模型</span>
+                      <span data-i18n="common.model">Model</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-success stats-header-accent--success" tabindex="0" data-column="success">
-                      <span data-i18n="common.success">成功</span>
+                      <span data-i18n="common.success">Success</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-error stats-header-accent--error" tabindex="0" data-column="error">
-                      <span data-i18n="common.failed">失败</span>
+                      <span data-i18n="common.failed">Failed</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-timing" tabindex="0" data-column="avg_first_byte_time">
-                      <span data-i18n="stats.avgFirstByte">首字/耗时(秒)</span>
+                      <span data-i18n="stats.avgFirstByte">TTFT/Latency(s)</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-speed" tabindex="0" data-column="avg_speed">
                       <span data-i18n="stats.avgSpeed">Tok/s</span>
                       <span class="sort-indicator"></span>
                     </th>
-                    <th scope="col" class="sortable stats-col-rpm" tabindex="0" data-column="rpm" data-i18n-title="stats.rpmTitle" title="每分钟请求数(峰值/平均/最近)">
-                      <span data-i18n="stats.rpm">RPM(峰/均/近)</span>
+                    <th scope="col" class="sortable stats-col-rpm" tabindex="0" data-column="rpm" data-i18n-title="stats.rpmTitle" title="Requests per minute (Peak/Average/Recent)">
+                      <span data-i18n="stats.rpm">RPM(Peak/Avg/Recent)</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-input" tabindex="0" data-column="total_input_tokens">
-                      <span data-i18n="stats.inputTokens">输入</span>
+                      <span data-i18n="stats.inputTokens">Input</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-output" tabindex="0" data-column="total_output_tokens">
-                      <span data-i18n="stats.outputTokens">输出</span>
+                      <span data-i18n="stats.outputTokens">Output</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-cache-read stats-header-accent--cache-read" tabindex="0" data-column="total_cache_read">
-                      <span data-i18n="stats.cacheRead">缓存读取</span>
+                      <span data-i18n="stats.cacheRead">Cache Read</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="sortable stats-col-cache-create stats-header-accent--cache-create" tabindex="0" data-column="total_cache_creation">
-                      <span data-i18n="stats.cacheCreation">缓存创建</span>
+                      <span data-i18n="stats.cacheCreation">Cache Creation</span>
                       <span class="sort-indicator"></span>
                     </th>
                     <th scope="col" class="stats-col-cache-util" data-column="cache_util">
-                      <span data-i18n="stats.cacheUtil">缓存命中</span>
+                      <span data-i18n="stats.cacheUtil">Cache Hit</span>
                     </th>
                     <th scope="col" class="sortable stats-col-cost stats-header-accent--cost" tabindex="0" data-column="total_cost">
-                      <span data-i18n="stats.costUsd">成本</span>
+                      <span data-i18n="stats.costUsd">Cost</span>
                       <span class="sort-indicator"></span>
                     </th>
                   </tr>
@@ -128,7 +126,7 @@
                   <tr>
                     <td colspan="12" class="state-block--compact">
                       <div class="loading-spinner loading-spinner--block"></div>
-                      <span data-i18n="stats.loading">正在加载统计数据...</span>
+                      <span data-i18n="stats.loading">Loading statistics...</span>
                     </td>
                   </tr>
                 </tbody>
@@ -140,17 +138,17 @@
               <div class="charts-grid">
                 <!-- 模型调用次数饼图 -->
                 <div class="chart-card">
-                  <h4 class="chart-title" data-i18n="stats.chartModelCalls">模型调用次数</h4>
+                  <h4 class="chart-title" data-i18n="stats.chartModelCalls">Model Calls</h4>
                   <div id="chart-model-calls" class="stats-chart-plot"></div>
                 </div>
                 <!-- 模型成本饼图 -->
                 <div class="chart-card">
-                  <h4 class="chart-title" data-i18n="stats.chartModelCost">模型成本</h4>
+                  <h4 class="chart-title" data-i18n="stats.chartModelCost">Model Cost</h4>
                   <div id="chart-model-cost" class="stats-chart-plot"></div>
                 </div>
                 <!-- 模型Token用量饼图 -->
                 <div class="chart-card">
-                  <h4 class="chart-title" data-i18n="stats.chartModelTokens">模型Token用量</h4>
+                  <h4 class="chart-title" data-i18n="stats.chartModelTokens">Model Token Usage</h4>
                   <div id="chart-model-tokens" class="stats-chart-plot"></div>
                 </div>
               </div>
@@ -166,32 +164,32 @@
                 <svg class="inline-block w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 12h-4l-3 9L9 3l-3 9H2"/>
                 </svg>
-                <span data-i18n="stats.usageTitle">服务观测</span>
+                <span data-i18n="stats.usageTitle">Service Observability</span>
                 <small class="stats-detail-sort-hint" id="usage-observ-note"></small>
               </span>
             </h3>
             <div id="usage-observ-empty" class="runtime-metrics-note" hidden></div>
             <section class="runtime-metrics-subsection" id="usage-faults-block" hidden>
               <div class="runtime-metrics-subsection-header">
-                <h4 data-i18n="stats.usageFaultsTitle">SLA 归因</h4>
+                <h4 data-i18n="stats.usageFaultsTitle">SLA Attribution</h4>
               </div>
               <div class="kpi-grid" id="usage-faults-grid"></div>
             </section>
             <section class="runtime-metrics-subsection" id="usage-latency-block" hidden>
               <div class="runtime-metrics-subsection-header">
-                <h4 data-i18n="stats.usageLatencyTitle">延迟分位</h4>
+                <h4 data-i18n="stats.usageLatencyTitle">Latency Percentiles</h4>
               </div>
               <div class="table-container">
                 <table class="modern-table">
                   <thead>
                     <tr>
-                      <th scope="col" data-i18n="stats.usageLatencyMetric">指标</th>
-                      <th scope="col" data-i18n="stats.usageLatencySamples">样本</th>
+                      <th scope="col" data-i18n="stats.usageLatencyMetric">Metric</th>
+                      <th scope="col" data-i18n="stats.usageLatencySamples">Samples</th>
                       <th scope="col">p50</th>
                       <th scope="col">p90</th>
                       <th scope="col">p95</th>
                       <th scope="col">p99</th>
-                      <th scope="col" data-i18n="stats.usageLatencyMax">最大</th>
+                      <th scope="col" data-i18n="stats.usageLatencyMax">Max</th>
                     </tr>
                   </thead>
                   <tbody id="usage-latency-tbody"></tbody>
@@ -200,15 +198,15 @@
             </section>
             <section class="runtime-metrics-subsection" id="usage-stages-block" hidden>
               <div class="runtime-metrics-subsection-header">
-                <h4 data-i18n="stats.usageStagesTitle">错误阶段分布</h4>
+                <h4 data-i18n="stats.usageStagesTitle">Error Stage Distribution</h4>
               </div>
               <div class="table-container">
                 <table class="modern-table">
                   <thead>
                     <tr>
-                      <th scope="col" data-i18n="stats.usageStageName">阶段</th>
-                      <th scope="col" data-i18n="stats.usageStageCount">次数</th>
-                      <th scope="col" data-i18n="stats.usageStageShare">占比</th>
+                      <th scope="col" data-i18n="stats.usageStageName">Stage</th>
+                      <th scope="col" data-i18n="stats.usageStageCount">Count</th>
+                      <th scope="col" data-i18n="stats.usageStageShare">Share</th>
                     </tr>
                   </thead>
                   <tbody id="usage-stages-tbody"></tbody>
@@ -217,15 +215,15 @@
             </section>
             <section class="runtime-metrics-subsection" id="usage-ctxfill-block" hidden>
               <div class="runtime-metrics-subsection-header">
-                <h4 data-i18n="stats.usageCtxFillTitle">上下文填充</h4>
+                <h4 data-i18n="stats.usageCtxFillTitle">Context Fill</h4>
               </div>
               <div class="table-container">
                 <table class="modern-table">
                   <thead>
                     <tr>
-                      <th scope="col" data-i18n="common.model">模型</th>
-                      <th scope="col" data-i18n="stats.usageCtxFillPct">填充率</th>
-                      <th scope="col" data-i18n="stats.usageCtxFillTokens">均占用/窗口</th>
+                      <th scope="col" data-i18n="common.model">Model</th>
+                      <th scope="col" data-i18n="stats.usageCtxFillPct">Fill Rate</th>
+                      <th scope="col" data-i18n="stats.usageCtxFillTokens">Avg Used / Window</th>
                     </tr>
                   </thead>
                   <tbody id="usage-ctxfill-tbody"></tbody>
@@ -244,7 +242,7 @@
     <tr>
       <td colspan="{{colspan}}" class="state-block--compact">
         <div class="loading-spinner loading-spinner--block"></div>
-        <span data-i18n="stats.loading">正在加载统计数据...</span>
+        <span data-i18n="stats.loading">Loading statistics...</span>
       </td>
     </tr>
   </template>
@@ -256,8 +254,8 @@
         <svg class="w-12 h-12 mx-auto mb-4 state-icon--error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.864-.833-2.634 0L4.18 16.5c-.77.833.192 2.5 1.732 2.5z"/>
         </svg>
-        <div class="state-title state-title--error" data-i18n="stats.loadFailed">加载失败</div>
-        <div class="state-desc" data-i18n="stats.checkNetwork">请检查网络连接或重试</div>
+        <div class="state-title state-title--error" data-i18n="stats.loadFailed">Load Failed</div>
+        <div class="state-desc" data-i18n="stats.checkNetwork">Please check network connection or retry</div>
       </td>
     </tr>
   </template>
@@ -269,8 +267,8 @@
         <svg class="w-12 h-12 mx-auto mb-4 state-icon--neutral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
         </svg>
-        <div class="state-title" data-i18n="stats.noData">暂无统计数据</div>
-        <div class="state-desc" data-i18n="stats.adjustFilter">请调整筛选条件或检查时间范围</div>
+        <div class="state-title" data-i18n="stats.noData">No Statistics Data</div>
+        <div class="state-desc" data-i18n="stats.adjustFilter">Please adjust filter criteria or check time range</div>
       </td>
     </tr>
   </template>

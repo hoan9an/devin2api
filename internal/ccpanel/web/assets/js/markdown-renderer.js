@@ -225,7 +225,7 @@
       const summary = document.createElement('summary');
       summary.className = 'chat-thinking-summary';
       summary.setAttribute('data-i18n', 'modelTest.chat.thinking');
-      summary.textContent = label('modelTest.chat.thinking', '思考');
+      summary.textContent = label('modelTest.chat.thinking', 'Thinking');
 
       const contentEl = document.createElement('div');
       contentEl.className = 'chat-thinking-content';
@@ -255,7 +255,7 @@
 
       const summary = document.createElement('summary');
       summary.className = 'chat-tool-calls-summary';
-      summary.textContent = label('logs.debugToolCalls', '工具调用');
+      summary.textContent = label('logs.debugToolCalls', 'Tool Calls');
 
       const contentEl = document.createElement('div');
       contentEl.className = 'chat-tool-calls-content';
@@ -423,7 +423,7 @@
 
   function createCodeCopyButton(codeEl) {
     const btn = document.createElement('button');
-    const copyLabel = label('common.copy', '复制');
+    const copyLabel = label('common.copy', 'Copy');
     btn.type = 'button';
     btn.className = 'chat-code-copy-btn';
     btn.setAttribute('aria-label', copyLabel);
@@ -633,7 +633,7 @@
   }
 
   function markCopied(btn) {
-    const copiedLabel = label('common.copied', '已复制');
+    const copiedLabel = label('common.copied', 'Copied');
     const originalTitle = btn.title;
     const originalLabel = btn.getAttribute('aria-label');
     btn.classList.add('chat-code-copy-btn--copied');

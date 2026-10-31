@@ -632,9 +632,75 @@
 
 
 
-      dropdown.style.left = `${Math.round(rect.left)}px`;
+      // 宽度：起码与触发器等宽，允许按最长选项自然伸展（封顶视口-16）。
 
-      dropdown.style.width = `${Math.round(rect.width)}px`;
+      // 触发器被布局压缩得很窄时（如老筛选栏 88–156px 固定列），
+
+      // 下拉仍给出可读宽度，而不是把每个选项折成两行。
+
+      const items = getDropdownItems();
+
+      let longest = 0;
+
+      if (items.length) {
+
+        const style = window.getComputedStyle ? getComputedStyle(dropdown) : null;
+
+        const fontSize = parseFloat(style ? style.fontSize : '') || 14;
+
+        // 真浏览器用离屏测量节点拿像素宽；无布局环境（jsdom）offsetWidth=0，
+
+        // 退化为「最长字符数 × 平均字宽」——CJK 全角≈fontSize，ASCII≈0.55。
+
+        const measure = dropdown.ownerDocument.createElement('div');
+
+        measure.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;' +
+
+          'font-size:' + fontSize + 'px;font-family:' + (style ? style.fontFamily : 'inherit');
+
+        dropdown.ownerDocument.body.appendChild(measure);
+
+        let charLongest = 0;
+
+        for (const item of items) {
+
+          const label = String(item.label || '');
+
+          measure.textContent = label;
+
+          longest = Math.max(longest, measure.offsetWidth);
+
+          let w = 0;
+
+          for (const ch of label) w += ch.charCodeAt(0) > 0x2e7f ? fontSize : fontSize * 0.58;
+
+          charLongest = Math.max(charLongest, w);
+
+        }
+
+        measure.remove();
+
+        longest = Math.max(longest, Math.ceil(charLongest)) + 34; // padding 14*2 + 余量
+
+      }
+
+      const vw = window.innerWidth || 0;
+
+      const ideal = Math.max(rect.width, longest);
+
+      const maxW = Math.max(140, vw - 2 * margin - 4);
+
+      let width = Math.min(ideal, Math.min(maxW, 420));
+
+      let left = Math.round(rect.left);
+
+      if (left + width > vw - margin) left = Math.max(margin, vw - margin - width);
+
+
+
+      dropdown.style.left = `${left}px`;
+
+      dropdown.style.width = `${Math.round(width)}px`;
 
       dropdown.style.top = `${Math.round(rect.bottom + margin)}px`;
 
