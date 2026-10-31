@@ -1834,7 +1834,6 @@ body.sidebar-open .sidebar-backdrop {
   background: var(--card-bg);
   border: 1px solid var(--surface-border);
   border-radius: var(--card-radius);
-  box-shadow: var(--shadow-card);
   padding: var(--space-4);
   margin-bottom: var(--space-2);
   position: relative;
@@ -2059,7 +2058,6 @@ body.sidebar-open .sidebar-backdrop {
   border-radius: var(--card-radius);
   border: 1px solid var(--surface-border);
   background: var(--table-bg);
-  box-shadow: var(--shadow-card);
 }
 
 .modern-table {
@@ -2885,13 +2883,11 @@ body.web-role-api-token #btn_export_json {
     border: 1px solid rgba(148, 163, 184, 0.22);
     border-radius: var(--radius-xl);
     background: var(--surface-bg-strong);
-    box-shadow: var(--shadow-card);
     position: relative;
   }
-/* 行卡片被外层 .card 包住时去掉自己的底与影，避免浮起叠层（同桌面端 .card .table-container 规则） */
+/* 行卡片被外层 .card 包住时去掉自己的底，避免浮起叠层（同桌面端 .card .table-container 规则） */
 .card .mobile-card-table tbody .mobile-card-row {
     background: transparent;
-    box-shadow: none;
   }
 .mobile-card-table tbody tr:not(.mobile-card-row) {
     display: block;
@@ -3039,7 +3035,6 @@ body.web-role-api-token #btn_export_json {
 .content-area > header .card {
   background: var(--surface-bg-strong);
   border-color: var(--surface-border);
-  box-shadow: var(--shadow-card);
 }
 
 .pagination-card {

@@ -8,16 +8,14 @@
   padding-top: calc(var(--topbar-offset) + 10px);
 }
 
-/* ===== 渠道卡片：.card 之上只加 padding 与抬升阴影 ===== */
+/* ===== 渠道卡片：.card 之上只加 padding；静态表面不再叠阴影，hover 只强调描边 ===== */
 
 .channel-card {
   padding: var(--space-5);
-  box-shadow: var(--shadow-card);
 }
 
 .channel-card:hover {
   transform: none;
-  box-shadow: var(--shadow-lg);
   border-color: var(--surface-border-strong);
 }
 
@@ -47,7 +45,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: var(--shadow-lift);
   flex-shrink: 0;
 }
 
