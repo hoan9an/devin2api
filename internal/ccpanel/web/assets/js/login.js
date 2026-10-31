@@ -137,6 +137,9 @@
       boot.then(() => {
         if (window.i18n) window.i18n.translatePage();
         setLoginMode('admin');
+      }).finally(() => {
+        // 翻译完成后揭盖（html.boot-pending 隐藏规则见 styles.css）
+        document.documentElement.classList.remove('boot-pending');
       });
       // 聚焦到密码输入框
       setTimeout(() => {

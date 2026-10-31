@@ -564,6 +564,13 @@ body {
   margin: 0 auto;
 }
 
+/* 语言包按需异步注入：首个可见帧前隐藏全部顶层节点，bootstrap 翻译+装好
+   chrome（侧栏/顶栏）后才亮出——否则用户看到「英文半成品 → 译文 + 侧栏跳入」
+   的脏过渡。body 背景照常绘制，深色主题下不会闪白。 */
+html.boot-pending body > * {
+  visibility: hidden;
+}
+
 /* ===== Sidebar + Topbar（代理网关布局） ===== */
 
 .top-layout .main-content {
@@ -591,7 +598,9 @@ body {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: 18px var(--space-4) 16px;
+  /* 品牌块与右侧顶栏同高：两者的下边框落在同一水平线，形成整齐的 T 形分界 */
+  min-height: var(--topbar-height);
+  padding: 10px var(--space-4);
   text-decoration: none;
   border-bottom: 1px solid var(--surface-border);
   flex: 0 0 auto;

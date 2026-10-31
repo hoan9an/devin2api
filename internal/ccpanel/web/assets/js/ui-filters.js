@@ -80,28 +80,40 @@
 
   function initPageBootstrap(options = {}) {
     const run = typeof options.run === 'function' ? options.run : () => {};
+    const reveal = () => document.documentElement.classList.remove('boot-pending');
 
     const execute = async () => {
-	  const session = await window.fetchDataWithAuth('/dashboard/session');
-	  if (session && session.role) localStorage.setItem(window.WebAuth.ROLE_KEY, session.role);
-	  const restrictedPages = new Set(['tokens', 'settings', 'models', 'accounts']);
-	  if (window.isAPITokenRole() && restrictedPages.has(options.topbarKey)) {
-	    window.location.replace('/web/index.html');
-	    return;
-	  }
-      // 语言包改为按需加载：就绪后再翻译/渲染，否则首屏会拿 key 当文案
-      if (window.i18n && window.i18n.ready) {
-        await window.i18n.ready;
-      }
+      try {
+        // session 拉取与语言包加载并行，否则每页导航都白等一个 RTT
+        const sessionPromise = window.fetchDataWithAuth('/dashboard/session')
+          .catch(() => null); // 角色刷新失败不挡页面（401 已就地跳登录，不会进这里）
 
-      if (options.translate !== false && window.i18n && typeof window.i18n.translatePage === 'function') {
-        window.i18n.translatePage();
-      }
+        // 语言包改为按需加载：就绪后再翻译/渲染，否则首屏会拿 key 当文案
+        if (window.i18n && window.i18n.ready) {
+          await window.i18n.ready;
+        }
 
-      if (options.topbarKey && typeof window.initTopbar === 'function') {
-        window.initTopbar(options.topbarKey);
-      }
+        // 顶栏/侧栏先注入再翻译，translatePage 顺带覆盖新节点的 data-i18n
+        if (options.topbarKey && typeof window.initTopbar === 'function') {
+          window.initTopbar(options.topbarKey);
+        }
 
+        if (options.translate !== false && window.i18n && typeof window.i18n.translatePage === 'function') {
+          window.i18n.translatePage();
+        }
+
+        const session = await sessionPromise;
+        if (session && session.role) localStorage.setItem(window.WebAuth.ROLE_KEY, session.role);
+        const restrictedPages = new Set(['tokens', 'settings', 'models', 'accounts']);
+        if (window.isAPITokenRole() && restrictedPages.has(options.topbarKey)) {
+          window.location.replace('/web/index.html');
+          return;
+        }
+      } finally {
+        // chrome 就位且已翻译才亮出页面（出错同样亮出，不留隐藏空页）；
+        // body > * 隐藏规则见 styles.css 的 html.boot-pending
+        reveal();
+      }
       await run();
     };
 

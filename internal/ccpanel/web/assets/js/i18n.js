@@ -381,6 +381,12 @@
   // 初始化并暴露语言包就绪 promise：initPageBootstrap 用它对齐首屏翻译时机
   const ready = init();
 
+  // boot-pending 兜底：正常路径由 bootstrap 翻译后揭盖；若页面 boot 脚本
+  // 在此之前抛错，4s 后强制亮出原文页面，绝不留永久空白
+  if (document.documentElement.classList.contains('boot-pending')) {
+    setTimeout(() => document.documentElement.classList.remove('boot-pending'), 4000);
+  }
+
   // 导出到全局
   window.i18n = {
     t,
