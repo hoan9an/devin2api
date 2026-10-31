@@ -187,7 +187,7 @@
     const disclosureHtml = secondaryHtml
       ? `<button type="button" class="filter-more-toggle" data-filter-more-toggle aria-expanded="false">
             <span data-i18n="common.moreFilters">More filters</span>
-            <svg class="filter-more-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 8l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="filter-more-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="filter-secondary" data-filter-secondary>
             ${secondaryHtml}
@@ -320,7 +320,7 @@
         const value = spec.display
           ? `<span class="filter-chip-value">${escapeChipText(spec.display)}</span>`
           : '';
-        return `<button type="button" class="filter-chip" data-chip-key="${escapeChipText(spec.key)}"><span class="filter-chip-name">${name}</span>${value}<svg class="filter-chip-x" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>`;
+        return `<button type="button" class="filter-chip" data-chip-key="${escapeChipText(spec.key)}"><span class="filter-chip-name">${name}</span>${value}<svg class="filter-chip-x" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
       }).join('');
       chipsRow.hidden = specs.length === 0;
     }

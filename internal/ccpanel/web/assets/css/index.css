@@ -472,6 +472,12 @@
   color: var(--error-600);
 }
 
+.sh-tip-icon {
+  width: 12px;
+  height: 12px;
+  vertical-align: -1px;
+}
+
 .service-health-tooltip-rate {
   color: var(--neutral-600);
 }

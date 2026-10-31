@@ -93,7 +93,7 @@
       <div class="modal-content modal-content--sm">
         <div class="modal-header">
           <h2 class="modal-title" data-confirm-title></h2>
-          <button type="button" class="close-btn" data-confirm-choice="no">&times;</button>
+          <button type="button" class="close-btn" data-confirm-choice="no">${window.iconSVG("x")}</button>
         </div>
         <div class="modal-body"><p class="modal-confirm-message" data-confirm-message></p></div>
         <div class="modal-footer">

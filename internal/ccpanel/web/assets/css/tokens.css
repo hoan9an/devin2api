@@ -444,6 +444,14 @@ html[data-resolved-theme="dark"] {
   margin-bottom: 8px;
   color: var(--warning-700);
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.token-warning-icon {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
 }
 .token-result-warning-desc {
   color: var(--warning-800);
@@ -506,6 +514,12 @@ html[data-resolved-theme="dark"] {
   font-size: var(--text-sm);
   font-weight: 700;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+.token-call-icon svg {
+  width: 13px;
+  height: 13px;
 }
 .token-call-icon--success {
   color: var(--success-600);

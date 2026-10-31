@@ -1,38 +1,62 @@
-/* Devin2API — proxy gateway 主题（VibeRoute 衍生，cyan accent） */
+/* Devin2API — proxy gateway 主题（暖色 Claude 系背景，orange accent） */
 
-/* 与 VibeRoute 同族的无衬线 Lexend；无网时静默回退系统字体栈 */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+/* Inter 可变字重本地化（woff2 见 assets/fonts/）：不再依赖 Google Fonts
+   外网请求——字体拿不到时整页静默退回系统字体，正是各页字形不一致的来源 */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/web/assets/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/web/assets/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/web/assets/fonts/inter-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
 
 /* ===== CSS 变量和设计令牌 ===== */
 
 :root {
   color-scheme: light;
 
-  /* 品牌色彩系统（cyan，与 OmniRoute/VibeRoute 同族） */
-  --primary-50: #ecfeff;
-  --primary-100: #cffafe;
-  --primary-200: #a5f3fc;
-  --primary-300: #67e8f9;
-  --primary-400: #22d3ee;
-  --primary-500: #06b6d4;
-  --primary-600: #0891b2;
-  --primary-700: #0e7490;
-  --primary-800: #155e75;
-  --primary-900: #164e63;
-  /* 主色按钮等实心底上的前景（cyan 底需深字才对比达标） */
-  --primary-contrast: #06202a;
+  /* 品牌色彩系统（Claude 橙陶 #d97757 族） */
+  --primary-50: #faf0ea;
+  --primary-100: #f5e0d3;
+  --primary-200: #efc6ac;
+  --primary-300: #e5a37f;
+  --primary-400: #e18b62;
+  --primary-500: #d97757;
+  --primary-600: #c95f3e;
+  --primary-700: #b14c2e;
+  --primary-800: #8f3d25;
+  --primary-900: #6d2f1d;
+  /* 主色按钮等实心底上的前景（橙陶底需深字才对比达标） */
+  --primary-contrast: #1f1410;
 
-  /* 中性色彩 */
-  --neutral-50: #f9fafb;
-  --neutral-100: #f3f4f6;
-  --neutral-200: #e5e7eb;
-  --neutral-300: #d1d5db;
-  --neutral-400: #9ca3af;
-  --neutral-500: #6b7280;
-  --neutral-600: #4b5563;
-  --neutral-700: #374151;
-  --neutral-800: #1f2937;
-  --neutral-900: #111827;
+  /* 中性色彩（暖灰，配合米色底不泛蓝） */
+  --neutral-50: #faf8f4;
+  --neutral-100: #f3f0ea;
+  --neutral-200: #e6e0d5;
+  --neutral-300: #cfc7b8;
+  --neutral-400: #a39d90;
+  --neutral-500: #736d61;
+  --neutral-600: #57534a;
+  --neutral-700: #423e36;
+  --neutral-800: #2e2b26;
+  --neutral-900: #1f1d19;
 
   /* 下拉控件（自定义）配色：随系统浅/深色主题 */
   --filter-dropdown-bg: #ffffff;
@@ -43,21 +67,21 @@
   --filter-dropdown-item-highlight-bg: var(--primary-500);
   --filter-dropdown-item-highlight-fg: #fff;
 
-  /* 主题语义色：亮色为基准，暗色只覆盖这一层 */
+  /* 主题语义色：亮色为基准，暗色只覆盖这一层（米色暖底，Claude 风） */
   --page-bg:
-    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(6, 182, 212, 0.10), transparent 60%),
-    linear-gradient(180deg, #fdfdfc 0%, #f4f4f3 100%);
-  --surface-bg: rgba(255, 255, 255, 0.96);
-  --surface-bg-strong: rgba(255, 255, 255, 0.98);
-  --surface-bg-muted: rgba(243, 244, 246, 0.9);
-  --surface-border: rgba(17, 24, 39, 0.10);
-  --surface-border-strong: rgba(17, 24, 39, 0.16);
-  --surface-hover: rgba(17, 24, 39, 0.06);
-  --surface-active: rgba(17, 24, 39, 0.10);
-  --field-bg: rgba(255, 255, 255, 0.92);
-  --field-bg-focus: #ffffff;
-  --table-bg: rgba(255, 255, 255, 0.92);
-  --table-row-hover: rgba(17, 24, 39, 0.03);
+    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(217, 119, 87, 0.12), transparent 60%),
+    linear-gradient(180deg, #faf8f4 0%, #f2ede5 100%);
+  --surface-bg: rgba(255, 254, 252, 0.96);
+  --surface-bg-strong: rgba(255, 254, 252, 0.98);
+  --surface-bg-muted: rgba(242, 236, 227, 0.9);
+  --surface-border: rgba(42, 37, 31, 0.11);
+  --surface-border-strong: rgba(42, 37, 31, 0.17);
+  --surface-hover: rgba(42, 37, 31, 0.06);
+  --surface-active: rgba(42, 37, 31, 0.10);
+  --field-bg: rgba(255, 254, 252, 0.92);
+  --field-bg-focus: #fffefc;
+  --table-bg: rgba(255, 254, 252, 0.92);
+  --table-row-hover: rgba(42, 37, 31, 0.03);
   --body-fg: var(--neutral-800);
   --muted-fg: var(--neutral-600);
   --color-text: var(--neutral-900);
@@ -93,10 +117,10 @@
   --error-700: #b91c1c;
   --error-800: #991b1b;
   --info-50: #f0f9ff;
-  --info-200: #a5f3fc;
-  --info-500: #06b6d4;
-  --info-600: #0891b2;
-  --info-700: #0e7490;
+  --info-200: #bae6fd;
+  --info-500: #0ea5e9;
+  --info-600: #0284c7;
+  --info-700: #0369a1;
 
   /* 通知使用语义色，避免暗色主题反转中性色后出现浅底浅字 */
   --notification-success-bg: #ecfdf5;
@@ -109,11 +133,11 @@
   --notification-warning-fg: #92400e;
   --notification-warning-border: #f59e0b;
   --notification-info-bg: #f0f9ff;
-  --notification-info-fg: #155e75;
-  --notification-info-border: #06b6d4;
+  --notification-info-fg: #075985;
+  --notification-info-border: #0ea5e9;
 
   /* 字体系统 */
-  --font-family-sans: 'Lexend', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-family-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
 
   --text-2xs: 0.6875rem;
@@ -226,7 +250,7 @@
   --sidebar-width: 236px;
   /* --content-offset: 主内容离视口左边距，桌面 = 侧栏宽，移动端侧栏出画布归零 */
   --content-offset: var(--sidebar-width);
-  --sidebar-bg: #f6f6f5;
+  --sidebar-bg: #f3eee7;
   --topbar-height: 56px;
   --topbar-offset: var(--topbar-height);
   --container-max-width: 1680px;
@@ -245,47 +269,47 @@ html[data-resolved-theme="light"] {
 
 html[data-resolved-theme="dark"] {
   color-scheme: dark;
-  --neutral-50: #111827;
-  --neutral-100: #1f2937;
-  --neutral-200: #374151;
-  --neutral-300: #4b5563;
-  --neutral-400: #6b7280;
-  --neutral-500: #9ca3af;
-  --neutral-600: #d1d5db;
-  --neutral-700: #e5e7eb;
-  --neutral-800: #f3f4f6;
-  --neutral-900: #f9fafb;
+  --neutral-50: #191612;
+  --neutral-100: #221f1a;
+  --neutral-200: #322d26;
+  --neutral-300: #443e34;
+  --neutral-400: #6b645a;
+  --neutral-500: #968f84;
+  --neutral-600: #b8b2a8;
+  --neutral-700: #d6d0c6;
+  --neutral-800: #e8e3da;
+  --neutral-900: #f4f0e9;
   --page-bg:
-    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(6, 182, 212, 0.16), transparent 60%),
-    linear-gradient(180deg, #181818 0%, #151515 100%);
-  --sidebar-bg: #141414;
-  --surface-bg: rgba(30, 30, 30, 0.86);
-  --surface-bg-strong: rgba(30, 30, 30, 0.96);
-  --surface-bg-muted: rgba(36, 36, 36, 0.85);
-  --surface-border: #2b2b2b;
-  --surface-border-strong: #3a3a3a;
-  --surface-hover: rgba(255, 255, 255, 0.06);
-  --surface-active: rgba(255, 255, 255, 0.10);
-  --field-bg: rgba(18, 18, 18, 0.9);
-  --field-bg-focus: rgba(16, 16, 16, 0.96);
-  --table-bg: rgba(30, 30, 30, 0.9);
-  --table-row-hover: rgba(255, 255, 255, 0.04);
+    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(217, 119, 87, 0.16), transparent 60%),
+    linear-gradient(180deg, #1c1915 0%, #171410 100%);
+  --sidebar-bg: #161310;
+  --surface-bg: rgba(40, 36, 30, 0.86);
+  --surface-bg-strong: rgba(40, 36, 30, 0.96);
+  --surface-bg-muted: rgba(48, 43, 36, 0.85);
+  --surface-border: #36302a;
+  --surface-border-strong: #463f36;
+  --surface-hover: rgba(244, 240, 233, 0.06);
+  --surface-active: rgba(244, 240, 233, 0.10);
+  --field-bg: rgba(26, 23, 19, 0.9);
+  --field-bg-focus: rgba(23, 20, 17, 0.96);
+  --table-bg: rgba(40, 36, 30, 0.9);
+  --table-row-hover: rgba(244, 240, 233, 0.04);
   --body-fg: var(--neutral-800);
   --muted-fg: var(--neutral-600);
-  --filter-dropdown-bg: rgb(30, 30, 30);
-  --filter-dropdown-border: #2b2b2b;
+  --filter-dropdown-bg: rgb(40, 36, 30);
+  --filter-dropdown-border: #36302a;
   --filter-dropdown-item-fg: var(--neutral-900);
-  --filter-dropdown-item-hover-bg: rgba(255, 255, 255, 0.08);
-  --filter-dropdown-item-active-bg: rgba(255, 255, 255, 0.12);
+  --filter-dropdown-item-hover-bg: rgba(244, 240, 233, 0.08);
+  --filter-dropdown-item-active-bg: rgba(244, 240, 233, 0.12);
   --topbar-fg: var(--neutral-900);
   --topbar-fg-muted: var(--neutral-600);
-  --card-bg: rgba(30, 30, 30, 0.72);
-  /* cyan 在深底上的可读档：-400 承担描边/聚焦环/强调文本，
+  --card-bg: rgba(40, 36, 30, 0.72);
+  /* 橙陶在深底上的可读档：-400 承担描边/聚焦环/强调文本，
      -500/-600 维持按钮实底（配深色字），文本类用途不额外提亮 */
-  --primary-400: #22d3ee;
-  --primary-500: #06b6d4;
-  --primary-600: #0ba9c6;
-  --primary-contrast: #081114;
+  --primary-400: #e18b62;
+  --primary-500: #d97757;
+  --primary-600: #c95f3e;
+  --primary-contrast: #141110;
   /* 语义色暗色档：-50/-100/-200/-300 作表面/描边翻成半透明深色，-700/-800 作前景翻成浅色 */
   --success-50: rgba(16, 185, 129, 0.14);
   --success-100: rgba(16, 185, 129, 0.18);
@@ -304,9 +328,9 @@ html[data-resolved-theme="dark"] {
   --error-300: rgba(248, 113, 113, 0.48);
   --error-700: #fca5a5;
   --error-800: #fecaca;
-  --info-50: rgba(6, 182, 212, 0.14);
-  --info-200: rgba(103, 232, 249, 0.35);
-  --info-700: #67e8f9;
+  --info-50: rgba(14, 165, 233, 0.14);
+  --info-200: rgba(56, 189, 248, 0.35);
+  --info-700: #38bdf8;
   --notification-success-bg: #052e24;
   --notification-success-fg: #d1fae5;
   --notification-success-border: #10b981;
@@ -316,9 +340,9 @@ html[data-resolved-theme="dark"] {
   --notification-warning-bg: #451a03;
   --notification-warning-fg: #fef3c7;
   --notification-warning-border: #f59e0b;
-  --notification-info-bg: #083344;
-  --notification-info-fg: #cffafe;
-  --notification-info-border: #06b6d4;
+  --notification-info-bg: #082f44;
+  --notification-info-fg: #e0f2fe;
+  --notification-info-border: #0ea5e9;
 
   /* 暗色阴影更深，卡片保持扁平不糊边 */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -506,6 +530,15 @@ body {
   background: var(--page-bg);
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* 原生控件不吃 body 字体继承（UA stylesheet 用自己的家族），
+   统一拉回设计字体，消掉按钮/输入框与正文混排时的字形漂移 */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 /* 选择文本颜色 */
@@ -1059,6 +1092,7 @@ html.boot-pending body > * {
   gap: var(--space-2);
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-lg);
+  font-family: inherit;
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
   text-decoration: none;
@@ -1391,6 +1425,7 @@ html.boot-pending body > * {
   padding: var(--space-2) var(--space-2);
   border: 2px solid var(--neutral-200);
   border-radius: var(--radius-lg);
+  font-family: inherit;
   font-size: var(--text-base);
   color: var(--neutral-900);
   background: var(--field-bg);
@@ -1759,6 +1794,12 @@ body.sidebar-open .sidebar-backdrop {
 .close-btn:hover {
   background: var(--neutral-100);
   color: var(--neutral-700);
+}
+
+.close-btn svg,
+.close-icon {
+  width: 18px;
+  height: 18px;
 }
 
 .field-grow {

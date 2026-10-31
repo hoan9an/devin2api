@@ -641,6 +641,12 @@
 .acct-tl-x {
   color: var(--error-500);
   margin-right: 6px;
+  display: inline-flex;
+  align-items: center;
+}
+.acct-tl-x svg {
+  width: 11px;
+  height: 11px;
 }
 
 .acct-tl-item--ok .acct-tl-x {
@@ -876,4 +882,10 @@ textarea.acct-form-mono {
   line-height: 1;
   cursor: pointer;
   padding: 0 2px;
+  display: inline-flex;
+  align-items: center;
+}
+.acct-filter-x svg {
+  width: 12px;
+  height: 12px;
 }

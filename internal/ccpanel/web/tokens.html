@@ -7,7 +7,7 @@
   <link rel="icon" type="image/x-icon" href="/web/favicon.ico">
   <link rel="apple-touch-icon" href="/web/apple-touch-icon.png">
   <link rel="manifest" href="/web/manifest.json">
-  <meta name="theme-color" content="#181818">
+  <meta name="theme-color" content="#1c1915">
   <title data-i18n="tokens.title">API Tokens - Devin2API</title>
   <script src="/web/assets/js/theme-init.js?v=__VERSION__"></script>
   <link rel="stylesheet" href="/web/assets/css/styles.css?v=__VERSION__">
@@ -67,9 +67,8 @@
           <!-- 空状态：仓空 = /v1 开放模式，必须显式亮出来 -->
           <div id="empty-state" class="card tokens-empty-state state-block">
             <div class="tokens-empty-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <circle cx="8.5" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
-                <path d="M12.8 12H21V14.6H19.2V16.4H17.4V14.6H15.6V13H12.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/>
               </svg>
             </div>
             <h3 class="tokens-empty-title state-title" data-i18n="tokens.emptyTitle">No API Tokens</h3>
@@ -87,7 +86,7 @@
     <div class="modal-content modal-content--sm">
       <div class="modal-header">
         <h2 class="modal-title" id="createModalTitle" data-i18n="tokens.createModalTitle">Create API Token</h2>
-        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-create-modal">&times;</button>
+        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-create-modal"><svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
       <div class="modal-body">
         <section class="token-edit-section">
@@ -160,11 +159,11 @@
     <div class="modal-content modal-content--sm">
       <div class="modal-header">
         <h2 class="modal-title" id="tokenResultModalTitle" data-i18n="tokens.resultModalTitle">Token Created Successfully</h2>
-        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-token-result-modal">&times;</button>
+        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-token-result-modal"><svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
       <div class="modal-body">
         <div class="token-result-warning">
-          <div class="token-result-warning-title" data-i18n="tokens.resultWarningTitle">⚠️ Important:</div>
+          <div class="token-result-warning-title"><svg class="token-warning-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span data-i18n="tokens.resultWarningTitle">Important:</span></div>
           <div class="token-result-warning-desc" data-i18n="tokens.resultWarningDesc">Please copy and save this token immediately. You will not be able to view the full token again after closing this window.</div>
         </div>
 
@@ -187,7 +186,7 @@
     <div class="modal-content modal-content--wide token-edit-modal">
       <div class="modal-header">
         <h2 class="modal-title" id="editModalTitle" data-i18n="tokens.editModalTitle">Edit Token</h2>
-        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-edit-modal">&times;</button>
+        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-edit-modal"><svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
       <div class="modal-body token-edit-body token-edit-layout">
         <input type="hidden" id="editTokenId">
@@ -295,7 +294,7 @@
     <div class="modal-content modal-content--sm">
       <div class="modal-header">
         <h2 class="modal-title" id="modelSelectModalTitle" data-i18n="tokens.selectModelTitle">Select Models</h2>
-        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-model-select-modal">&times;</button>
+        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-model-select-modal"><svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -327,7 +326,7 @@
     <div class="modal-content modal-content--sm">
       <div class="modal-header">
         <h2 class="modal-title" id="modelImportModalTitle" data-i18n="tokens.importModelTitle">Manual Input Models</h2>
-        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-model-import-modal">&times;</button>
+        <button type="button" class="close-btn" data-i18n-aria-label="common.close" aria-label="Close" data-action="close-model-import-modal"><svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
       <div class="modal-body token-model-import-body">
         <div class="form-group model-import-group">
@@ -384,19 +383,19 @@
         <div class="token-row-actions">
           <button type="button" class="btn-copy-token btn-icon token-row-action-btn" data-action="copy-token-hash" data-token="{{token}}"
             data-i18n-title="common.copy" title="Copy" aria-label="Copy">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15H4C2.9 15 2 14.1 2 13V4C2 2.9 2.9 2 4 2H13C14.1 2 15 2.9 15 4V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
           </button>
           <button type="button" class="btn-icon btn-play token-row-action-btn" data-action="play-token"
             data-i18n-title="tokens.action.test" title="Test" aria-label="Test">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M21 11.5C21 16.19 17.19 20 12.5 20C11.18 20 9.92 19.74 8.78 19.26L3.6 20.9C3.27 21.01 2.99 20.73 3.1 20.4L4.74 15.22C4.26 14.08 4 12.82 4 11.5C4 6.81 7.81 3 12.5 3C17.19 3 21 6.81 21 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
           </button>
           <button type="button" class="btn-icon btn-edit token-row-action-btn" data-action="edit-token"
             data-i18n-title="common.edit" title="Edit" aria-label="Edit">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
           </button>
           <button type="button" class="btn-icon btn-danger btn-delete token-row-action-btn" data-action="delete-token"
             data-i18n-title="common.delete" title="Delete" aria-label="Delete">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M3 6H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 6V4H16V6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6L18 20H6L5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 11V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           </button>
         </div>
       </td>

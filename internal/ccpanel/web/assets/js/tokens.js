@@ -414,12 +414,12 @@
 
       let html = '<div class="token-call-stats">';
       html += `<span class="stats-badge token-call-badge token-call-badge--success" title="${t('tokens.successCall')}">`;
-      html += `<span class="token-call-icon token-call-icon--success">✓</span> ${successCount.toLocaleString()}`;
+      html += `<span class="token-call-icon token-call-icon--success">${window.iconSVG('check')}</span> ${successCount.toLocaleString()}`;
       html += `</span>`;
 
       if (failureCount > 0) {
         html += `<span class="stats-badge token-call-badge token-call-badge--failure" title="${t('tokens.failedCall')}">`;
-        html += `<span class="token-call-icon token-call-icon--failure">✗</span> ${failureCount.toLocaleString()}`;
+        html += `<span class="token-call-icon token-call-icon--failure">${window.iconSVG('x')}</span> ${failureCount.toLocaleString()}`;
         html += `</span>`;
       }
 

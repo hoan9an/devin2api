@@ -377,7 +377,7 @@
       },
       tokens: {
         totals: [
-          { nameKey: 'trend.inputTokens', color: '#06b6d4', value: (p) => p.input_tokens || 0 },
+          { nameKey: 'trend.inputTokens', color: '#d97757', value: (p) => p.input_tokens || 0 },
           { nameKey: 'trend.outputTokens', color: '#10b981', value: (p) => p.output_tokens || 0 },
           { nameKey: 'trend.cacheRead', color: '#f97316', value: (p) => p.cache_read_tokens || 0 },
           { nameKey: 'trend.cacheCreate', color: '#a855f7', value: (p) => p.cache_creation_tokens || 0 }
@@ -392,7 +392,7 @@
       },
       rpm: {
         totals: [
-          { name: 'RPM', color: '#06b6d4', area: 0.16, value: (p, bs) => {
+          { name: 'RPM', color: '#d97757', area: 0.16, value: (p, bs) => {
             const total = (p.success || 0) + (p.error || 0);
             return total > 0 ? total * 60 / bs : 0;
           } }
@@ -404,7 +404,7 @@
       },
       tps: {
         totals: [
-          { nameKey: 'trend.inputTokens', color: '#06b6d4', value: (p, bs) => (Number(p.input_tokens) || 0) / bs },
+          { nameKey: 'trend.inputTokens', color: '#d97757', value: (p, bs) => (Number(p.input_tokens) || 0) / bs },
           { nameKey: 'trend.outputTokens', color: '#10b981', value: (p, bs) => (Number(p.output_tokens) || 0) / bs },
           { nameKey: 'trend.cacheRead', color: '#f97316', value: (p, bs) => (Number(p.cache_read_tokens) || 0) / bs },
           { nameKey: 'trend.cacheCreate', color: '#a855f7', value: (p, bs) => (Number(p.cache_creation_tokens) || 0) / bs }
@@ -792,10 +792,10 @@
             ...zoomSpan,
             borderColor: chartTheme.axisLine,
             backgroundColor: chartTheme.surfaceMuted,
-            fillerColor: 'rgba(6, 182, 212, 0.16)',
+            fillerColor: 'rgba(217, 119, 87, 0.16)',
             handleStyle: {
-              color: '#06b6d4',
-              borderColor: '#06b6d4'
+              color: '#d97757',
+              borderColor: '#d97757'
             },
             textStyle: {
               color: chartTheme.mutedText,
@@ -1155,7 +1155,7 @@
     // 暗色主题整体提亮一档：同序号保持同色系，模型↔颜色对应关系跨主题不漂移
     const MODEL_COLORS_LIGHT = [
       '#3b82f6', // 蓝色
-      '#06b6d4', // 青色
+      '#0ea5e9', // 天蓝（info 色系，避让品牌橙）
       '#14b8a6', // 绿松色
       '#84cc16', // 黄绿色
       '#eab308', // 黄色
@@ -1165,14 +1165,14 @@
       '#8b5cf6', // 淡紫色
       '#22c55e', // 亮绿色
       '#f43f5e', // 玫红色
-      '#0891b2', // 深青色
+      '#0284c7', // 深天蓝
       '#65a30d', // 橄榄绿
       '#ca8a04', // 金黄色
       '#dc2626'  // 深红色
     ];
     const MODEL_COLORS_DARK = [
       '#60a5fa', // 蓝
-      '#22d3ee', // 青
+      '#38bdf8', // 天蓝（info 色系，避让品牌橙）
       '#2dd4bf', // 绿松
       '#a3e635', // 黄绿
       '#facc15', // 黄
@@ -1182,7 +1182,7 @@
       '#a78bfa', // 淡紫
       '#4ade80', // 亮绿
       '#fb7185', // 玫红
-      '#06b6d4', // 深青→青
+      '#0ea5e9', // 深天蓝→天蓝
       '#84cc16', // 橄榄→黄绿
       '#eab308', // 金黄→黄
       '#ef4444'  // 深红→红

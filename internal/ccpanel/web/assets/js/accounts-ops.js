@@ -244,7 +244,7 @@
       <div class="modal-content modal-content--sm">
         <div class="modal-header">
           <h2 class="modal-title"><span data-m="title"></span> · <span data-m="name"></span></h2>
-          <button type="button" class="close-btn" data-m="close">&times;</button>
+          <button type="button" class="close-btn" data-m="close">${window.iconSVG("x")}</button>
         </div>
         <div class="modal-body">
           <form class="acct-form" data-m="form">
@@ -501,7 +501,7 @@
       <div class="modal-content modal-content--sm">
         <div class="modal-header">
           <h2 class="modal-title">${esc(t('accounts.add.title'))}</h2>
-          <button type="button" class="close-btn" data-m="close" aria-label="${esc(t('common.close'))}">&times;</button>
+          <button type="button" class="close-btn" data-m="close" aria-label="${esc(t('common.close'))}">${window.iconSVG("x")}</button>
         </div>
         <div class="modal-body"><div data-m="formhost"></div></div>
       </div>`;
@@ -668,8 +668,8 @@
     const cands = Array.isArray(meta.pool_candidates) ? meta.pool_candidates : [];
     const final = meta.upstream_account || row.account || '';
     // elapsed_ms 是自请求起算的放弃时刻偏移，不是单次尝试耗时——渲成 +Nms。
-    const tl = attempts.map((att) => `<div class="acct-tl-item"><span class="acct-tl-x">✗</span><span class="acct-tl-acct">${esc(att.account || '?')}</span> ${esc(att.code || '?')} · +${num(att.elapsed_ms || 0)}ms${att.message ? `<div class="acct-tl-msg">${esc(att.message)}</div>` : ''}</div>`).join('')
-      + (final ? `<div class="acct-tl-item acct-tl-item--ok"><span class="acct-tl-x">→</span><span class="acct-tl-acct">${esc(final)}</span> ${esc(t('accounts.fo.served'))}</div>` : '');
+    const tl = attempts.map((att) => `<div class="acct-tl-item"><span class="acct-tl-x">${window.iconSVG('x')}</span><span class="acct-tl-acct">${esc(att.account || '?')}</span> ${esc(att.code || '?')} · +${num(att.elapsed_ms || 0)}ms${att.message ? `<div class="acct-tl-msg">${esc(att.message)}</div>` : ''}</div>`).join('')
+      + (final ? `<div class="acct-tl-item acct-tl-item--ok"><span class="acct-tl-x">${window.iconSVG('arrow-right')}</span><span class="acct-tl-acct">${esc(final)}</span> ${esc(t('accounts.fo.served'))}</div>` : '');
     const candLine = cands.length
       ? `<div class="acct-fo-cands"><span>${esc(t('accounts.fo.candidates'))}:</span> ${cands.map((c, i) => {
           // reason 是逗号连写多因（auth_cooldown,gate_latched…）——逐词翻译。

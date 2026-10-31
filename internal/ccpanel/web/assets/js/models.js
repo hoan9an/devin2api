@@ -387,7 +387,7 @@
       out += badge('PROMO' + (c.promo.label ? ' · ' + c.promo.label : ''), '#ec4899');
     }
     if (c.is_beta) out += badge('BETA', '#a855f7');
-    if (c.is_new) out += badge('NEW', '#06b6d4');
+    if (c.is_new) out += badge('NEW', '#d97757');
     if (c.fast && c.fast.active) out += badge('FAST', '#f97316', c.fast.tooltip || '');
     if (c.supports_images) out += badge('img', '#84cc16');
     if (c.is_premium) out += badge('Premium', '#eab308');
@@ -593,7 +593,7 @@
       editBtn.dataset.action = 'open-redirect-modal';
       editBtn.dataset.model = r.model;
       editBtn.title = t('models.redirect.open');
-      editBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>';
+      editBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>';
       resolvedWrap.appendChild(editBtn);
       resolvedTd.appendChild(resolvedWrap);
 

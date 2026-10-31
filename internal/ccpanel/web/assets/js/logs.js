@@ -1418,7 +1418,7 @@ function renderLogs(data) {
     const modelDisplay = buildLogModelDisplay(entry.model, displayedActualModel, entry.reasoning_tokens, entry.upstream_websocket);
     const isTokenSession = typeof window.isAPITokenRole === 'function' && window.isAPITokenRole();
     const probeDisplay = !(statusCode >= 200 && statusCode < 300) && entry.model && !isTokenSession
-      ? `<button type="button" class="test-key-btn" data-action="probe-model" data-probe-model="${escapeHtml(entry.model)}" data-probe-api="${escapeHtml(entry.api || '')}" title="${escapeHtml(t('logs.probeModel'))}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M13 2L4 14H11L9 22L20 10H13L13 2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`
+      ? `<button type="button" class="test-key-btn" data-action="probe-model" data-probe-model="${escapeHtml(entry.model)}" data-probe-api="${escapeHtml(entry.api || '')}" title="${escapeHtml(t('logs.probeModel'))}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`
       : '';
 
     // 4. 响应时间显示(流式/非流式)

@@ -774,10 +774,10 @@
       const text = await res.text();
       await window.copyToClipboard(text);
       if (btn) {
-        const orig = btn.textContent;
-        btn.textContent = '✓';
+        const orig = btn.innerHTML;
+        btn.innerHTML = window.iconSVG('check');
         btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+        setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 1500);
       }
     } catch (e) {
       if (window.showError) window.showError(e?.message || i18nText('logs.fileReadFailed', 'Read failed'));

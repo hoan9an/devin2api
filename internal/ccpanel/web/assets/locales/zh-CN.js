@@ -183,7 +183,7 @@ window.I18N_LOCALES['zh-CN'] = {
   'tokens.createBtn': '创建',
   // 令牌结果对话框
   'tokens.resultModalTitle': '令牌创建成功',
-  'tokens.resultWarningTitle': '⚠️ 重要提示:',
+  'tokens.resultWarningTitle': '重要提示:',
   'tokens.resultWarningDesc': '请立即复制并保存此令牌。关闭此窗口后,您将无法再次查看完整令牌。',
   'tokens.resultTokenLabel': 'API令牌(请妥善保管)',
   'tokens.resultSavedBtn': '我已保存',

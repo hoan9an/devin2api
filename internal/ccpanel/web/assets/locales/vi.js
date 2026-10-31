@@ -184,7 +184,7 @@ window.I18N_LOCALES['vi'] = {
   'tokens.createBtn': 'Tạo',
   // Token result modal
   'tokens.resultModalTitle': 'Tạo token thành công',
-  'tokens.resultWarningTitle': '⚠️ Quan trọng:',
+  'tokens.resultWarningTitle': 'Quan trọng:',
   'tokens.resultWarningDesc': 'Vui lòng sao chép và lưu token này ngay. Bạn sẽ không thể xem lại toàn bộ token sau khi đóng cửa sổ này.',
   'tokens.resultTokenLabel': 'API Token (hãy lưu giữ cẩn thận)',
   'tokens.resultSavedBtn': 'Tôi đã lưu',

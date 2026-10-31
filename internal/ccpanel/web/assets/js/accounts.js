@@ -262,7 +262,7 @@
     chip.hidden = !filterName;
     if (filterName) {
       chip.innerHTML = `<span>${esc(t('accounts.filter.only', { name: filterName }))}</span>` +
-        `<button type="button" class="acct-filter-x" data-clear-filter aria-label="${esc(t('common.clear'))}">&times;</button>`;
+        `<button type="button" class="acct-filter-x" data-clear-filter aria-label="${esc(t('common.clear'))}">${window.iconSVG('x')}</button>`;
     }
   }
 

@@ -528,7 +528,7 @@
         splitLine: { lineStyle: { color: theme.splitLine } }
       },
       series: [
-        mk(t('accounts.curveDaily'), '#06b6d4', (p) => p.daily_remaining),
+        mk(t('accounts.curveDaily'), '#d97757', (p) => p.daily_remaining),
         mk(t('accounts.curveWeekly'), '#10b981', (p) => p.weekly_remaining)
       ]
     };
@@ -585,7 +585,7 @@
 
   function emptyStateHTML() {
     return `<div class="accounts-empty state-block">
-      <div class="accounts-empty-icon"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></div>
+      <div class="accounts-empty-icon"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
       <div class="accounts-empty-title state-title">${esc(t('accounts.empty.title'))}</div>
       <div class="accounts-empty-hint state-desc">${esc(t('accounts.empty.hint'))}</div>
       <div class="accounts-empty-form"><div id="accounts-empty-add"></div></div>

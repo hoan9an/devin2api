@@ -184,7 +184,7 @@ window.I18N_LOCALES['en'] = {
   'tokens.createBtn': 'Create',
   // Token result modal
   'tokens.resultModalTitle': 'Token Created Successfully',
-  'tokens.resultWarningTitle': '⚠️ Important:',
+  'tokens.resultWarningTitle': 'Important:',
   'tokens.resultWarningDesc': 'Please copy and save this token immediately. You will not be able to view the full token again after closing this window.',
   'tokens.resultTokenLabel': 'API Token (keep it safe)',
   'tokens.resultSavedBtn': 'I have saved it',

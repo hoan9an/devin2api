@@ -7,7 +7,7 @@
   <link rel="icon" type="image/x-icon" href="/web/favicon.ico">
   <link rel="apple-touch-icon" href="/web/apple-touch-icon.png">
   <link rel="manifest" href="/web/manifest.json">
-  <meta name="theme-color" content="#181818">
+  <meta name="theme-color" content="#1c1915">
   <title data-i18n="logs.title">Request Logs - Devin2API</title>
   <script src="/web/assets/js/theme-init.js?v=__VERSION__"></script>
   <link rel="stylesheet" href="/web/assets/css/styles.css?v=__VERSION__">
@@ -113,14 +113,14 @@
               <div class="pagination-controls">
                 <button id="logs_first2" class="btn btn-secondary btn-sm" type="button" data-action="first-logs-page">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 17l-5-5 5-5"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18V6"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m17 18-6-6 6-6"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 6v12"/>
                   </svg>
                   <span data-i18n="common.firstPage">First</span>
                 </button>
                 <button id="logs_prev2" class="btn btn-secondary btn-sm" type="button" data-action="prev-logs-page">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 18-6-6 6-6"/>
                   </svg>
                   <span data-i18n="common.prevPage">Previous</span>
                 </button>
@@ -142,14 +142,14 @@
                 <button id="logs_next2" class="btn btn-secondary btn-sm" type="button" data-action="next-logs-page">
                   <span data-i18n="common.nextPage">Next</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 6l6 6-6 6"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/>
                   </svg>
                 </button>
                 <button id="logs_last2" class="btn btn-secondary btn-sm" type="button" data-action="last-logs-page">
                   <span data-i18n="common.lastPage">Last</span>
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 7l5 5-5 5"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6v12"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 18 6-6-6-6"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 6v12"/>
                   </svg>
                 </button>
               </div>
@@ -165,7 +165,7 @@
     <tr>
       <td colspan="{{colspan}}" class="state-block">
         <svg class="w-12 h-12 mx-auto mb-4 state-icon--neutral" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 2v4a2 2 0 0 0 2 2h4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 9H8"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 13H8"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 17H8"/>
         </svg>
         <div class="state-title" data-i18n="logs.noData">No log data</div>
         <div class="state-desc" data-i18n="logs.adjustFilter">Please adjust filter criteria or check time range</div>
@@ -181,7 +181,7 @@
           <span data-i18n="logs.debugLogTitle">Debug Log</span>
           <span id="debugLogStatus" class="debug-log-status" hidden></span>
         </h2>
-        <button type="button" class="close-btn" data-action="close-debug-log-modal" data-i18n-aria-label="common.close" aria-label="Close">&times;</button>
+        <button type="button" class="close-btn" data-action="close-debug-log-modal" data-i18n-aria-label="common.close" aria-label="Close"><svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
       </div>
       <div id="debugLogLoading" class="state-block--compact" style="display: none;">
         <span data-i18n="logs.loading">Loading logs...</span>
@@ -244,7 +244,7 @@
     <tr>
       <td colspan="{{colspan}}" class="state-block">
         <svg class="w-12 h-12 mx-auto mb-4 state-icon--error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.864-.833-2.634 0L4.18 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 9v4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 17h.01"/>
         </svg>
         <div class="state-title state-title--error" data-i18n="logs.loadFailed">Load Failed</div>
         <div class="state-desc" data-i18n="logs.checkNetwork">Please check network connection or retry</div>

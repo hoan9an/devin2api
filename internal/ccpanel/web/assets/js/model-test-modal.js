@@ -34,7 +34,7 @@
     <div class="modal-content test-modal-content">
       <div class="modal-header">
         <h2 class="modal-title"><span data-i18n="probe.title">Model Probe</span> · <span id="mtmTitle"></span></h2>
-        <button type="button" class="close-btn" data-mtm-action="close" data-i18n-aria-label="common.close" aria-label="Close">&times;</button>
+        <button type="button" class="close-btn" data-mtm-action="close" data-i18n-aria-label="common.close" aria-label="Close">${window.iconSVG("x")}</button>
       </div>
 
       <div class="modal-body">
