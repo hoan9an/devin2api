@@ -8,7 +8,7 @@
   <a href="https://wncfht.github.io/devin2api/"><img src="https://img.shields.io/badge/%F0%9F%93%96%20User%20Guide-blue" alt="User Guide"></a>
 </p>
 
-> **English** | [中文](README.zh-CN.md)
+> **English** | [中文](README.zh-CN.md) | [Tiếng Việt](README.vi.md)
 
 devin-2api is an unofficial protocol adapter that exposes the models available to your Devin account ([app.devin.ai](https://app.devin.ai/)) behind OpenAI- and Anthropic-compatible endpoints — so standard clients (Codex, Claude Code, any SDK) can call them through familiar APIs.
 
