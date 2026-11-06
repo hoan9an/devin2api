@@ -64,7 +64,7 @@
   display: flex;
   gap: 0;
   align-items: center;
-  border-bottom: 2px solid var(--neutral-200);
+  border-bottom: 1px solid var(--surface-border);
   margin-bottom: var(--space-4);
 }
 
@@ -76,8 +76,8 @@
   font-weight: var(--font-medium);
   color: var(--neutral-500);
   cursor: pointer;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
   transition: color 0.15s, border-color 0.15s;
 }
 
@@ -766,7 +766,7 @@ html[data-resolved-theme="dark"] .chat-message {
 .logs-abort-btn:disabled {
   cursor: default;
   opacity: 0.6;
-  border-color: var(--neutral-300);
+  border-color: var(--surface-border-strong);
   color: var(--neutral-500);
 }
 
@@ -1041,7 +1041,7 @@ html[data-resolved-theme="dark"] .chat-message {
 .debug-log-status--finished {
   color: var(--neutral-700);
   background: var(--neutral-100);
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
 }
 
 /* #debugLogContent 由 JS 切 display:flex；类里只留布局属性 */

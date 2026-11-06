@@ -145,7 +145,7 @@ a.model-tag.model-link:hover {
 .stats-table .stats-total-row {
   background-color: var(--surface-bg-muted);
   font-weight: var(--font-bold);
-  border-top: 2px solid var(--surface-border-strong);
+  border-top: 1px solid var(--surface-border);
 }
 
 .stats-table .stats-col-total-label {
@@ -446,7 +446,7 @@ a.model-tag.model-link:hover {
 
 .chart-card {
   background: var(--surface-bg-strong);
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-lg);
   padding: 16px;
 }
@@ -637,7 +637,7 @@ body.trend-page .chart-container {
   justify-content: space-between;
   align-items: center;
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--neutral-200);
+  border-bottom: 1px solid var(--surface-border);
   font-weight: var(--font-medium);
   color: var(--neutral-800);
 }
@@ -680,7 +680,7 @@ body.trend-page .chart-container {
 .channel-checkbox {
   width: 16px;
   height: 16px;
-  border: 1.5px solid var(--neutral-300);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-2xs);
   background: var(--field-bg);
   cursor: pointer;
@@ -828,7 +828,7 @@ body.trend-page .chart-container {
   align-items: center;
   gap: 5px;
   padding: 4px 10px;
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-full);
   background: var(--surface-bg-muted);
   color: var(--neutral-500);

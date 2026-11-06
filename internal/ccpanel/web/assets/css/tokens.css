@@ -37,7 +37,7 @@
 
 .scroll-pane {
   overflow-y: auto;
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-sm);
 }
 
@@ -74,7 +74,7 @@
   font-size: var(--text-13);
   color: var(--neutral-900);
   background-color: var(--surface-bg-muted);
-  border-bottom: 2px solid var(--surface-border-strong);
+  border-bottom: 1px solid var(--surface-border);
 }
 
 .allowed-models-table td {
@@ -154,7 +154,7 @@
   --token-active-border: var(--success-300);
   --token-inactive-bg: var(--surface-bg-muted);
   --token-inactive-fg: var(--neutral-600);
-  --token-inactive-border: var(--neutral-300);
+  --token-inactive-border: var(--surface-border-strong);
   --token-expired-bg: var(--error-50);
   --token-expired-fg: var(--error-800);
   --token-expired-border: var(--error-300);
@@ -643,7 +643,7 @@ html[data-resolved-theme="dark"] {
   flex-direction: column;
   gap: 12px;
   padding: 14px 16px;
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-md);
   background: var(--surface-bg-muted);
 }
@@ -818,7 +818,7 @@ html[data-resolved-theme="dark"] {
   max-height: none;
   overflow-y: auto;
   overscroll-behavior: contain;
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-sm);
 }
 .allowed-models-table-head {
@@ -856,7 +856,7 @@ html[data-resolved-theme="dark"] {
 #selectAllContainer {
   display: none;
   padding: 8px 12px;
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-bottom: none;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   background: var(--surface-bg-muted);

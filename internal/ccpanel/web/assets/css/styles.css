@@ -60,7 +60,7 @@
 
   /* 下拉控件（自定义）配色：随系统浅/深色主题 */
   --filter-dropdown-bg: #ffffff;
-  --filter-dropdown-border: var(--neutral-200);
+  --filter-dropdown-border: var(--surface-border-strong);
   --filter-dropdown-item-fg: var(--neutral-900);
   --filter-dropdown-item-hover-bg: var(--neutral-50);
   --filter-dropdown-item-active-bg: var(--neutral-100);
@@ -427,7 +427,7 @@ html[data-resolved-theme="dark"] {
   align-items: center;
   gap: var(--space-1);
   padding: 2px var(--space-2);
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-full);
   font-size: var(--text-xs);
   font-weight: var(--font-semibold);
@@ -455,7 +455,7 @@ html[data-resolved-theme="dark"] {
 
 .pill-none {
   background: var(--neutral-100);
-  border-color: var(--neutral-200);
+  border-color: var(--surface-border-strong);
   color: var(--neutral-600);
 }
 
@@ -474,7 +474,7 @@ input[type="radio"] {
   width: 16px;
   height: 16px;
   margin: 0;
-  border: 1.5px solid var(--neutral-300);
+  border: 1px solid var(--surface-border-strong);
   background: var(--field-bg-focus) no-repeat center;
   background-size: 10px;
   cursor: pointer;
@@ -1445,7 +1445,7 @@ html.boot-pending body > * {
 .form-input {
   width: 100%;
   padding: var(--space-2) var(--space-2);
-  border: 2px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-lg);
   font-family: inherit;
   font-size: var(--text-sm);
@@ -1473,7 +1473,7 @@ html.boot-pending body > * {
 .loading-spinner {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--neutral-300);
+  border: 2px solid var(--surface-border-strong);
   border-top: 2px solid var(--primary-500);
   border-radius: var(--radius-full);
   animation: spin 1s linear infinite;
@@ -1772,7 +1772,7 @@ body.sidebar-open .sidebar-backdrop {
 .mtm-pre {
   padding: 12px;
   background: var(--neutral-50);
-  border: 1px solid var(--neutral-200);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-xs);
   color: var(--neutral-700);
   white-space: pre-wrap;
@@ -1896,7 +1896,7 @@ body.sidebar-open .sidebar-backdrop {
 .filter-select {
   flex: 1;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--neutral-300);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-base);
   font-size: var(--text-sm);
   color: var(--neutral-900);
@@ -2087,7 +2087,7 @@ body.sidebar-open .sidebar-backdrop {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-radius: var(--card-radius);
-  border: 1px solid var(--surface-border-strong);
+  border: 1px solid var(--surface-border);
   background: var(--table-bg);
 }
 
@@ -2109,7 +2109,7 @@ body.sidebar-open .sidebar-backdrop {
   font-weight: var(--font-medium);
   font-size: var(--text-xs);
   color: var(--muted-fg);
-  border-bottom: 1px solid var(--surface-border-strong);
+  border-bottom: 1px solid var(--surface-border);
   white-space: nowrap;
 }
 
@@ -2244,7 +2244,7 @@ body.sidebar-open .sidebar-backdrop {
 }
 
 .btn-icon:disabled:hover {
-  border-color: var(--neutral-300);
+  border-color: var(--surface-border-strong);
   background: var(--surface-bg);
   color: var(--neutral-600);
 }
@@ -2254,7 +2254,7 @@ body.sidebar-open .sidebar-backdrop {
 
 .btn-icon {
   background: var(--surface-bg);
-  border: 1px solid var(--neutral-300);
+  border: 1px solid var(--surface-border-strong);
   color: var(--neutral-600);
   padding: 6px 10px;
   border-radius: var(--radius-sm);
@@ -3126,7 +3126,7 @@ body.web-role-api-token #btn_export_json {
 .pagination-card .pagination-jump-input {
   width: 84px;
   padding: 4px 8px;
-  border: 1px solid var(--neutral-300);
+  border: 1px solid var(--surface-border-strong);
   border-radius: var(--radius-xs);
   text-align: center;
   font-size: var(--text-sm);
@@ -3192,7 +3192,7 @@ body.web-role-api-token #btn_export_json {
 }
 
 .channel-batch-select:hover {
-  border-color: var(--neutral-300);
+  border-color: var(--surface-border-strong);
 }
 
 .channel-batch-select:focus-visible {
