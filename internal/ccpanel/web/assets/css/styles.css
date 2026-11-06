@@ -845,6 +845,9 @@ html.boot-pending body > * {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* topbar 用 align-items:stretch（brand 块要撑满高度画通竖线），
+     固定高按钮不吃 stretch，需自己居中 */
+  align-self: center;
   width: 34px;
   height: 34px;
   border: 1px solid var(--surface-border);
