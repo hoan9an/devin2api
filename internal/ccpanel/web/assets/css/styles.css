@@ -842,7 +842,7 @@ html.boot-pending body > * {
 }
 
 .topbar-menu-btn {
-  display: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 34px;
@@ -1484,6 +1484,16 @@ html.boot-pending body > * {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* 桌面端收合侧栏：侧栏滑出画布、内容吃掉偏移——移动端语义不同，
+   窄屏下侧栏本来就出画布，收合类不参与 */
+body.sidebar-collapsed {
+  --content-offset: 0px;
+}
+body.sidebar-collapsed .sidebar {
+  transform: translateX(-102%);
+  border-right-color: transparent;
 }
 
 /* ===== 响应式设计 ===== */

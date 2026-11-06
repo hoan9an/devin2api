@@ -923,7 +923,7 @@
 
 
 
-  // 顶部细条：移动端汉堡 + 当前页名；桌面端只显示页名
+  // 顶部细条：移动端汉堡唤回抽屉侧栏；桌面端同键收放侧栏并记忆选择
   function buildTopbar(active) {
 
     const activeNav = NAVS.find(n => n.key === active);
@@ -936,7 +936,21 @@
 
       'aria-label': t('topbar.toggleMenu'),
 
-      onclick: () => document.body.classList.toggle('sidebar-open')
+      onclick: () => {
+
+        if (window.matchMedia('(max-width: 768px)').matches) {
+
+          document.body.classList.toggle('sidebar-open');
+
+        } else {
+
+          const collapsed = document.body.classList.toggle('sidebar-collapsed');
+
+          try { localStorage.setItem('ccload_sidebar_collapsed', collapsed ? '1' : '0'); } catch (_) {}
+
+        }
+
+      }
 
     }, [svg(window.ICON_PATHS['menu'])]);
 
@@ -1207,6 +1221,20 @@
   window.initTopbar = function initTopbar(activeKey) {
 
     document.body.classList.add('top-layout');
+
+    // 桌面端记忆侧栏收合——boot-pending 遮着首帧，恢复类在构建前落位不闪
+
+    try {
+
+      if (localStorage.getItem('ccload_sidebar_collapsed') === '1' &&
+
+          !window.matchMedia('(max-width: 768px)').matches) {
+
+        document.body.classList.add('sidebar-collapsed');
+
+      }
+
+    } catch (_) {}
 
     document.body.classList.toggle('web-role-api-token', window.isAPITokenRole());
 
