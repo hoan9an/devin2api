@@ -243,6 +243,8 @@
 
   /* 布局：左侧栏 + 顶部细条的网关控制台骨架 */
   --sidebar-width: 236px;
+  /* 收合态图标轨道宽：18px 图标 + 两侧 8px 内边距，再留 2px 余量 */
+  --sidebar-rail-width: 60px;
   /* --content-offset: 主内容离视口左边距，桌面 = 侧栏宽，移动端侧栏出画布归零 */
   --content-offset: var(--sidebar-width);
   --sidebar-bg: #f6f6f5;
@@ -630,7 +632,8 @@ html.boot-pending body > * {
   background: var(--sidebar-bg);
   border-right: 1px solid var(--surface-border);
   z-index: calc(var(--z-dropdown) + 1);
-  transition: transform var(--duration-normal) var(--timing-function);
+  transition: transform var(--duration-normal) var(--timing-function),
+    width var(--duration-normal) var(--timing-function);
 }
 
 .sidebar-nav {
@@ -1486,25 +1489,44 @@ html.boot-pending body > * {
   }
 }
 
-/* 桌面端收合侧栏：侧栏滑出画布、内容吃掉偏移——移动端语义不同，
-   窄屏下侧栏本来就出画布，收合类不参与。
-   translateX 用 calc(-100% - 1px) 保证连 border-right 一起出屏；
-   visibility 延迟到滑出动画（0.3s）结束后才隐藏——期间侧栏仍可交互，
-   结束后整棵树（含焦点元素）彻底离场，不残留半透明残影 */
-body.sidebar-collapsed {
-  --content-offset: 0px;
-}
-body.sidebar-collapsed .sidebar {
-  transform: translateX(calc(-100% - 1px));
-  visibility: hidden;
-  transition: transform var(--duration-normal) var(--timing-function),
-    visibility 0s var(--duration-normal);
-}
-/* 展开方向需要反向延迟：visibility 立即恢复，transform 动画照常——
-   不能给 .sidebar 写默认 transition 的 visibility 项（会卡住 hover 状态），
-   单独为「未收合」补一条即时声明 */
-body:not(.sidebar-collapsed) .sidebar {
-  visibility: visible;
+/* 桌面端收合：不滑出画布，而是收成图标轨道——导航图标始终在屏，
+   展开/收合只是宽度变化（236px ↔ 60px），标签与页脚控件在轨道里隐藏。
+   只作用于 ≥769px：窄屏下侧栏本来就是抽屉，收合类不参与。 */
+@media (min-width: 769px) {
+  body.sidebar-collapsed {
+    --content-offset: var(--sidebar-rail-width);
+  }
+  body.sidebar-collapsed .sidebar {
+    width: var(--sidebar-rail-width);
+  }
+  body.sidebar-collapsed .sidebar-nav {
+    padding: var(--space-3) var(--space-2);
+  }
+  body.sidebar-collapsed .sidebar-group {
+    margin-top: var(--space-2);
+  }
+  body.sidebar-collapsed .sidebar-group-label,
+  body.sidebar-collapsed .sidebar-link span,
+  body.sidebar-collapsed .sidebar-meta,
+  body.sidebar-collapsed .sidebar-controls,
+  body.sidebar-collapsed .sidebar-auth,
+  body.sidebar-collapsed .topbar-brand-text {
+    display: none;
+  }
+  body.sidebar-collapsed .sidebar-link {
+    justify-content: center;
+    padding: 8px 0;
+    gap: 0;
+  }
+  body.sidebar-collapsed .sidebar-foot {
+    padding: var(--space-2);
+  }
+  /* 品牌块同步收成轨道宽，顶栏分隔竖线与侧栏 border-right 落回同一列 */
+  body.sidebar-collapsed .topbar-brand {
+    width: var(--sidebar-rail-width);
+    padding: 0;
+    justify-content: center;
+  }
 }
 
 /* ===== 响应式设计 ===== */

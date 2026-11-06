@@ -791,13 +791,18 @@
 
 
 
+    // title/aria-label 供收合态使用：轨道里只剩图标，标签由悬浮提示补回
     const linkFor = (n) => h('a', {
 
       class: `sidebar-link ${n.key === active ? 'active' : ''}`,
 
       href: n.href,
 
-      'data-nav-key': n.key
+      'data-nav-key': n.key,
+
+      title: t(n.labelKey),
+
+      'aria-label': t(n.labelKey)
 
     }, [n.icon(), h('span', { 'data-i18n': n.labelKey }, t(n.labelKey))]);
 
