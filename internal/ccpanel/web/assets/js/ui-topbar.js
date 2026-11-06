@@ -756,7 +756,7 @@
 
     img.className = 'topbar-brand-icon';
 
-    img.src = '/web/favicon.svg';
+    img.src = '/web/favicon-192.png';
 
     img.alt = '';
 
