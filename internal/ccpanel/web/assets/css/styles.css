@@ -67,19 +67,21 @@
   --filter-dropdown-item-highlight-bg: var(--primary-500);
   --filter-dropdown-item-highlight-fg: #fff;
 
-  /* 主题语义色：亮色为基准，暗色只覆盖这一层；暖色只留主色 */
-  --page-bg: linear-gradient(180deg, #fdfdfb 0%, #f4f4f1 100%);
-  --surface-bg: rgba(255, 255, 255, 0.96);
-  --surface-bg-strong: rgba(255, 255, 255, 0.98);
-  --surface-bg-muted: rgba(243, 244, 246, 0.9);
-  --surface-border: rgba(17, 24, 39, 0.10);
-  --surface-border-strong: rgba(17, 24, 39, 0.16);
-  --surface-hover: rgba(17, 24, 39, 0.06);
-  --surface-active: rgba(17, 24, 39, 0.10);
-  --field-bg: rgba(255, 255, 255, 0.92);
+  /* 主题语义色：亮色为基准，暗色只覆盖这一层；暖色只留主色。
+     底色取纯色、表面取近乎不透明：半透明会透出下层色温，整屏显脏；
+     描边用暖中性而非 slate 蓝灰，否则白底上会有一圈冷调 */
+  --page-bg: #f8f8f4;
+  --surface-bg: rgba(255, 255, 255, 0.98);
+  --surface-bg-strong: #ffffff;
+  --surface-bg-muted: rgba(243, 244, 242, 0.96);
+  --surface-border: rgba(28, 25, 18, 0.07);
+  --surface-border-strong: rgba(28, 25, 18, 0.12);
+  --surface-hover: rgba(28, 25, 18, 0.04);
+  --surface-active: rgba(28, 25, 18, 0.07);
+  --field-bg: rgba(255, 255, 255, 0.96);
   --field-bg-focus: #ffffff;
-  --table-bg: rgba(255, 255, 255, 0.92);
-  --table-row-hover: rgba(17, 24, 39, 0.03);
+  --table-bg: rgba(255, 255, 255, 0.96);
+  --table-row-hover: rgba(28, 25, 18, 0.025);
   --body-fg: var(--neutral-800);
   --muted-fg: var(--neutral-600);
   --color-text: var(--neutral-900);
@@ -213,7 +215,7 @@
 
   /* 卡片（OmniRoute 基准：12px 圆角 + 略透底，不糊成一片） */
   --card-radius: var(--radius-lg);
-  --card-bg: rgba(255, 255, 255, 0.80);
+  --card-bg: rgba(255, 255, 255, 0.93);
 
   /* 阴影系统 */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -278,31 +280,33 @@ html[data-resolved-theme="dark"] {
   --neutral-700: #d4d5cb;
   --neutral-800: #e8e9e0;
   --neutral-900: #f2f0e8;
-  --page-bg: linear-gradient(180deg, #14150f 0%, #11120f 100%);
+  /* 底色纯色、表面近乎不透明：半透明会把下层色温透上来，深底上尤其显灰发蓝；
+     唯一保留透光的只有下拉与浮层 */
+  --page-bg: #121310;
   --sidebar-bg: #11120f;
-  --surface-bg: rgba(25, 26, 22, 0.86);
-  --surface-bg-strong: rgba(25, 26, 22, 0.96);
-  --surface-bg-muted: rgba(34, 35, 29, 0.85);
+  --surface-bg: rgba(25, 26, 22, 0.98);
+  --surface-bg-strong: #191a16;
+  --surface-bg-muted: rgba(34, 35, 29, 0.96);
   /* 边框从前景米色 #f2f0e8 的低透明度层里出——描边与字同一族，
-     不出现灰蓝对比线 */
-  --surface-border: rgba(242, 240, 232, 0.13);
-  --surface-border-strong: rgba(242, 240, 232, 0.22);
-  --surface-hover: rgba(242, 240, 232, 0.06);
-  --surface-active: rgba(242, 240, 232, 0.10);
-  --field-bg: rgba(19, 20, 16, 0.9);
-  --field-bg-focus: rgba(17, 18, 15, 0.96);
-  --table-bg: rgba(25, 26, 22, 0.9);
+     不出现灰蓝对比线；档位压低一档，避免整屏被框线切碎 */
+  --surface-border: rgba(242, 240, 232, 0.09);
+  --surface-border-strong: rgba(242, 240, 232, 0.15);
+  --surface-hover: rgba(242, 240, 232, 0.05);
+  --surface-active: rgba(242, 240, 232, 0.08);
+  --field-bg: rgba(19, 20, 16, 0.96);
+  --field-bg-focus: #11120f;
+  --table-bg: rgba(25, 26, 22, 0.98);
   --table-row-hover: rgba(242, 240, 232, 0.04);
   --body-fg: var(--neutral-800);
   --muted-fg: var(--neutral-600);
   --filter-dropdown-bg: rgb(25, 26, 22);
-  --filter-dropdown-border: rgba(242, 240, 232, 0.16);
+  --filter-dropdown-border: rgba(242, 240, 232, 0.12);
   --filter-dropdown-item-fg: var(--neutral-900);
   --filter-dropdown-item-hover-bg: rgba(242, 240, 232, 0.08);
   --filter-dropdown-item-active-bg: rgba(242, 240, 232, 0.12);
   --topbar-fg: var(--neutral-900);
   --topbar-fg-muted: var(--neutral-600);
-  --card-bg: rgba(25, 26, 22, 0.72);
+  --card-bg: rgba(25, 26, 22, 0.94);
   /* Copper 的深底档：-500 蜜桃铜 #e5ac82 作按钮实底与一切强调，
      -600 铜 #cf9470 为 hover/pressed，-400 更亮一档承担描边/文本 */
   --primary-300: #f2c9a8;
@@ -782,9 +786,8 @@ html.boot-pending body > * {
   gap: var(--space-3);
   /* 通栏顶栏：压住左上的侧栏边缘，一条 border 画穿整个页头 */
   padding: 0 var(--space-5) 0 0;
-  background: color-mix(in srgb, var(--sidebar-bg) 82%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* 顶栏与侧栏同色不透明：毛玻璃会把滚动内容透成一层灰雾，与纯色底打架 */
+  background: var(--sidebar-bg);
   border-bottom: 1px solid var(--surface-border);
   z-index: calc(var(--z-dropdown) + 2);
 }
@@ -2035,18 +2038,18 @@ body.sidebar-open .sidebar-backdrop {
 
 .filter-dropdown-item--disabled {
   color: var(--color-text-secondary);
-  background: rgba(148, 163, 184, 0.12);
+  background: var(--surface-hover);
   opacity: 0.72;
 }
 
 .filter-dropdown-item--disabled:hover {
   color: var(--color-text-secondary);
-  background: rgba(148, 163, 184, 0.18);
+  background: var(--surface-active);
 }
 
 .filter-dropdown-item.filter-dropdown-item--disabled.active:not(.selected) {
   color: var(--color-text-secondary);
-  background: rgba(148, 163, 184, 0.18);
+  background: var(--surface-active);
 }
 
 .filter-label {
@@ -2910,7 +2913,7 @@ body.web-role-api-token #btn_export_json {
     gap: 10px 12px;
     height: auto;
     padding: 14px;
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    border: 1px solid var(--surface-border);
     border-radius: var(--radius-xl);
     background: var(--surface-bg-strong);
     position: relative;
