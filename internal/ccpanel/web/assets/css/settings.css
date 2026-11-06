@@ -258,7 +258,7 @@
 .runtime-transcript-status {
   flex: 0 0 auto;
   padding: 3px 8px;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   font-size: var(--text-2xs);
   font-weight: 700;
 }
@@ -388,7 +388,7 @@
   margin-top: 12px;
   padding: 10px 12px;
   border: 1px solid var(--border, #333);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   font-size: 12px;
   line-height: 1.7;
 }

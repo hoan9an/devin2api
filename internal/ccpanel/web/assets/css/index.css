@@ -134,7 +134,7 @@
 }
 
 .channel-empty-strip .channel-card {
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   background: var(--surface-bg-muted);
 }
 

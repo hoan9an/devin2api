@@ -829,7 +829,7 @@ body.trend-page .chart-container {
   gap: 5px;
   padding: 4px 10px;
   border: 1px solid var(--surface-border-strong);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-md);
   background: var(--surface-bg-muted);
   color: var(--neutral-500);
   font-size: var(--text-xs);
