@@ -806,7 +806,8 @@ html.boot-pending body > * {
   width: 34px;
   height: 34px;
   border-radius: 9px;
-  box-shadow: 0 0 0 1px var(--surface-border), 0 4px 14px color-mix(in srgb, var(--primary-500) 25%, transparent);
+  /* 只留 1px 描边做轮廓，不投影：logo 本身是深色方块，落在深色顶栏上不需要光晕 */
+  box-shadow: 0 0 0 1px var(--surface-border);
   flex: 0 0 auto;
 }
 

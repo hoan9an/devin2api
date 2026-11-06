@@ -46,7 +46,6 @@
   width: 64px;
   height: 64px;
   border-radius: var(--radius-xl);
-  box-shadow: 0 8px 32px color-mix(in srgb, var(--primary-500) 30%, transparent);
 }
 
 .login-brand-wordmark {
@@ -127,7 +126,6 @@
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
   animation: slideInUp 0.3s ease-out;
-  box-shadow: 0 4px 12px color-mix(in srgb, var(--error-600) 25%, transparent);
 }
 
 .error-icon {
