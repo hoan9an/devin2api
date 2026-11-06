@@ -1387,18 +1387,20 @@ html[data-resolved-theme="dark"] .chat-message {
 /* 固定宽度列一律按列类名选择，不用 nth-child：ccload 原版按渠道列还在时的
    位置编号，移植后列序前移导致 nth-child(7) 的 60px 钳错位打到 timing 列，
    表头「首字/耗时(秒)」被压出单元格。 */
+/* 时间/IP 只给 110px 偏好宽度，不设 max-width：这两列是 nowrap，110px 恰好
+   等于默认根字号 16px 下 MM-DD HH:mm:ss 的宽度；读者放大字号后（20px 时该串
+   需 ~114px）max-width 把单元格钉死而文字照旧溢出，整串压在 IP 上，两列读成
+   一串。width/min-width 只是偏好，min-content 仍能把列撑到不裁字。 */
 .logs-table .logs-col-time {
   width: 110px;
   /* 时间: MM-DD HH:mm:ss */
   min-width: 110px;
-  max-width: 110px;
 }
 
 .logs-table .logs-col-ip {
   width: 110px;
   /* IP: xxx.xxx.*.* */
   min-width: 110px;
-  max-width: 110px;
 }
 
 .logs-table .logs-col-status {
