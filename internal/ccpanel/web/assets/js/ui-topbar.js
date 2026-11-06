@@ -990,7 +990,7 @@
 
 
 
-    return h('header', { class: 'topbar' }, [menuBtn, buildBrand(), title, h('div', { class: 'topbar-spacer' }), pill]);
+    return h('header', { class: 'topbar' }, [buildBrand(), menuBtn, title, h('div', { class: 'topbar-spacer' }), pill]);
 
   }
 
