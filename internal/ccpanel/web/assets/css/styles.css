@@ -707,58 +707,39 @@ html.boot-pending body > * {
   padding: 0 2px;
 }
 
-.sidebar-controls {
+/* 顶栏右侧工具组：主题 / 语言 / 登录退出。都是全局控件，不挂在侧栏里——
+   侧栏收合、窄屏抽屉都不影响它们的可达性；统一成 34px 图标方键 */
+.topbar-tools {
   display: flex;
+  align-items: center;
+  align-self: center;
   gap: var(--space-2);
 }
 
-.sidebar-controls .theme-switcher,
-.sidebar-controls .lang-dropdown {
-  flex: 1 1 0;
+.topbar-tools .theme-trigger,
+.topbar-tools .lang-dropdown-trigger {
+  width: 34px;
+  height: 34px;
   min-width: 0;
-}
-
-.sidebar-controls .theme-trigger,
-.sidebar-controls .lang-dropdown-trigger {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
+  padding: 0;
   justify-content: center;
-  gap: 6px;
-  height: 32px;
-  padding: 0 8px;
+  gap: 0;
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-base);
   background: var(--surface-bg);
   color: var(--neutral-700);
-  font: inherit;
-  font-size: var(--text-xs);
-  font-weight: var(--font-medium);
-  cursor: pointer;
 }
 
-.sidebar-controls .theme-trigger:hover,
-.sidebar-controls .theme-switcher.open .theme-trigger,
-.sidebar-controls .lang-dropdown-trigger:hover {
+.topbar-tools .lang-dropdown-trigger .lang-arrow {
+  display: none;
+}
+
+.topbar-tools .theme-trigger:hover,
+.topbar-tools .theme-switcher.open .theme-trigger,
+.topbar-tools .lang-dropdown-trigger:hover,
+.topbar-tools .lang-dropdown.open .lang-dropdown-trigger {
   background: var(--surface-hover);
   color: var(--neutral-900);
-}
-
-.sidebar-auth {
-  width: 100%;
-  justify-content: center;
-}
-
-/* 侧栏内弹出层向上开（贴边，向下会被裁剪） */
-
-.sidebar .theme-menu,
-.sidebar .lang-dropdown-menu {
-  top: auto;
-  bottom: calc(100% + 8px);
-  right: 0;
-  left: 0;
-  min-width: 0;
-  margin-top: 0;
 }
 
 /* 移动端遮罩 */
@@ -1508,8 +1489,6 @@ html.boot-pending body > * {
   body.sidebar-collapsed .sidebar-group-label,
   body.sidebar-collapsed .sidebar-link span,
   body.sidebar-collapsed .sidebar-meta,
-  body.sidebar-collapsed .sidebar-controls,
-  body.sidebar-collapsed .sidebar-auth,
   body.sidebar-collapsed .topbar-brand-text {
     display: none;
   }

@@ -787,8 +787,6 @@
 
     const visibleNavKeys = new Set(window.WebAuth.filterNavigation(NAVS.map((item) => item.key), role));
 
-    const loggedIn = isLoggedIn();
-
 
 
     // title/aria-label 供收合态使用：轨道里只剩图标，标签由悬浮提示补回
@@ -886,37 +884,11 @@
 
     // 语言切换器
 
-    const langSwitcher = window.i18n ? window.i18n.createLanguageSwitcher() : null;
-
-    const themeSwitcher = buildThemeSwitcher();
-
-
-
-    const controls = h('div', { class: 'sidebar-controls' }, [themeSwitcher, langSwitcher].filter(Boolean));
-
-
-
-    const authBtn = h('button', {
-
-      id: 'auth-btn',
-
-      class: 'btn btn-secondary btn-sm sidebar-auth',
-
-      'data-i18n': loggedIn ? 'common.logout' : 'common.login',
-
-      onclick: loggedIn ? onLogout : () => location.href = window.getLoginUrl()
-
-    }, t(loggedIn ? 'common.logout' : 'common.login'));
-
 
 
     const foot = h('div', { class: 'sidebar-foot' }, [
 
       h('div', { class: 'sidebar-meta' }, [versionBadge, githubLink]),
-
-      controls,
-
-      authBtn
 
     ]);
 
@@ -995,7 +967,28 @@
 
 
 
-    return h('header', { class: 'topbar' }, [buildBrand(), menuBtn, title, h('div', { class: 'topbar-spacer' }), pill]);
+    // 顶栏右侧工具组：主题 / 语言 / 登录退出——全局控件从侧栏搬上来，
+    // 侧栏收合或抽屉开关都不再让它们消失
+    const loggedIn = isLoggedIn();
+    const authLabelKey = loggedIn ? 'common.logout' : 'common.login';
+    const authBtn = h('button', {
+      id: 'auth-btn',
+      type: 'button',
+      class: 'topbar-menu-btn topbar-auth-btn',
+      title: t(authLabelKey),
+      'aria-label': t(authLabelKey),
+      'data-i18n-title': authLabelKey,
+      'data-i18n-aria-label': authLabelKey,
+      onclick: loggedIn ? onLogout : () => location.href = window.getLoginUrl()
+    }, [svg(window.ICON_PATHS['arrow-right-to-bracket'])]);
+
+    const tools = h('div', { class: 'topbar-tools' }, [
+      buildThemeSwitcher(),
+      window.i18n ? window.i18n.createLanguageSwitcher() : null,
+      authBtn
+    ]);
+
+    return h('header', { class: 'topbar' }, [buildBrand(), menuBtn, title, h('div', { class: 'topbar-spacer' }), tools, pill]);
 
   }
 
