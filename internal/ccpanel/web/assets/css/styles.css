@@ -213,8 +213,8 @@
   /* 24px */
   --radius-full: 9999px;
 
-  /* 卡片（网关风格：轻圆角 + 略透底，不糊成一片） */
-  --card-radius: 0.3rem;
+  /* 卡片（OmniRoute 基准：12px 圆角 + 略透底，不糊成一片） */
+  --card-radius: var(--radius-lg);
   --card-bg: rgba(255, 255, 255, 0.80);
 
   /* 阴影系统 */
@@ -283,14 +283,14 @@ html[data-resolved-theme="dark"] {
   --page-bg:
     radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(229, 172, 130, 0.10), transparent 60%),
     linear-gradient(180deg, #14150f 0%, #11120f 100%);
-  --sidebar-bg: #141510;
+  --sidebar-bg: #11120f;
   --surface-bg: rgba(25, 26, 22, 0.86);
   --surface-bg-strong: rgba(25, 26, 22, 0.96);
   --surface-bg-muted: rgba(34, 35, 29, 0.85);
   /* 边框从前景米色 #f2f0e8 的低透明度层里出——描边与字同一族，
      不出现灰蓝对比线 */
-  --surface-border: rgba(242, 240, 232, 0.16);
-  --surface-border-strong: rgba(242, 240, 232, 0.28);
+  --surface-border: rgba(242, 240, 232, 0.13);
+  --surface-border-strong: rgba(242, 240, 232, 0.22);
   --surface-hover: rgba(242, 240, 232, 0.06);
   --surface-active: rgba(242, 240, 232, 0.10);
   --field-bg: rgba(19, 20, 16, 0.9);
@@ -687,9 +687,8 @@ html.boot-pending body > * {
 
 .sidebar-link.active {
   background: color-mix(in srgb, var(--primary-500) 14%, transparent);
-  color: var(--primary-600);
+  color: var(--primary-500);
   font-weight: var(--font-semibold);
-  box-shadow: inset 2.5px 0 0 var(--primary-500);
 }
 
 .sidebar-foot {
@@ -1111,7 +1110,7 @@ html.boot-pending body > * {
   justify-content: center;
   gap: var(--space-2);
   padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-full);
   font-family: inherit;
   font-size: var(--text-sm);
   font-weight: var(--font-medium);
@@ -2064,7 +2063,7 @@ body.sidebar-open .sidebar-backdrop {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border-radius: var(--card-radius);
-  border: 1px solid var(--surface-border);
+  border: 1px solid var(--surface-border-strong);
   background: var(--table-bg);
 }
 
@@ -2077,21 +2076,22 @@ body.sidebar-open .sidebar-backdrop {
 }
 
 .modern-table thead {
-  background: var(--neutral-100);
+  background: var(--surface-bg-muted);
 }
 
 .modern-table th {
-  padding: var(--space-4);
+  padding: var(--space-2) var(--space-3);
   text-align: left;
-  font-weight: var(--font-semibold);
-  color: var(--neutral-800);
-  border-bottom: 2px solid var(--neutral-200);
+  font-weight: var(--font-medium);
+  font-size: var(--text-xs);
+  color: var(--muted-fg);
+  border-bottom: 1px solid var(--surface-border-strong);
   white-space: nowrap;
 }
 
 .modern-table td {
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--neutral-200);
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--surface-border);
   transition: background-color var(--duration-fast);
 }
 
