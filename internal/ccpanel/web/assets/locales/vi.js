@@ -1335,6 +1335,8 @@ window.I18N_LOCALES['vi'] = {
   // ============================================================
   'nav.group.observe': 'Giám sát',
   'nav.group.manage': 'Quản lý',
+  'topbar.quickNav': 'Điều hướng nhanh',
+  'topbar.quickNavEmpty': 'Không có trang phù hợp',
   'topbar.toggleMenu': 'Mở/đóng menu điều hướng',
   'settings.desc.gate_bg_max_hold_seconds': 'Ngân sách xếp hàng trong gate tính bằng giây cho request bg (devin.gate_bg_max_hold_seconds; fg dùng gate_max_hold_seconds); <=0 mặc định 120',
   'settings.desc.gate_bg_reserve_margin': 'Số slot an toàn cố định trong công thức dự trữ cho phép bg (devin.gate_bg_reserve_margin); <=0 mặc định 4',

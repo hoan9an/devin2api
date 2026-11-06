@@ -783,9 +783,7 @@
   // 左侧导航栏（proxy gateway 标准布局）
   function buildSidebar(active) {
 
-    const role = window.getWebRole();
-
-    const visibleNavKeys = new Set(window.WebAuth.filterNavigation(NAVS.map((item) => item.key), role));
+    const visibleNavKeys = navKeysForRole();
 
 
 
@@ -900,6 +898,96 @@
 
 
 
+  // 快速导航（Ctrl/⌘+K）：只在当前角色可见的页面里过滤，回车跳转
+  function navKeysForRole() {
+    return new Set(window.WebAuth.filterNavigation(NAVS.map((n) => n.key), window.getWebRole()));
+  }
+
+  let quickNav = null;
+  let quickNavIndex = 0;
+  let quickNavMatches = [];
+
+  /** 按输入过滤导航项并重绘列表，index 始终落在有效项上 */
+  function renderQuickNav(query) {
+    const q = query.trim().toLowerCase();
+    const allowed = navKeysForRole();
+    quickNavMatches = NAVS.filter((n) => allowed.has(n.key))
+      .filter((n) => !q || t(n.labelKey).toLowerCase().includes(q) || n.key.includes(q));
+    quickNavIndex = Math.min(quickNavIndex, Math.max(quickNavMatches.length - 1, 0));
+    if (!quickNavMatches.length) {
+      quickNav.list.replaceChildren(h('div', { class: 'quick-nav-empty' }, t('topbar.quickNavEmpty')));
+      return;
+    }
+    quickNav.list.replaceChildren(...quickNavMatches.map((n, i) => h('button', {
+      type: 'button',
+      class: `quick-nav-item${i === quickNavIndex ? ' active' : ''}`,
+      role: 'option',
+      'aria-selected': i === quickNavIndex ? 'true' : 'false',
+      onclick: () => goQuickNav(n.href)
+    }, [n.icon(), h('span', {}, t(n.labelKey))])));
+  }
+
+  /** 关闭浮层后跳转；顺序不能反，否则 overlay 会跟着页面卸载 */
+  function goQuickNav(href) {
+    closeQuickNav();
+    location.href = href;
+  }
+
+  /** 惰性创建浮层，只建一次：结果列表随输入重绘，浮层本身复用 */
+  function ensureQuickNav() {
+    if (quickNav) return quickNav;
+    const input = h('input', {
+      type: 'text',
+      class: 'quick-nav-input',
+      placeholder: t('topbar.quickNav'),
+      'aria-label': t('topbar.quickNav'),
+      autocomplete: 'off'
+    });
+    const list = h('div', { class: 'quick-nav-list', role: 'listbox' });
+    const overlay = h('div', { class: 'quick-nav-overlay', hidden: '' }, [
+      h('div', { class: 'quick-nav-dialog', role: 'dialog', 'aria-modal': 'true' }, [input, list])
+    ]);
+    overlay.addEventListener('click', (event) => {
+      if (event.target === overlay) closeQuickNav();
+    });
+    input.addEventListener('input', () => {
+      quickNavIndex = 0;
+      renderQuickNav(input.value);
+    });
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeQuickNav();
+      } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        const step = event.key === 'ArrowDown' ? 1 : -1;
+        const count = quickNavMatches.length;
+        if (count) quickNavIndex = (quickNavIndex + step + count) % count;
+        renderQuickNav(input.value);
+      } else if (event.key === 'Enter' && quickNavMatches[quickNavIndex]) {
+        event.preventDefault();
+        goQuickNav(quickNavMatches[quickNavIndex].href);
+      }
+    });
+    document.body.appendChild(overlay);
+    quickNav = { overlay, input, list };
+    return quickNav;
+  }
+
+  /** 打开浮层并聚焦输入框——hidden 属性控制可见性，不进布局 */
+  function openQuickNav() {
+    const { overlay, input } = ensureQuickNav();
+    overlay.hidden = false;
+    input.value = '';
+    quickNavIndex = 0;
+    renderQuickNav('');
+    input.focus();
+  }
+
+  /** 关闭浮层；从未打开过则无事可做 */
+  function closeQuickNav() {
+    if (quickNav) quickNav.overlay.hidden = true;
+  }
+
   // 顶部细条：移动端汉堡唤回抽屉侧栏；桌面端同键收放侧栏并记忆选择
   function buildTopbar(active) {
 
@@ -967,6 +1055,24 @@
 
 
 
+    // 快速导航入口：图标 + 文案 + 快捷键提示，窄屏只留图标
+    const isMac = /Mac|iPhone|iPad/.test(navigator.platform);
+    const searchBtn = h('button', {
+      type: 'button',
+      class: 'topbar-search',
+      title: t('topbar.quickNav'),
+      'aria-label': t('topbar.quickNav'),
+      'data-i18n-title': 'topbar.quickNav',
+      'data-i18n-aria-label': 'topbar.quickNav',
+      'aria-haspopup': 'dialog',
+      onclick: () => openQuickNav()
+    }, [
+      svg(window.ICON_PATHS['search']),
+      h('span', { class: 'topbar-search-label', 'data-i18n': 'topbar.quickNav' }, t('topbar.quickNav')),
+      h('kbd', { class: 'topbar-search-kbd' }, isMac ? '⌘' : 'Ctrl'),
+      h('kbd', { class: 'topbar-search-kbd' }, 'K')
+    ]);
+
     // 顶栏右侧工具组：主题 / 语言 / 登录退出——全局控件从侧栏搬上来，
     // 侧栏收合或抽屉开关都不再让它们消失
     const loggedIn = isLoggedIn();
@@ -988,7 +1094,7 @@
       authBtn
     ]);
 
-    return h('header', { class: 'topbar' }, [buildBrand(), menuBtn, title, h('div', { class: 'topbar-spacer' }), tools, pill]);
+    return h('header', { class: 'topbar' }, [buildBrand(), menuBtn, title, searchBtn, h('div', { class: 'topbar-spacer' }), tools, pill]);
 
   }
 
@@ -1233,6 +1339,14 @@
       }
 
     } catch (_) {}
+
+    // Ctrl/⌘+K 开合快速导航；浮层内 Escape 由输入框自己处理
+    document.addEventListener('keydown', (event) => {
+      if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'k') return;
+      event.preventDefault();
+      if (quickNav && !quickNav.overlay.hidden) closeQuickNav();
+      else openQuickNav();
+    });
 
     document.body.classList.toggle('web-role-api-token', window.isAPITokenRole());
 

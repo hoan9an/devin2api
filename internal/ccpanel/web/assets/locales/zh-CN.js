@@ -1334,6 +1334,8 @@ window.I18N_LOCALES['zh-CN'] = {
   // ============================================================
   'nav.group.observe': '监控',
   'nav.group.manage': '管理',
+  'topbar.quickNav': '快速导航',
+  'topbar.quickNavEmpty': '没有匹配的页面',
   'topbar.toggleMenu': '切换导航菜单',
   'settings.desc.gate_bg_max_hold_seconds': 'bg 类请求闸内排队预算秒数（devin.gate_bg_max_hold_seconds，fg 走 gate_max_hold_seconds）；<=0 默认 120',
   'settings.desc.gate_bg_reserve_margin': 'bg 准入预留公式的固定安全边际条数（devin.gate_bg_reserve_margin）；<=0 默认 4',

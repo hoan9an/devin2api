@@ -1336,6 +1336,8 @@ window.I18N_LOCALES['en'] = {
   'nav.group.observe': 'Monitor',
   'nav.group.manage': 'Manage',
   'topbar.toggleMenu': 'Toggle navigation menu',
+  'topbar.quickNav': 'Quick nav',
+  'topbar.quickNavEmpty': 'No matching page',
   'settings.desc.gate_bg_max_hold_seconds': 'Queue budget in seconds for bg-class requests inside the gate (devin.gate_bg_max_hold_seconds; fg uses gate_max_hold_seconds); <=0 default 120',
   'settings.desc.gate_bg_reserve_margin': 'Fixed safety-margin slots in the bg admission reserve formula (devin.gate_bg_reserve_margin); <=0 default 4',
   'settings.desc.gate_cooldown_seconds': 'Quota ramp-up duration in seconds after the latch opens (devin.gate_cooldown_seconds): the window’s effective quota climbs linearly from the floor ratio to full; <=0 default 180',
