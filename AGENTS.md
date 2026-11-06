@@ -1,5 +1,45 @@
 # AGENTS.md
 
+## Fork 拓扑与 upstream 同步
+
+本仓库是 `hoan9an/devin2api`（GitHub fork-of `WncFht/devin2api`）。两个 remote 都已在 local clone 与 homelab `~/devin2api` 配好：
+
+- `origin` → `hoan9an/devin2api`（推送、PR 目的地）
+- `upstream` → `WncFht/devin2api`（只读同步源）
+
+工作面划分（merge 无冲突的前提）：fork 只动 `internal/ccpanel/`（UI）、`internal/obs/metrics.go`、`.gitignore`、`README*.md`；upstream 动 `internal/adapter/`、`internal/llm/`、docs、scripts。**每次 merge 后用 `git diff HEAD^1 HEAD` 复核 diff 为空**——一旦 fork 开始改 adapter/llm 同一批文件，这个前提就失效了。go.mod 的 module path 保持 `github.com/WncFht/devin2api` 不动（upstream 源码 import 拿来即用）。
+
+同步流程（merge 优先，cherry-pick 仅用于选摘）：
+
+```bash
+git fetch upstream
+git log main..upstream/main --oneline   # 看有什么新的
+git merge upstream/main                  # graph 已 reconcile，直接 merge
+go mod tidy && go build ./... && go test ./...
+git push origin main
+# homelab: ssh homelab 'cd ~/devin2api && git pull --ff-only && bash scripts/deploy/deploy-linux.sh'
+```
+
+注意 go.mod merge 会产生「同一包既 direct 又 indirect」的重复 require（上游把 demote.go 直接 import 的 giraffesyo/pdf 标成 indirect）——`go mod tidy` 收口即可，上游写法不改。
+
+历史：2026-11-06 首轮同步用了 cherry-pick（7 commit），随后空 merge commit `2e81b04` 把真实祖先关系补进图——main 现在是 upstream/main 的后代，此后一律 merge。
+
+### GitHub fork 的坑（踩过的，勿复现）
+
+- **fork 上切 public→private 会永久 detach fork network**（API `fork:false, parent:null`），private→public 不恢复。想要私有副本就另建 mirror repo，永远不要动 fork 的 visibility。
+- 已 detach 的恢复法（已用过一次）：删 repo → `gh repo fork WncFht/devin2api` → 本地 `git merge upstream/main` 补齐祖先 → push（fast-forward，前提是 main 已是 upstream 后代）。
+- `gh repo delete` 需 `delete_repo` scope；`gh repo fork` 撞同名会建 `<name>-1`，源 repo 删除后 GitHub 自动收回原名。
+
+### Homelab 部署机（fork 侧约定）
+
+SSH alias `homelab`（192.168.1.100），repo `~/devin2api`，service `devin-2api.service` :3033，Go 不在 SSH PATH（`/home/an/.local/opt/go/bin/go`），`GOCACHE/GOPATH` 指 `/tmp/opencode`。
+
+- `~/devin2api/update.sh`（untracked）是硬重启捷径，会掐在途流——部署一律走 `deploy-linux.sh`（reuseport 零停机）。
+- `deploy-linux.sh` 从**仓库侧 `config.yaml`** 探测 port 与 credentials_file——它必须是 live `~/.config/devin-2api/config.yaml` 的镜像（2026-11-06 已 `cp` 对齐）。live 改过要重新 `cp` 回去，否则 port 探测歪去 :8080（被别的进程占着）把部署拦死在 `check_port_available`。
+- deploy 尾部的 `/v1/models` 401 WARN 是正常：smoke probe 不带 Authorization，token vault 闭合的实例按设计拒绝。
+
+Windows 开发机过 SSH 跑远程脚本：shell 工具的 write 输出是 CRLF，`bash -s` 会噎死；多行命令 base64 编码后 `ssh homelab "echo <b64> | base64 -d | bash"`。
+
 ## 代码风格规则
 
 这是新项目，按照开源和业界规范组织、编写。因为是初期 api key 等敏感信息允许暴露在文件中，无需 env 等方式隐藏。不要无意义的过度 test，test 端到端的也不一定是 tests/的东西。或许是跑起来。
