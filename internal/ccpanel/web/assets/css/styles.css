@@ -214,7 +214,7 @@
   --radius-full: 9999px;
 
   /* 卡片（OmniRoute 基准：12px 圆角 + 略透底，不糊成一片） */
-  --card-radius: var(--radius-lg);
+  --card-radius: 0.2rem;
   --card-bg: rgba(255, 255, 255, 0.93);
 
   /* 阴影系统 */
