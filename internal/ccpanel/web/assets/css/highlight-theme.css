@@ -92,8 +92,8 @@ code.hljs {
 
 /* GitHub Dark */
 html[data-resolved-theme="dark"] .hljs {
-  color: #c9d1d9;
-  background: #0d1117;
+  color: #e0dfd6;
+  background: #141510;
 }
 html[data-resolved-theme="dark"] .hljs-doctag,
 html[data-resolved-theme="dark"] .hljs-keyword,

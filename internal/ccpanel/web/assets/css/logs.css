@@ -285,23 +285,23 @@ body.web-role-api-token .logs-col-api-key {
 }
 
 html[data-resolved-theme="dark"] .chat-message {
-  --chat-code-border: #334155;
-  --chat-code-bg: #0f172a;
+  --chat-code-border: #3d3e35;
+  --chat-code-bg: #141510;
   --chat-code-shadow: none;
-  --chat-code-header-bg: #1e293b;
-  --chat-code-header-fg: #cbd5e1;
-  --chat-code-gutter-border: #263548;
-  --chat-code-gutter-bg: #111c2d;
-  --chat-code-gutter-fg: #64748b;
-  --chat-code-chip-border: #475569;
-  --chat-code-chip-bg: #0f172a;
-  --chat-code-chip-fg: #e2e8f0;
+  --chat-code-header-bg: #1f201b;
+  --chat-code-header-fg: #d4d5cb;
+  --chat-code-gutter-border: #2b2c25;
+  --chat-code-gutter-bg: #191a16;
+  --chat-code-gutter-fg: #83857a;
+  --chat-code-chip-border: #3d3e35;
+  --chat-code-chip-bg: #141510;
+  --chat-code-chip-fg: #e8e9e0;
   --chat-code-chip-shadow: none;
-  --chat-code-copy-fg: #94a3b8;
+  --chat-code-copy-fg: #9c9e91;
   --chat-code-copied-border: color-mix(in srgb, var(--success-500) 35%, transparent);
   --chat-code-copied-bg: color-mix(in srgb, var(--success-500) 12%, transparent);
   --chat-code-copied-fg: #4ade80;
-  --chat-code-text: #dbeafe;
+  --chat-code-text: #e8e9e0;
   --chat-syn-command: #79c0ff;
   --chat-syn-url: #7ee787;
   --chat-syn-flag: #ff7b72;

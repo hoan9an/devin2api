@@ -207,7 +207,7 @@
 
     const meta = document.querySelector('meta[name="theme-color"]');
 
-    if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#141518' : '#b87333');
+    if (meta) meta.setAttribute('content', resolvedTheme === 'dark' ? '#11120f' : '#b87333');
 
   }
 

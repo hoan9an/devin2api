@@ -1,8 +1,8 @@
 <svg width="176" height="36" viewBox="0 0 176 36" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="wordmark-cyan-gradient" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#d6a878"/>
-      <stop offset="1" stop-color="#b87333"/>
+      <stop offset="0" stop-color="#f2c9a8"/>
+      <stop offset="1" stop-color="#e5ac82"/>
     </linearGradient>
   </defs>
 
@@ -10,10 +10,10 @@
     <g font-family="'Lexend', Arial Black, Arial, Helvetica, sans-serif" font-size="28" font-style="italic" font-weight="900">
       <text x="0" y="24.5" fill="currentColor" textLength="84" lengthAdjust="spacingAndGlyphs">Devin</text>
       <text x="86" y="24.5" fill="url(#wordmark-cyan-gradient)" textLength="74" lengthAdjust="spacingAndGlyphs">2API</text>
-      <path d="M169 4 163.5 12.4h3.7L163.4 24 173 8.4h-4.2Z" fill="#d6a878"/>
+      <path d="M169 4 163.5 12.4h3.7L163.4 24 173 8.4h-4.2Z" fill="#e5ac82"/>
     </g>
 
-    <text x="0" y="35" fill="#c99568" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" letter-spacing="2">DEVIN API PROXY</text>
+    <text x="0" y="35" fill="#e5ac82" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="9" font-weight="700" letter-spacing="2">DEVIN API PROXY</text>
   </symbol>
 
   <use href="#brand-wordmark" width="176" height="36" color="#e4e4e4"/>
