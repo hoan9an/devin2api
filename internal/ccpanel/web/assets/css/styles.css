@@ -1,4 +1,4 @@
-/* Devin2API — proxy gateway 主题（orange accent + 冷中性底，顶部暖光晕） */
+/* Devin2API — proxy gateway 主题（orange accent + 冷中性底） */
 
 /* Inter 可变字重本地化（woff2 见 assets/fonts/）：不再依赖 Google Fonts
    外网请求——字体拿不到时整页静默退回系统字体，正是各页字形不一致的来源 */
@@ -67,10 +67,8 @@
   --filter-dropdown-item-highlight-bg: var(--primary-500);
   --filter-dropdown-item-highlight-fg: #fff;
 
-  /* 主题语义色：亮色为基准，暗色只覆盖这一层；暖色只留主色与顶部光晕 */
-  --page-bg:
-    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(184, 115, 51, 0.09), transparent 60%),
-    linear-gradient(180deg, #fdfdfb 0%, #f4f4f1 100%);
+  /* 主题语义色：亮色为基准，暗色只覆盖这一层；暖色只留主色 */
+  --page-bg: linear-gradient(180deg, #fdfdfb 0%, #f4f4f1 100%);
   --surface-bg: rgba(255, 255, 255, 0.96);
   --surface-bg-strong: rgba(255, 255, 255, 0.98);
   --surface-bg-muted: rgba(243, 244, 246, 0.9);
@@ -280,9 +278,7 @@ html[data-resolved-theme="dark"] {
   --neutral-700: #d4d5cb;
   --neutral-800: #e8e9e0;
   --neutral-900: #f2f0e8;
-  --page-bg:
-    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(229, 172, 130, 0.10), transparent 60%),
-    linear-gradient(180deg, #14150f 0%, #11120f 100%);
+  --page-bg: linear-gradient(180deg, #14150f 0%, #11120f 100%);
   --sidebar-bg: #11120f;
   --surface-bg: rgba(25, 26, 22, 0.86);
   --surface-bg-strong: rgba(25, 26, 22, 0.96);
