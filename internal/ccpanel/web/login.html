@@ -20,93 +20,85 @@
 </head>
 <body>
   <div class="login-page">
-    <div class="login-container animate-slide-up">
-      <!-- Logo和品牌 -->
-      <div class="login-brand">
+    <main class="login-container animate-slide-up">
+      <!-- 品牌行：logo + wordmark 左对齐，标题与副题紧跟其下，避免居中堆叠 -->
+      <header class="login-brand">
         <div class="login-brand-row">
-          <div class="brand-logo">
-            <img class="logo-icon" src="/web/favicon-192.png" alt="">
-          </div>
+          <img class="logo-icon" src="/web/favicon-192.png" alt="">
           <svg class="login-brand-wordmark" viewBox="0 0 176 36" role="img" aria-label="Devin2API">
             <use href="/web/brand-wordmark.svg#brand-wordmark" width="176" height="36"></use>
           </svg>
         </div>
         <p class="brand-subtitle" data-i18n="login.brandSubtitle">Devin Upstream API Gateway</p>
+      </header>
+
+      <div class="login-header">
+        <h1 id="login-title" data-i18n="login.adminLogin">Admin Login</h1>
+        <p id="login-hint" data-i18n="login.passwordHint">Enter your admin password to access the system</p>
       </div>
 
-      <!-- 登录表单 -->
-      <div class="login-form-container">
-        <div class="login-header">
-          <h1 id="login-title" data-i18n="login.adminLogin">Admin Login</h1>
-          <p id="login-hint" data-i18n="login.passwordHint">Enter your admin password to access the system</p>
+      <!-- 模式切换做成下划线标签页：与日志页 tab 同一套 1px 描边语言 -->
+      <div class="login-mode-tabs" role="tablist" data-i18n-aria-label="login.modeTabsLabel" aria-label="Login method">
+        <button type="button" class="login-mode-tab active" data-login-mode="admin" role="tab" aria-selected="true" data-i18n="login.adminTab">Admin Password</button>
+        <button type="button" class="login-mode-tab" data-login-mode="api_token" role="tab" aria-selected="false" data-i18n="login.apiTokenTab">API Token</button>
+      </div>
+
+      <div id="error-message" class="error-notification hidden">
+        <svg class="error-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17h.01"/>
+        </svg>
+        <span id="error-text"></span>
+      </div>
+
+      <form id="login-form" class="login-form">
+        <div id="admin-credential-group" class="form-group">
+          <label for="password" class="form-label">
+            <svg class="label-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+            <span data-i18n="login.passwordLabel">Admin Password</span>
+          </label>
+          <input type="password" id="password" name="password" class="form-input" required autofocus data-i18n-placeholder="login.passwordPlaceholder" placeholder="Enter admin password" />
         </div>
 
-        <div class="login-mode-tabs" role="tablist" data-i18n-aria-label="login.modeTabsLabel" aria-label="Login method">
-          <button type="button" class="login-mode-tab active" data-login-mode="admin" role="tab" aria-selected="true" data-i18n="login.adminTab">Admin Password</button>
-          <button type="button" class="login-mode-tab" data-login-mode="api_token" role="tab" aria-selected="false" data-i18n="login.apiTokenTab">API Token</button>
+        <div id="api-token-credential-group" class="form-group hidden">
+          <label for="api-token" class="form-label">
+            <svg class="label-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+            </svg>
+            <span data-i18n="login.apiTokenLabel">API Token</span>
+          </label>
+          <input type="password" id="api-token" name="api-token" class="form-input" autocomplete="off" data-i18n-placeholder="login.apiTokenPlaceholder" placeholder="Enter API Token" />
         </div>
 
-        <div id="error-message" class="error-notification hidden">
-          <svg class="error-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 17h.01/>
-          </svg>
-          <span id="error-text"></span>
-        </div>
-
-        <form id="login-form" class="login-form">
-          <div id="admin-credential-group" class="form-group">
-            <label for="password" class="form-label">
-              <svg class="label-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-              </svg>
-              <span data-i18n="login.passwordLabel">Admin Password</span>
-            </label>
-            <div class="input-container">
-              <input type="password" id="password" name="password" class="form-input" required autofocus data-i18n-placeholder="login.passwordPlaceholder" placeholder="Enter admin password" />
-              <div class="input-decoration"></div>
-            </div>
+        <button type="submit" class="login-button" id="login-button">
+          <span class="button-content">
+            <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 17 5-5-5-5"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H3"/>
+            </svg>
+            <span class="button-text" data-i18n="login.loginButton">Login</span>
+          </span>
+          <div class="button-loader">
+            <div class="spinner"></div>
           </div>
+        </button>
+      </form>
 
-          <div id="api-token-credential-group" class="form-group hidden">
-            <label for="api-token" class="form-label">
-              <svg class="label-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4/>
-              </svg>
-              <span data-i18n="login.apiTokenLabel">API Token</span>
-            </label>
-            <div class="input-container">
-              <input type="password" id="api-token" name="api-token" class="form-input" autocomplete="off" data-i18n-placeholder="login.apiTokenPlaceholder" placeholder="Enter API Token" />
-              <div class="input-decoration"></div>
-            </div>
-          </div>
-
-          <button type="submit" class="login-button" id="login-button">
-            <span class="button-content">
-              <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10 17 5-5-5-5"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H3/>
-              </svg>
-              <span class="button-text" data-i18n="login.loginButton">Login</span>
-            </span>
-            <div class="button-loader">
-              <div class="spinner"></div>
-            </div>
-          </button>
-        </form>
-
-        <!-- 安全提示 -->
-        <div class="security-notice">
-          <svg class="notice-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-          </svg>
-          <div class="notice-text">
-            <div class="notice-title" data-i18n="login.securityTitle">Security Protection</div>
-            <div class="notice-desc" data-i18n="login.securityDesc">Your session will expire after 24 hours</div>
-          </div>
+      <!-- 页脚提示：不装盒子，用一条分隔线收尾 -->
+      <div class="security-notice">
+        <svg class="notice-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        <div class="notice-text">
+          <span class="notice-title" data-i18n="login.securityTitle">Security Protection</span>
+          <span class="notice-desc" data-i18n="login.securityDesc">Your session will expire after 24 hours</span>
         </div>
       </div>
-    </div>
+    </main>
   </div>
-
-
 </body>
 </html>

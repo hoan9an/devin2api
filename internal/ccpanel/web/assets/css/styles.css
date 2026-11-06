@@ -253,7 +253,9 @@
   --sidebar-bg: #f6f6f5;
   --topbar-height: 56px;
   --topbar-offset: var(--topbar-height);
-  --container-max-width: 1680px;
+  /* 内容区上限：1680px 在宽屏上把卡片拉到过宽、行长过长，收到 1440px
+     后仍是同一套居中规则（.content-area margin: 0 auto），只是两侧留白更多 */
+  --container-max-width: 1440px;
 
   /* Topbar 前景色（提高对比度） */
   --topbar-fg: var(--neutral-900);
