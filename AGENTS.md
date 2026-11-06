@@ -17,7 +17,7 @@ git log main..upstream/main --oneline   # 看有什么新的
 git merge upstream/main                  # graph 已 reconcile，直接 merge
 go mod tidy && go build ./... && go test ./...
 git push origin main
-# homelab: ssh homelab 'cd ~/devin2api && git pull --ff-only && bash scripts/deploy/deploy-linux.sh'
+# 部署细节见 notes/ 私有运维笔记（生产机信息不进公开仓库）
 ```
 
 注意 go.mod merge 会产生「同一包既 direct 又 indirect」的重复 require（上游把 demote.go 直接 import 的 giraffesyo/pdf 标成 indirect）——`go mod tidy` 收口即可，上游写法不改。
@@ -30,15 +30,9 @@ git push origin main
 - 已 detach 的恢复法（已用过一次）：删 repo → `gh repo fork WncFht/devin2api` → 本地 `git merge upstream/main` 补齐祖先 → push（fast-forward，前提是 main 已是 upstream 后代）。
 - `gh repo delete` 需 `delete_repo` scope；`gh repo fork` 撞同名会建 `<name>-1`，源 repo 删除后 GitHub 自动收回原名。
 
-### Homelab 部署机（fork 侧约定）
+### 机器专属运维细节
 
-SSH alias `homelab`（192.168.1.100），repo `~/devin2api`，service `devin-2api.service` :3033，Go 不在 SSH PATH（`/home/an/.local/opt/go/bin/go`），`GOCACHE/GOPATH` 指 `/tmp/opencode`。
-
-- `~/devin2api/update.sh`（untracked）是硬重启捷径，会掐在途流——部署一律走 `deploy-linux.sh`（reuseport 零停机）。
-- `deploy-linux.sh` 从**仓库侧 `config.yaml`** 探测 port 与 credentials_file——它必须是 live `~/.config/devin-2api/config.yaml` 的镜像（2026-11-06 已 `cp` 对齐）。live 改过要重新 `cp` 回去，否则 port 探测歪去 :8080（被别的进程占着）把部署拦死在 `check_port_available`。
-- deploy 尾部的 `/v1/models` 401 WARN 是正常：smoke probe 不带 Authorization，token vault 闭合的实例按设计拒绝。
-
-Windows 开发机过 SSH 跑远程脚本：shell 工具的 write 输出是 CRLF，`bash -s` 会噎死；多行命令 base64 编码后 `ssh homelab "echo <b64> | base64 -d | bash"`。
+生产部署机的 SSH、内网地址、Go 路径、config.yaml 镜像约定、部署踩坑等收在 `notes/archive/2026-11-06-fork-ops-topology.md`（gitignore 私有工作区，不进公开仓库）——与既有 `2026-09-19-ops-topology.md` 同规约。
 
 ## 代码风格规则
 
