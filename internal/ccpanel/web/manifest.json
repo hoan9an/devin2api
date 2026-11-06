@@ -4,8 +4,8 @@
   "description": "Devin API 代理服务",
   "start_url": "/web/index.html",
   "display": "standalone",
-  "background_color": "#181818",
-  "theme_color": "#181818",
+  "background_color": "#141518",
+  "theme_color": "#141518",
   "icons": [
     {
       "src": "/web/favicon-192.png",

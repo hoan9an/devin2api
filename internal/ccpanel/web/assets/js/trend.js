@@ -794,8 +794,8 @@
             backgroundColor: chartTheme.surfaceMuted,
             fillerColor: 'rgba(6, 182, 212, 0.16)',
             handleStyle: {
-              color: '#d97757',
-              borderColor: '#d97757'
+              color: '#c99568',
+              borderColor: '#c99568'
             },
             textStyle: {
               color: chartTheme.mutedText,

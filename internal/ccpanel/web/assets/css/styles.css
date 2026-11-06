@@ -32,19 +32,19 @@
 :root {
   color-scheme: light;
 
-  /* 品牌色彩系统（Claude 橙陶 #d97757 族） */
-  --primary-50: #faf0ea;
-  --primary-100: #f5e0d3;
-  --primary-200: #efc6ac;
-  --primary-300: #e5a37f;
-  --primary-400: #e18b62;
-  --primary-500: #d97757;
-  --primary-600: #c95f3e;
-  --primary-700: #b14c2e;
-  --primary-800: #8f3d25;
-  --primary-900: #6d2f1d;
-  /* 主色按钮等实心底上的前景（橙陶底需深字才对比达标） */
-  --primary-contrast: #1f1410;
+  /* 品牌色彩系统（Copper/Bronze 金属铜 #B87333 族） */
+  --primary-50: #f7efe4;
+  --primary-100: #efdfc8;
+  --primary-200: #e3c39b;
+  --primary-300: #d4a26d;
+  --primary-400: #c99568;
+  --primary-500: #b87333;
+  --primary-600: #956442;
+  --primary-700: #7c5236;
+  --primary-800: #63412a;
+  --primary-900: #4b3120;
+  /* 主色按钮等实心底上的前景（铜底需深字才对比达标） */
+  --primary-contrast: #17100a;
 
   /* 中性色彩 */
   --neutral-50: #f9fafb;
@@ -69,8 +69,8 @@
 
   /* 主题语义色：亮色为基准，暗色只覆盖这一层；暖色只留主色与顶部光晕 */
   --page-bg:
-    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(217, 119, 87, 0.10), transparent 60%),
-    linear-gradient(180deg, #fdfdfc 0%, #f4f4f3 100%);
+    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(184, 115, 51, 0.09), transparent 60%),
+    linear-gradient(180deg, #fdfdfb 0%, #f4f4f1 100%);
   --surface-bg: rgba(255, 255, 255, 0.96);
   --surface-bg-strong: rgba(255, 255, 255, 0.98);
   --surface-bg-muted: rgba(243, 244, 246, 0.9);
@@ -280,36 +280,38 @@ html[data-resolved-theme="dark"] {
   --neutral-800: #f3f4f6;
   --neutral-900: #f9fafb;
   --page-bg:
-    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(217, 119, 87, 0.16), transparent 60%),
-    linear-gradient(180deg, #181818 0%, #151515 100%);
-  --sidebar-bg: #141414;
-  --surface-bg: rgba(30, 30, 30, 0.86);
-  --surface-bg-strong: rgba(30, 30, 30, 0.96);
-  --surface-bg-muted: rgba(36, 36, 36, 0.85);
-  --surface-border: #2b2b2b;
-  --surface-border-strong: #3a3a3a;
+    radial-gradient(ellipse 1100px 520px at 50% -160px, rgba(184, 115, 51, 0.15), transparent 60%),
+    linear-gradient(180deg, #17181b 0%, #131417 100%);
+  --sidebar-bg: #141518;
+  --surface-bg: rgba(28, 30, 35, 0.86);
+  --surface-bg-strong: rgba(28, 30, 35, 0.96);
+  --surface-bg-muted: rgba(36, 39, 45, 0.85);
+  --surface-border: #2c2e34;
+  --surface-border-strong: #3d4048;
   --surface-hover: rgba(255, 255, 255, 0.06);
   --surface-active: rgba(255, 255, 255, 0.10);
-  --field-bg: rgba(18, 18, 18, 0.9);
-  --field-bg-focus: rgba(16, 16, 16, 0.96);
-  --table-bg: rgba(30, 30, 30, 0.9);
+  --field-bg: rgba(20, 21, 25, 0.9);
+  --field-bg-focus: rgba(18, 19, 23, 0.96);
+  --table-bg: rgba(28, 30, 35, 0.9);
   --table-row-hover: rgba(255, 255, 255, 0.04);
   --body-fg: var(--neutral-800);
   --muted-fg: var(--neutral-600);
-  --filter-dropdown-bg: rgb(30, 30, 30);
-  --filter-dropdown-border: #2b2b2b;
+  --filter-dropdown-bg: rgb(28, 30, 35);
+  --filter-dropdown-border: #2c2e34;
   --filter-dropdown-item-fg: var(--neutral-900);
   --filter-dropdown-item-hover-bg: rgba(255, 255, 255, 0.08);
   --filter-dropdown-item-active-bg: rgba(255, 255, 255, 0.12);
   --topbar-fg: var(--neutral-900);
   --topbar-fg-muted: var(--neutral-600);
-  --card-bg: rgba(30, 30, 30, 0.72);
-  /* 橙陶在深底上的可读档：-400 承担描边/聚焦环/强调文本，
-     -500/-600 维持按钮实底（配深色字），文本类用途不额外提亮 */
-  --primary-400: #e18b62;
-  --primary-500: #d97757;
-  --primary-600: #c95f3e;
-  --primary-contrast: #141110;
+  --card-bg: rgba(28, 30, 35, 0.72);
+  /* 铜在深底上的可读档：-500 香槟铜作按钮实底/强调（配深色字），
+     -600 标准铜为 hover/pressed，-400 更亮一档承担描边/聚焦环文本 */
+  --primary-300: #e0b88c;
+  --primary-400: #d6a878;
+  --primary-500: #c99568;
+  --primary-600: #b87333;
+  --primary-700: #956442;
+  --primary-contrast: #17100a;
   /* 语义色暗色档：-50/-100/-200/-300 作表面/描边翻成半透明深色，-700/-800 作前景翻成浅色 */
   --success-50: rgba(16, 185, 129, 0.14);
   --success-100: rgba(16, 185, 129, 0.18);
