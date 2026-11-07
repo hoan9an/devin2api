@@ -1089,12 +1089,13 @@
     }, [svg(window.ICON_PATHS['arrow-right-to-bracket'])]);
 
     const tools = h('div', { class: 'topbar-tools' }, [
+      searchBtn,
       buildThemeSwitcher(),
       window.i18n ? window.i18n.createLanguageSwitcher() : null,
       authBtn
     ]);
 
-    return h('header', { class: 'topbar' }, [buildBrand(), menuBtn, title, searchBtn, h('div', { class: 'topbar-spacer' }), tools, pill]);
+    return h('header', { class: 'topbar' }, [buildBrand(), menuBtn, title, h('div', { class: 'topbar-spacer' }), tools, pill]);
 
   }
 
